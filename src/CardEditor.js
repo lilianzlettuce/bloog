@@ -1,14 +1,11 @@
 import logo from './logo.svg'
 import React from 'react'
 
-function App() {
+export default function CardEditor() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>YOOOOO BLOOG</p>
-      </header>
+    <div>
+
     </div>
-  );
+  )
 }
 
-export default App;
