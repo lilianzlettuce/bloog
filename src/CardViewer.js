@@ -19,13 +19,17 @@ export default class CardViewer extends React.Component {
       }, 150);
       this.setState({ front: false })
     } else {
-      document.querySelector('#card').style.transform = 'rotateX(0deg)'
-      setTimeout(() => {
-        document.querySelector('#text-display-front').style.display = 'block'
-        document.querySelector('#text-display-back').style.display = 'none'
-      }, 150);
-      this.setState({ front: true })
+      this.toFront()
     }
+  }
+
+  toFront = () => {
+    document.querySelector('#card').style.transform = 'rotateX(0deg)'
+    setTimeout(() => {
+      document.querySelector('#text-display-front').style.display = 'block'
+      document.querySelector('#text-display-back').style.display = 'none'
+    }, 150);
+    this.setState({ front: true })
   }
 
   cardUp = () => {
@@ -46,6 +50,7 @@ export default class CardViewer extends React.Component {
       }, 200);
 
       this.setState({ currentCard: this.state.currentCard + 1 })
+      this.toFront()
     }
   }
 
@@ -67,6 +72,7 @@ export default class CardViewer extends React.Component {
       }, 200);
 
       this.setState({ currentCard: this.state.currentCard - 1 })
+      this.toFront()
     }
   }
 
