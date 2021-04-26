@@ -18,7 +18,7 @@ class Main extends React.Component {
           back: 'ooo====================Σ(っﾟДﾟ)っ !'
         }
       ],
-      editor: true,
+      editor: false,
     }
   }
 
@@ -60,6 +60,7 @@ class Main extends React.Component {
     } else {
       return(
         <CardViewer 
+          cards={this.state.cards} 
           switchMode={this.switchMode}
         />
       )

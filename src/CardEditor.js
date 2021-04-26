@@ -38,8 +38,8 @@ export default class CardEditor extends React.Component {
     return (
       <div class="container">
         <div class="heading">
-          <h2>Card Editor</h2>
-          <button class="switch-btn" onClick={this.props.switchMode}>Study →</button>
+          <h2></h2>
+          <button class="switch-btn" onClick={this.props.switchMode}>Study Cards →</button>
         </div>
         <table>
           <thead>

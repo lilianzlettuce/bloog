@@ -1,0 +1,26 @@
+#card-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top: 30px;
+}
+
+#card {
+    width: 65%;
+    max-width: calc(65vh * 7 / 4);
+    height: 65vh;
+    box-shadow: 0px 0px 10px 0px rgba(128, 128, 128, 0.678);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 3.5rem;
+    transform: rotateX(0deg);
+    transition: transform .5s ease;
+}
+
+#controls-container {
+    margin-left: 60px;
+}
