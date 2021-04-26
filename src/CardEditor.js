@@ -15,6 +15,10 @@ export default class CardEditor extends React.Component {
     this.setState({front: '', back: '',})
   }
 
+  deleteCard = i => {
+    this.props.deleteCard(i)
+  }
+
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value })
   }
@@ -26,7 +30,7 @@ export default class CardEditor extends React.Component {
           <td>{card.front}</td>
           <td>{card.back}</td>
           <td>
-            <button className="delete-btn" >X</button>
+            <button className="delete-btn" onClick={() => this.deleteCard(index)} >X</button>
           </td>
         </tr>
       )
@@ -43,9 +47,7 @@ export default class CardEditor extends React.Component {
               <th></th>
             </tr>
           </thead>
-          <tbody>
-            {cards}
-          </tbody>
+          <tbody>{cards}</tbody>
         </table>
         <br />
         <input 

@@ -26,10 +26,16 @@ class Main extends React.Component {
     this.setState({ cards })
   }
 
+  deleteCard = i => {
+    const cards = this.state.cards.slice()
+    cards.splice(i, 1)
+    this.setState({ cards })
+  }
+
   render() {
     return(
       <div>
-        <CardEditor cards={this.state.cards} addCard={this.addCard} />
+        <CardEditor cards={this.state.cards} addCard={this.addCard} deleteCard={this.deleteCard} />
         <CardViewer />
       </div>
     )
