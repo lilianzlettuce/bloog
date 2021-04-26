@@ -1,9 +1,19 @@
 import React, { useState } from 'react'
 
-export default function CardViewer() {
-  return (
-    <div>
+export default class CardViewer extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
 
-    </div>
-  )
+    }
+  }
+
+  render() {
+    return (
+      <div className="container">
+        <h2>Card Viewer</h2>
+        <br/> <button onClick={this.props.switchMode}>geh</button>
+      </div>
+    )
+  }
 }

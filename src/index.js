@@ -17,7 +17,8 @@ class Main extends React.Component {
           front: 'front2',
           back: 'back2'
         }
-      ]
+      ],
+      editor: true,
     }
   }
 
@@ -32,17 +33,29 @@ class Main extends React.Component {
     this.setState({ cards })
   }
 
+  switchMode = () => this.setState({ editor: !this.state.editor })
+
   render() {
-    return(
-      <div>
-        <CardEditor cards={this.state.cards} addCard={this.addCard} deleteCard={this.deleteCard} />
-        <CardViewer />
-      </div>
-    )
+    if (this.state.editor) {
+      return(
+        <CardEditor 
+          cards={this.state.cards} 
+          addCard={this.addCard} 
+          deleteCard={this.deleteCard} 
+          switchMode={this.switchMode}
+        />
+      )
+    } else {
+      return(
+        <CardViewer 
+          switchMode={this.switchMode}
+        />
+      )
+    }
   }
 }
 
 ReactDOM.render(
   <Main />,
-  document.getElementById('root')
+  document.querySelector('#root')
 );

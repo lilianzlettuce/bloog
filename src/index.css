@@ -69,7 +69,7 @@ button:active{
   background-color: rgb(255, 43, 43);
 }
 
-#card-editor{
+.container{
   margin: 5% auto;
   width: 80%;
 }
