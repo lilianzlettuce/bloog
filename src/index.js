@@ -4,18 +4,27 @@ import './index.css';
 import CardEditor from './CardEditor';
 import CardViewer from './CardViewer';
 
-class Main extends React.Component() {
+class Main extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-
+      cards: [
+        {
+          front: 'front1',
+          back: 'back1'
+        },
+        {
+          front: 'front2',
+          back: 'back2'
+        }
+      ]
     }
   }
 
   render() {
     return(
       <div>
-        <CardEditor />
+        <CardEditor cards={this.state.cards} />
         <CardViewer />
       </div>
     )
