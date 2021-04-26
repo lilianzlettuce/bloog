@@ -21,10 +21,15 @@ class Main extends React.Component {
     }
   }
 
+  addCard = card => {
+    const cards = this.state.cards.slice().concat(card)
+    this.setState({ cards })
+  }
+
   render() {
     return(
       <div>
-        <CardEditor cards={this.state.cards} />
+        <CardEditor cards={this.state.cards} addCard={this.addCard} />
         <CardViewer />
       </div>
     )

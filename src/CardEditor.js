@@ -1,56 +1,68 @@
 import logo from './logo.svg'
-import React, { useState } from 'react'
+import React from 'react'
 
-export default function CardEditor(props) {
-  let [front, setFront] = useState('')
-  let [back, setBack] = useState('')
-
-  const handleChange = e => {
-    setFront(e.target.value)
+export default class CardEditor extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      front: '',
+      back: '',
+    }
   }
 
-  let cards = props.cards.map((card, index) => {
-    return (
-      <tr>
-        <td>{card.front}</td>
-        <td>{card.back}</td>
-        <td>
-          <button className="delete-btn" >X</button>
-        </td>
-      </tr>
-    )
-  })
+  addCard = () => {
+    this.props.addCard(this.state)
+    this.setState({front: '', back: '',})
+  }
 
-  return (
-    <div id="card-editor">
-      <h2>Card Editor</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Front</th>
-            <th>Back</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {cards}
-        </tbody>
-      </table>
-      <br />
-      <input 
-        name="front"
-        onChange={(e) => {setFront(e.target.value)}}
-        placeholder="Front of card"
-        value={front}
-      />
-      <input 
-        name="back"
-        onChange={(e) => {setBack(e.target.value)}}
-        placeholder="Back of card"
-        value={back}
-      />
-      <button className="add-btn" >+</button>
-    </div>
-  )
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+
+  render() {
+    const cards = this.props.cards.map((card, index) => {
+      return (
+        <tr key={index}>
+          <td>{card.front}</td>
+          <td>{card.back}</td>
+          <td>
+            <button className="delete-btn" >X</button>
+          </td>
+        </tr>
+      )
+    })
+  
+    return (
+      <div id="card-editor">
+        <h2>Card Editor</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Front</th>
+              <th>Back</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {cards}
+          </tbody>
+        </table>
+        <br />
+        <input 
+          name="front"
+          onChange={this.handleChange}
+          placeholder="Front of card"
+          value={this.state.front}
+        />
+        <input 
+          name="back"
+          onChange={this.handleChange}
+          placeholder="Back of card"
+          value={this.state.back}
+        />
+        <button className="add-btn" onClick={this.addCard} >+</button>
+      </div>
+    )
+  }
 }
 
