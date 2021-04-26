@@ -12,12 +12,18 @@ export default class CardViewer extends React.Component {
 
   flipCard = e => {
     if (this.state.front) {
-      e.target.style.transform = 'rotateX(180deg)'
-      let text = document.querySelector('#text-display')
-      text.textContent = this.props.cards[this.state.currentCard].back
+      document.querySelector('#card').style.transform = 'rotateX(180deg)'
+      setTimeout(() => {
+        document.querySelector('#text-display-front').style.display = 'none'
+        document.querySelector('#text-display-back').style.display = 'block'
+      }, 150);
       this.setState({ front: false })
     } else {
-      e.target.style.transform = 'rotateX(0deg)'
+      document.querySelector('#card').style.transform = 'rotateX(0deg)'
+      setTimeout(() => {
+        document.querySelector('#text-display-front').style.display = 'block'
+        document.querySelector('#text-display-back').style.display = 'none'
+      }, 150);
       this.setState({ front: true })
     }
   }

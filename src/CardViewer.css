@@ -10,8 +10,8 @@
     width: 65%;
     max-width: calc(65vh * 7 / 4);
     height: 65vh;
-    box-shadow: 0px 0px 10px 0px rgba(128, 128, 128, 0.678);
-    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(128, 128, 128, 0.5);
+    border-radius: 0px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,6 +23,7 @@
 
 #text-display-back {
     display: none;
+    transform: rotateX(180deg);
 }
 
 #controls-container {
