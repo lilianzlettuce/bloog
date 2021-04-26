@@ -21,6 +21,10 @@
     transition: transform .5s ease;
 }
 
+#text-display-back {
+    display: none;
+}
+
 #controls-container {
     margin-left: 60px;
 }
