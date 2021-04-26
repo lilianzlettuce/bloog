@@ -11,8 +11,10 @@ export default class CardViewer extends React.Component {
   render() {
     return (
       <div className="container">
-        <h2>Card Viewer</h2>
-        <br/> <button onClick={this.props.switchMode}>geh</button>
+        <div class="heading">
+          <h2>Card Viewer</h2>
+          <button className="switch-btn" onClick={this.props.switchMode}>Edit Cards →</button>
+        </div>
       </div>
     )
   }

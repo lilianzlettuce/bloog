@@ -10,8 +10,8 @@ class Main extends React.Component {
     this.state = {
       cards: [
         {
-          front: 'example 1',
-          back: 'example 1'
+          front: 'BLOOG',
+          back: 'bald lion orders orange ghicken'
         },
         {
           front: 'YOU THERE (○｀д´)ﾉｼ STOP ',

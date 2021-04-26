@@ -37,7 +37,10 @@ export default class CardEditor extends React.Component {
   
     return (
       <div class="container">
-        <h2>Card Editor</h2>
+        <div class="heading">
+          <h2>Card Editor</h2>
+          <button class="switch-btn" onClick={this.props.switchMode}>Study →</button>
+        </div>
         <table>
           <thead>
             <tr>
@@ -49,20 +52,21 @@ export default class CardEditor extends React.Component {
           <tbody>{cards}</tbody>
         </table>
         <br />
-        <input 
-          name="front"
-          onChange={this.handleChange}
-          placeholder="Front of card"
-          value={this.state.front}
-        />
-        <input 
-          name="back"
-          onChange={this.handleChange}
-          placeholder="Back of card"
-          value={this.state.back}
-        />
-        <button className="add-btn" onClick={this.addCard} >+</button>
-        <br/> <button onClick={this.props.switchMode}>geh</button>
+        <div id="input-container">
+          <input 
+            name="front"
+            onChange={this.handleChange}
+            placeholder="Front of card"
+            value={this.state.front}
+          />
+          <input 
+            name="back"
+            onChange={this.handleChange}
+            placeholder="Back of card"
+            value={this.state.back}
+          />
+          <button className="add-btn" onClick={this.addCard} ><i className="fas fa-plus"></i></button>
+        </div>
       </div>
     )
   }
