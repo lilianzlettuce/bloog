@@ -10,7 +10,7 @@ export default class CardViewer extends React.Component {
     }
   }
 
-  flipCard = e => {
+  flipCard = () => {
     if (this.state.front) {
       document.querySelector('#card').style.transform = 'rotateX(180deg)'
       setTimeout(() => {
@@ -28,6 +28,48 @@ export default class CardViewer extends React.Component {
     }
   }
 
+  cardUp = () => {
+    let down = document.querySelector('#down-btn')
+    down.style.color = 'var(--main)'
+    down.style.cursor = 'pointer'
+    if (this.state.currentCard === this.props.cards.length - 2) {
+      let up = document.querySelector('#up-btn')
+      up.style.color = 'var(--lighter)'
+      up.style.cursor = 'auto'
+    }
+
+    if (this.state.currentCard !== this.props.cards.length - 1) {
+      let card = document.querySelector('#card')
+      card.style.top = '30px'
+      setTimeout(() => {
+        card.style.top = '0px'
+      }, 200);
+
+      this.setState({ currentCard: this.state.currentCard + 1 })
+    }
+  }
+
+  cardDown = () => {
+    let up = document.querySelector('#up-btn')
+    up.style.color = 'var(--main)'
+    up.style.cursor = 'pointer'
+    if (this.state.currentCard === 1) {
+      let down = document.querySelector('#down-btn')
+      down.style.color = 'var(--lighter)'
+      down.style.cursor = 'auto'
+    }
+    
+    if (this.state.currentCard !== 0) {
+      let card = document.querySelector('#card')
+      card.style.top = '-30px'
+      setTimeout(() => {
+        card.style.top = '0px'
+      }, 200);
+
+      this.setState({ currentCard: this.state.currentCard - 1 })
+    }
+  }
+
   render() {
     return (
       <div className="container">
@@ -38,8 +80,8 @@ export default class CardViewer extends React.Component {
         <div id="body">
           <div id="card-container">
             <div id="controls">
-              <button id="up-btn" className="control-btn"><i className="fas fa-angle-up"></i></button>
-              <button id="down-btn" className="control-btn"><i className="fas fa-angle-down"></i></button>
+              <button id="up-btn" className="control-btn" onClick={this.cardUp}><i className="fas fa-angle-up"></i></button>
+              <button id="down-btn" className="control-btn" onClick={this.cardDown}><i className="fas fa-angle-down"></i></button>
             </div>
             <div id="card" onClick={this.flipCard}>
               <div id="text-display-front" >{this.props.cards[this.state.currentCard].front}</div>

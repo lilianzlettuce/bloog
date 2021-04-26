@@ -16,7 +16,7 @@ class Main extends React.Component {
         {
           front: 'YOU THERE (○｀д´)ﾉｼ STOP ',
           back: 'ooo====================Σ(っﾟДﾟ)っ !'
-        }
+        },
       ],
       editor: false,
     }

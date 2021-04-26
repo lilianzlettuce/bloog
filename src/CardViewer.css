@@ -22,13 +22,17 @@
 .control-btn {
     font-size: 3rem;
 }
+.control-btn:hover { 
+    color: var(--main);
+}
 
-#up-btn {
+#down-btn {
     color: var(--lighter);
     cursor: auto;
 }
 
 #card {
+    position: relative;
     width: 85%;
     height: 100%;
     padding: 5%;
@@ -42,7 +46,7 @@
     cursor: pointer;
     font-size: 3.5rem;
     transform: rotateX(0deg);
-    transition: transform .5s ease;
+    transition: .5s ease;
 }
 
 #text-display-back {
