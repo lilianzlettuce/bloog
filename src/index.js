@@ -17,6 +17,18 @@ class Main extends React.Component {
           front: 'YOU THERE (○｀д´)ﾉｼ STOP ',
           back: 'ooo====================Σ(っﾟДﾟ)っ !'
         },
+        {
+          front: '1 + 1',
+          back: '11'
+        },
+        {
+          front: 'curry chicken',
+          back: 'yum'
+        },
+        {
+          front: 'yet another',
+          back: 'example'
+        },
       ],
       editor: false,
     }

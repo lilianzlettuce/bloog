@@ -61,7 +61,7 @@ export default class CardViewer extends React.Component {
     
     if (this.state.currentCard !== 0) {
       let card = document.querySelector('#card')
-      card.style.top = '-30px'
+      card.style.top = '30px'
       setTimeout(() => {
         card.style.top = '0px'
       }, 200);
