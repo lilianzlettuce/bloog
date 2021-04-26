@@ -35,13 +35,19 @@ export default class CardViewer extends React.Component {
           <h2></h2>
           <button className="switch-btn" onClick={this.props.switchMode}>Edit Cards →</button>
         </div>
-        <div id="card-container">
-          <div id="card" onClick={this.flipCard}>
-            <div id="text-display-front" >{this.props.cards[this.state.currentCard].front}</div>
-            <div id="text-display-back" >{this.props.cards[this.state.currentCard].back}</div>
+        <div id="body">
+          <div id="card-container">
+            <div id="controls">
+              <button id="up-btn" className="control-btn"><i className="fas fa-angle-up"></i></button>
+              <button id="down-btn" className="control-btn"><i className="fas fa-angle-down"></i></button>
+            </div>
+            <div id="card" onClick={this.flipCard}>
+              <div id="text-display-front" >{this.props.cards[this.state.currentCard].front}</div>
+              <div id="text-display-back" >{this.props.cards[this.state.currentCard].back}</div>
+            </div>
           </div>
-          <div id="controls-container">
-            <h3>Progress</h3>
+          <div id="progress-container">
+            <div>{(this.state.currentCard + 1) + ' / ' + this.props.cards.length}</div>
           </div>
         </div>
       </div>

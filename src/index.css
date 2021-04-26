@@ -44,8 +44,8 @@ input{
 button{
   outline: none;
   border: none;
-  background-color:var(--main);
-  color: white;
+  background-color: white;
+  color: var(--main);
   border: none;
   border-radius: 5px;
   font-family: inherit;
@@ -57,7 +57,7 @@ button{
   cursor: pointer;
 }
 button:hover{
-  background-color: var(--light);
+  color: var(--light);
 }
 
 .container{

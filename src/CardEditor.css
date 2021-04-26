@@ -29,9 +29,12 @@ thead, tbody, tr, th, td {
 
 .delete-btn {
     background-color: rgba(255, 255, 255, 0);
-    color: rgb(255, 115, 115);
+    color: rgb(255, 96, 96);
     position: relative;
     top: 3px;
+}
+.delete-btn:hover {
+    color: rgb(255, 132, 132);
 }
 
 .add-btn {
@@ -39,11 +42,6 @@ thead, tbody, tr, th, td {
     color: var(--main);
     position: relative;
     left: -5px;
-    font-size: 2rem;
-}
-
-.delete-btn:hover, .add-btn:hover {
-    background-color: rgba(255, 255, 255, 0);
 }
 
 #input-container {
