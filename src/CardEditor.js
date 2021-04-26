@@ -1,5 +1,6 @@
 import logo from './logo.svg'
 import React from 'react'
+import './CardEditor.css'
 
 export default class CardEditor extends React.Component {
   constructor(props) {
@@ -24,11 +25,11 @@ export default class CardEditor extends React.Component {
   render() {
     const cards = this.props.cards.map((card, index) => {
       return (
-        <tr key={index}>
-          <td>{card.front}</td>
-          <td>{card.back}</td>
-          <td>
-            <button className="delete-btn" onClick={() => this.deleteCard(index)} >X</button>
+        <tr key={index} className="row">
+          <td className="front-box" >{card.front}</td>
+          <td className="back-box" >{card.back}</td>
+          <td className="delete-box">
+            <button className="delete-btn" onClick={() => this.deleteCard(index)} ><i className="fas fa-times"></i></button>
           </td>
         </tr>
       )
@@ -40,9 +41,9 @@ export default class CardEditor extends React.Component {
         <table>
           <thead>
             <tr>
-              <th>Front</th>
-              <th>Back</th>
-              <th></th>
+              <th id="front-col">Front</th>
+              <th id="back-col">Back</th>
+              <th id="delete-col"></th>
             </tr>
           </thead>
           <tbody>{cards}</tbody>

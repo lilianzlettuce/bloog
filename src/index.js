@@ -10,12 +10,12 @@ class Main extends React.Component {
     this.state = {
       cards: [
         {
-          front: 'front1',
-          back: 'back1'
+          front: 'example 1',
+          back: 'example 1'
         },
         {
-          front: 'front2',
-          back: 'back2'
+          front: 'YOU THERE (○｀д´)ﾉｼ STOP ',
+          back: 'ooo====================Σ(っﾟДﾟ)っ !'
         }
       ],
       editor: true,

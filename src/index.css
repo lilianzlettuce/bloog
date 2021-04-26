@@ -24,15 +24,6 @@ body {
   box-sizing: border-box;
 }
 
-table{
-  width: 100%;
-}
-
-thead, tbody, tr, th, td{
-  text-align: left;
-  padding: 10px;
-}
-
 input{
   outline: none;
   border: none;
@@ -65,11 +56,8 @@ button:active{
   background-color: var(--light);
 }
 
-.delete-btn{
-  background-color: rgb(255, 43, 43);
-}
-
 .container{
-  margin: 5% auto;
+  margin: 60px auto;
   width: 80%;
+  max-width: 1000px;
 }
