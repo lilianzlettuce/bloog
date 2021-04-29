@@ -8,7 +8,6 @@ export default class CardViewer extends React.Component {
       currentCard: 0,
       front: true,
     }
-    this.keyPress = this.keyPress.bind(this)
   }
 
   componentDidMount() {
@@ -18,7 +17,7 @@ export default class CardViewer extends React.Component {
     document.removeEventListener('keydown', this.keyPress, false)
   }
 
-  keyPress(e) {
+  keyPress = (e) => {
     switch(e.key) {
       case 'ArrowUp':
         this.cardUp()

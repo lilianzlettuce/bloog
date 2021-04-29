@@ -8,6 +8,7 @@ class Main extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      title: 'My Awesome Card Set',
       cards: [
         {
           front: 'BLOOG',
@@ -30,8 +31,12 @@ class Main extends React.Component {
           back: 'curry chicken'
         },
       ],
-      editor: false,
+      editor: true,
     }
+  }
+
+  handleChangeTitle = e => {
+    this.setState({ [e.target.name]: e.target.value })
   }
 
   addCard = card => {
@@ -69,10 +74,12 @@ class Main extends React.Component {
     if (this.state.editor) {
       return(
         <CardEditor 
+          title={this.state.title}
           cards={this.state.cards} 
           addCard={this.addCard} 
           deleteCard={this.deleteCard} 
           switchMode={this.switchMode}
+          handleChangeTitle={this.handleChangeTitle}
         />
       )
     } else {

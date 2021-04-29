@@ -38,7 +38,16 @@ export default class CardEditor extends React.Component {
     return (
       <div class="container">
         <div class="heading">
-          <h2></h2>
+          <h2>
+            <input
+              class="h2"
+              name="title"
+              onChange={this.props.handleChangeTitle}
+              placeholder="Title"
+              value={this.props.title}
+            />
+            <span>{"(" + this.props.cards.length + ")"}</span>
+          </h2>
           <button class="switch-btn" onClick={this.props.switchMode}>Study Cards →</button>
         </div>
         <table>
