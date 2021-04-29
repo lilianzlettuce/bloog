@@ -83,6 +83,7 @@ class Main extends React.Component {
     } else {
       if (this.state.cards.length > 0) {
         document.querySelector('body').style.overflow = 'hidden'
+        window.pageYOffset = 0
         this.setState({ editor: false })
       } else {
         alert('Card set cannot be empty!')
