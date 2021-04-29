@@ -78,12 +78,12 @@ class Main extends React.Component {
 
   switchMode = () => {
     if (this.state.editor === false) {
-      document.querySelector('body').style.overflow = 'scroll'
+      document.body.style.overflow = 'scroll'
       this.setState({ editor: true })
     } else {
       if (this.state.cards.length > 0) {
-        document.querySelector('body').style.overflow = 'hidden'
-        window.pageYOffset = 0
+        document.body.style.overflow = 'hidden'
+        document.documentElement.scrollTop = 0;
         this.setState({ editor: false })
       } else {
         alert('Card set cannot be empty!')
