@@ -26,26 +26,24 @@ export default class CardEditor extends React.Component {
       return (
         <tr key={index} className="row">
           <td className="front-box" >
-            <div
-              class="card-text"
-              role="textbox"
-              contentEditable
+            <textarea
+              id={"front" + index}
+              className="card-text"
               name={"front" + index}
-              onChange={(e) => this.props.handleChangeCard(index, e.target.textContent, 'front')}
-            >
-              {card.front}
-            </div>
+              onChange={(e) => {
+                e.target.style.height = e.target.scrollHeight + "px"
+                this.props.handleChangeCard(index, e.target.value, 'front')
+              }}
+              value={card.front}
+            />
           </td>
           <td className="back-box" >
-            <div
-              class="card-text"
-              role="textbox"
-              contentEditable
+            <textarea
+              className="card-text"
               name={"back" + index}
-              onChange={(e) => this.props.handleChangeCard(index, e.target.textContent, 'back')}
-            > 
-              {card.back}
-            </div>
+              onChange={(e) => this.props.handleChangeCard(index, e.target.value, 'back')}
+              value={card.back}
+            />
           </td>
           <td className="delete-box">
             <button className="delete-btn" onClick={() => this.deleteCard(index)} ><i className="fas fa-times"></i></button>
@@ -55,10 +53,10 @@ export default class CardEditor extends React.Component {
     })
   
     return (
-      <div class="container">
-        <div class="heading">
+      <div className="container">
+        <div className="heading">
           <h2></h2>
-          <button class="switch-btn" onClick={this.props.switchMode}>Study Cards →</button>
+          <button className="switch-btn" onClick={this.props.switchMode}>Study Cards →</button>
         </div>
         <table>
           <thead>

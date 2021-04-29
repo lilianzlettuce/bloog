@@ -24,7 +24,6 @@ thead, tbody, tr, th, td {
     width: 50%;
     height: 100%;
     padding: 10px 0px;
-    line-height: 22px;
 }
 
 .delete-box {
@@ -43,8 +42,9 @@ thead, tbody, tr, th, td {
 }
 
 .card-text {
-    width: 90%;
-    height: auto;
+    width: 95%;
+    height: 42px;
+    margin: 0;
     padding: 10px 10px;
     border-radius: 2px;
     transition: background-color 1s ease;
@@ -52,9 +52,6 @@ thead, tbody, tr, th, td {
     border: none;
     color: black;
     line-height: 27px;
-}
-.card-text:hover {
-    background-color: var(--lighter);
 }
 
 .add-btn {

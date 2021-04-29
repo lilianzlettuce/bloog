@@ -49,6 +49,7 @@ textarea{
   font-weight: 300;
   color: black;
   height: fit-content;
+  overflow: hidden;
 }
 input{
   outline: none;
