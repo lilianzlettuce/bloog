@@ -60,14 +60,8 @@ class Main extends React.Component {
   }
 
   addCard = card => {
-    const front = card.front.trim()
-    const back = card.back.trim()
-    if (front !== '' && back !== '') {
-      const cards = this.state.cards.slice().concat(card)
-      this.setState({ cards })
-    } else {
-      alert('Please fill in blank card.')
-    }
+    const cards = this.state.cards.slice().concat(card)
+    this.setState({ cards })
   }
 
   deleteCard = i => {

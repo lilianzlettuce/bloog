@@ -26,22 +26,26 @@ export default class CardEditor extends React.Component {
       return (
         <tr key={index} className="row">
           <td className="front-box" >
-            <input
+            <div
               class="card-text"
+              role="textbox"
+              contentEditable
               name={"front" + index}
-              onChange={(e) => this.props.handleChangeCard(index, e.target.value, 'front')}
-              placeholder="Front of card"
-              value={card.front}
-              />
+              onChange={(e) => this.props.handleChangeCard(index, e.target.textContent, 'front')}
+            >
+              {card.front}
+            </div>
           </td>
           <td className="back-box" >
-            <input
+            <div
               class="card-text"
+              role="textbox"
+              contentEditable
               name={"back" + index}
-              onChange={(e) => this.props.handleChangeCard(index, e.target.value, 'back')}
-              placeholder="Back of card"
-              value={card.back}
-              />
+              onChange={(e) => this.props.handleChangeCard(index, e.target.textContent, 'back')}
+            > 
+              {card.back}
+            </div>
           </td>
           <td className="delete-box">
             <button className="delete-btn" onClick={() => this.deleteCard(index)} ><i className="fas fa-times"></i></button>
@@ -53,16 +57,7 @@ export default class CardEditor extends React.Component {
     return (
       <div class="container">
         <div class="heading">
-          <h2>
-            <input
-              class="h2"
-              name="title"
-              onChange={this.props.handleChangeTitle}
-              placeholder="Title"
-              value={this.props.title}
-            />
-            <span>{" (" + this.props.cards.length + ")"}</span>
-          </h2>
+          <h2></h2>
           <button class="switch-btn" onClick={this.props.switchMode}>Study Cards →</button>
         </div>
         <table>
