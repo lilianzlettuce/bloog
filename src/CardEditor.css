@@ -12,6 +12,7 @@ thead, tbody, tr, th, td {
     text-align: left;
     padding: 10px;
     margin: 0;
+    color: var(--dark);
 }
 
 .row {
@@ -23,7 +24,7 @@ thead, tbody, tr, th, td {
     width: 50%;
     height: 100%;
     padding: 20px 10px;
-    line-height: 22px;;
+    line-height: 22px;
 }
 
 .delete-box {
@@ -39,6 +40,10 @@ thead, tbody, tr, th, td {
 }
 .delete-btn:hover {
     color: rgb(255, 132, 132);
+}
+
+.card-text {
+    width: 90%;
 }
 
 .add-btn {

@@ -26,8 +26,24 @@ export default class CardEditor extends React.Component {
     const cards = this.props.cards.map((card, index) => {
       return (
         <tr key={index} className="row">
-          <td className="front-box" >{card.front}</td>
-          <td className="back-box" >{card.back}</td>
+          <td className="front-box" >
+            <input
+              class="card-text"
+              name={"front" + index}
+              onChange={(e) => this.props.handleChangeCard(index, e.target.value, 'front')}
+              placeholder="Front of card"
+              value={card.front}
+              />
+          </td>
+          <td className="back-box" >
+            <input
+              class="card-text"
+              name={"back" + index}
+              onChange={(e) => this.props.handleChangeCard(index, e.target.value, 'back')}
+              placeholder="Back of card"
+              value={card.back}
+              />
+          </td>
           <td className="delete-box">
             <button className="delete-btn" onClick={() => this.deleteCard(index)} ><i className="fas fa-times"></i></button>
           </td>
@@ -46,7 +62,7 @@ export default class CardEditor extends React.Component {
               placeholder="Title"
               value={this.props.title}
             />
-            <span>{"(" + this.props.cards.length + ")"}</span>
+            <span>{" (" + this.props.cards.length + ")"}</span>
           </h2>
           <button class="switch-btn" onClick={this.props.switchMode}>Study Cards →</button>
         </div>
@@ -63,12 +79,14 @@ export default class CardEditor extends React.Component {
         <br />
         <div id="input-container">
           <input 
+            className="input"
             name="front"
             onChange={this.handleChange}
             placeholder="Front of card"
             value={this.state.front}
           />
           <input 
+            className="input"
             name="back"
             onChange={this.handleChange}
             placeholder="Back of card"

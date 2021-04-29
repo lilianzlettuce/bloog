@@ -39,6 +39,26 @@ class Main extends React.Component {
     this.setState({ [e.target.name]: e.target.value })
   }
 
+  handleChangeCard = (i, val, side) => {
+    let half1 = this.state.cards.slice(0, i)
+    let half2 = this.state.cards.slice(i + 1)
+
+    let newCard
+    if (side === 'front') {
+      newCard = {
+        front: val,
+        back: this.state.cards[i].back,
+      }
+    } else {
+      newCard = {
+        front: this.state.cards[i].front,
+        back: val,
+      }
+    }
+
+    this.setState({ cards: half1.concat(newCard).concat(half2) })
+  }
+
   addCard = card => {
     const front = card.front.trim()
     const back = card.back.trim()
@@ -80,6 +100,7 @@ class Main extends React.Component {
           deleteCard={this.deleteCard} 
           switchMode={this.switchMode}
           handleChangeTitle={this.handleChangeTitle}
+          handleChangeCard={this.handleChangeCard}
         />
       )
     } else {
