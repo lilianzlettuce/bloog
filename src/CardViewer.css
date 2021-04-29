@@ -54,7 +54,7 @@
 
 #text-display-back {
     display: none;
-    transform: rotateX(180deg);
+    transform: rotateY(180deg);
 }
 
 #progress-container {

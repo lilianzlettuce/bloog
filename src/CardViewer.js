@@ -12,22 +12,25 @@ export default class CardViewer extends React.Component {
   }
 
   componentDidMount() {
-    document.addEventListener('keypress', this.keyPress, false)
+    document.addEventListener('keydown', this.keyPress, false)
   }
   componentWillUnmount() {
-    document.removeEventListener('keypress', this.keyPress, false)
+    document.removeEventListener('keydown', this.keyPress, false)
   }
 
   keyPress(e) {
-    if (e.key === 'ArrowUp') {
-      this.cardUp()
-    }
     switch(e.key) {
       case 'ArrowUp':
         this.cardUp()
         break
       case 'ArrowDown': 
         this.cardDown()
+        break
+      case 'ArrowRight':
+        this.flipCard()
+        break
+      case 'ArrowLeft':
+        this.flipCard()
         break
       default:
         return
@@ -36,7 +39,7 @@ export default class CardViewer extends React.Component {
 
   flipCard = () => {
     if (this.state.front) {
-      document.querySelector('#card').style.transform = 'rotateX(180deg)'
+      document.querySelector('#card').style.transform = 'rotateY(180deg)'
       setTimeout(() => {
         document.querySelector('#text-display-front').style.display = 'none'
         document.querySelector('#text-display-back').style.display = 'block'
@@ -48,7 +51,7 @@ export default class CardViewer extends React.Component {
   }
 
   toFront = () => {
-    document.querySelector('#card').style.transform = 'rotateX(0deg)'
+    document.querySelector('#card').style.transform = 'rotateY(0deg)'
     setTimeout(() => {
       document.querySelector('#text-display-front').style.display = 'block'
       document.querySelector('#text-display-back').style.display = 'none'
