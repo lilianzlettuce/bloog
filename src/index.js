@@ -11,11 +11,11 @@ class Main extends React.Component {
       cards: [
         {
           front: 'BLOOG',
-          back: 'bald lion orders orange ghicken'
+          back: 'bob loves oily orange geese'
         },
         {
           front: 'YOU THERE (○｀д´)ﾉｼ STOP ',
-          back: 'ooo====================Σ(っﾟДﾟ)っ !'
+          back: 'ooo=============Σ(っﾟДﾟ)っ !'
         },
         {
           front: '1 + 1',
@@ -27,7 +27,7 @@ class Main extends React.Component {
         },
         {
           front: 'yet another',
-          back: 'example'
+          back: 'curry chicken'
         },
       ],
       editor: false,
@@ -52,10 +52,16 @@ class Main extends React.Component {
   }
 
   switchMode = () => {
-    if (this.state.cards.length > 0) {
-      this.setState({ editor: !this.state.editor })
+    if (this.state.editor === false) {
+      document.querySelector('body').style.overflow = 'scroll'
+      this.setState({ editor: true })
     } else {
-      alert('Card set cannot be empty!')
+      if (this.state.cards.length > 0) {
+        document.querySelector('body').style.overflow = 'hidden'
+        this.setState({ editor: false })
+      } else {
+        alert('Card set cannot be empty!')
+      }
     }
   }
 

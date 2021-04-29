@@ -4,6 +4,9 @@
     justify-content: flex-start;
     align-items: flex-start;
     margin-top: 30px;
+    --bwidth: 25px;
+    --bheight: 210px;
+    --bborder: 10px;
 }
 
 #card-container {
@@ -56,4 +59,42 @@
 
 #progress-container {
     margin-left: 40px;
+}
+
+#pb-container {
+    margin: 80px 0;
+    width: 100%;
+}
+
+#pb1 {
+    width: var(--bwidth);
+    height: var(--bheight);
+    border: var(--bborder) solid var(--lighter);
+    border-radius: 50px;
+    margin: auto;
+    z-index: 30;
+}
+
+#pb2 {
+    position: relative;
+    top: -230px;
+    transition: top 1s ease;
+    width: var(--bwidth);
+    height: var(--bheight);
+    border: var(--bborder) solid white;
+    border-radius: 50px;
+    background-color: var(--main);
+    margin: auto;
+    z-index: -50;
+}
+
+#pb3 {
+    position: relative;
+    top: -5px;
+    width: var(--bwidth);
+    height: calc(var(--bheight) + 10px);
+    border: var(--bborder) solid rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
+    margin: auto;
+    z-index: -10;
 }

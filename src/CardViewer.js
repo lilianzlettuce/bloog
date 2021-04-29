@@ -33,21 +33,27 @@ export default class CardViewer extends React.Component {
   }
 
   cardUp = () => {
+    let current = this.state.currentCard
+    let numCards = this.props.cards.length
+
     let down = document.querySelector('#down-btn')
     down.style.color = 'var(--main)'
     down.style.cursor = 'pointer'
-    if (this.state.currentCard === this.props.cards.length - 2) {
+    if (current === numCards - 2) {
       let up = document.querySelector('#up-btn')
       up.style.color = 'var(--lighter)'
       up.style.cursor = 'auto'
     }
 
-    if (this.state.currentCard !== this.props.cards.length - 1) {
+    if (current !== numCards - 1) {
       let card = document.querySelector('#card')
       card.style.top = '30px'
       setTimeout(() => {
         card.style.top = '0px'
       }, 200);
+
+      let pbPosition = 230 + 200 * ((current + 1) / (numCards - 1))
+      document.querySelector('#pb2').style.top = `-${pbPosition}px`
 
       this.setState({ currentCard: this.state.currentCard + 1 })
       this.toFront()
@@ -55,21 +61,27 @@ export default class CardViewer extends React.Component {
   }
 
   cardDown = () => {
+    let current = this.state.currentCard
+    let numCards = this.props.cards.length
+
     let up = document.querySelector('#up-btn')
     up.style.color = 'var(--main)'
     up.style.cursor = 'pointer'
-    if (this.state.currentCard === 1) {
+    if (current === 1) {
       let down = document.querySelector('#down-btn')
       down.style.color = 'var(--lighter)'
       down.style.cursor = 'auto'
     }
     
-    if (this.state.currentCard !== 0) {
+    if (current !== 0) {
       let card = document.querySelector('#card')
       card.style.top = '30px'
       setTimeout(() => {
         card.style.top = '0px'
       }, 200);
+
+      let pbPosition = 230 + 200 * ((current - 1) / (numCards - 1))
+      document.querySelector('#pb2').style.top = `-${pbPosition}px`
 
       this.setState({ currentCard: this.state.currentCard - 1 })
       this.toFront()
@@ -96,6 +108,11 @@ export default class CardViewer extends React.Component {
           </div>
           <div id="progress-container">
             <div>{(this.state.currentCard + 1) + ' / ' + this.props.cards.length}</div>
+            <div id="pb-container">
+              <div id="pb1"></div>
+              <div id="pb3"></div>
+              <div id="pb2"></div>
+            </div>
           </div>
         </div>
       </div>
