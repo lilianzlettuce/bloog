@@ -8,6 +8,30 @@ export default class CardViewer extends React.Component {
       currentCard: 0,
       front: true,
     }
+    this.keyPress = this.keyPress.bind(this)
+  }
+
+  componentDidMount() {
+    document.addEventListener('keypress', this.keyPress, false)
+  }
+  componentWillUnmount() {
+    document.removeEventListener('keypress', this.keyPress, false)
+  }
+
+  keyPress(e) {
+    if (e.key === 'ArrowUp') {
+      this.cardUp()
+    }
+    switch(e.key) {
+      case 'ArrowUp':
+        this.cardUp()
+        break
+      case 'ArrowDown': 
+        this.cardDown()
+        break
+      default:
+        return
+    }
   }
 
   flipCard = () => {
