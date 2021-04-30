@@ -12,18 +12,19 @@ export default class CardEditor extends React.Component {
   }
 
   componentDidMount() {
-    //resize textareas
+    //resize all textareas
     for (let i = 0; i < this.props.cards.length; i++) {
-      let f = document.querySelector('#front' + i)
-      f.style.height = f.scrollHeight + "px"
-      let b = document.querySelector('#back' + i)
-      b.style.height = b.scrollHeight + "px"
+      this.resizeTextArea(i)
     }
   }
 
   componentDidUpdate() {
-    //resize textareas
+    //resize newest textarea
     let i = this.props.cards.length - 1
+    this.resizeTextArea(i)
+  }
+
+  resizeTextArea = (i) => {
     let f = document.querySelector('#front' + i)
     f.style.height = f.scrollHeight + "px"
     let b = document.querySelector('#back' + i)
@@ -46,6 +47,7 @@ export default class CardEditor extends React.Component {
     this.setState({ [e.target.name]: e.target.value })
   }
 
+  //id for map key so that cards render properly when deleted
   genID = () => {
     let id = '0'
     let dupe = true
@@ -91,7 +93,6 @@ export default class CardEditor extends React.Component {
               className="card-text"
               name={"back" + index}
               onChange={(e) => {
-                //resize textarea
                 e.target.style.height = e.target.scrollHeight + "px"
                 this.props.handleChangeCard(index, e.target.value, 'back')
               }}

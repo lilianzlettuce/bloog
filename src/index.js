@@ -41,13 +41,13 @@ class Main extends React.Component {
           id: '5',
         },
         {
-          front: 'your favorite food',
-          back: 'a sandwich with only bread',
+          front: 'deep within your heart there lies... ',
+          back: '...a sandwich with only bread.',
           id: '6',
         },
         {
-          front: 'asistir',
-          back: 'Lorem ipsum dolor sit aleifend turpis ac viverra. Vivamus et justo nec lacu',
+          front: 'dog',
+          back: 'donde esta la biblioteca',
           id: '7',
         },
         {
