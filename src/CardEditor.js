@@ -10,6 +10,23 @@ export default class CardEditor extends React.Component {
     }
   }
 
+  componentDidMount() {
+    for (let i = 0; i < this.props.cards.length; i++) {
+      let f = document.querySelector('#front' + i)
+      f.style.height = f.scrollHeight + "px"
+      let b = document.querySelector('#back' + i)
+      b.style.height = b.scrollHeight + "px"
+    }
+  }
+
+  componentDidUpdate() {
+    let i = this.props.cards.length - 1
+    let f = document.querySelector('#front' + i)
+    f.style.height = f.scrollHeight + "px"
+    let b = document.querySelector('#back' + i)
+    b.style.height = b.scrollHeight + "px"
+  }
+
   addCard = () => {
     this.props.addCard(this.state)
     this.setState({front: '', back: '',})
@@ -39,9 +56,13 @@ export default class CardEditor extends React.Component {
           </td>
           <td className="back-box" >
             <textarea
+              id={"back" + index}
               className="card-text"
               name={"back" + index}
-              onChange={(e) => this.props.handleChangeCard(index, e.target.value, 'back')}
+              onChange={(e) => {
+                e.target.style.height = e.target.scrollHeight + "px"
+                this.props.handleChangeCard(index, e.target.value, 'back')
+              }}
               value={card.back}
             />
           </td>

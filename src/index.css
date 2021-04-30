@@ -50,6 +50,7 @@ textarea{
   color: black;
   height: fit-content;
   overflow: hidden;
+  resize: none;
 }
 input{
   outline: none;
