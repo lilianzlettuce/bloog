@@ -31,7 +31,7 @@ class Main extends React.Component {
           back: 'curry chicken'
         },
       ],
-      editor: true,
+      editor: false,
     }
   }
 

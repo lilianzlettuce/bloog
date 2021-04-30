@@ -7,6 +7,7 @@ export default class CardViewer extends React.Component {
     this.state = {
       currentCard: 0,
       front: true,
+      cards: this.props.cards,
     }
   }
 
@@ -34,6 +35,10 @@ export default class CardViewer extends React.Component {
       default:
         return
     }
+  }
+
+  shuffle = () => {
+    
   }
 
   flipCard = () => {
@@ -153,15 +158,16 @@ export default class CardViewer extends React.Component {
         </div>
         <div id="body">
           <div id="card-container">
-            <div id="controls">
-              <button id="up-btn" className="control-btn" onClick={this.cardUp}><i className="fas fa-angle-up"></i></button>
-              <button id="down-btn" className="control-btn" onClick={this.cardDown}><i className="fas fa-angle-down"></i></button>
-            </div>
             <div id="card" onClick={this.flipCard}>
               <div id="text-display-front" >{this.props.cards[this.state.currentCard].front}</div>
               <div id="text-display-back" >{this.props.cards[this.state.currentCard].back}</div>
             </div>
+            <div id="controls">
+              <button id="up-btn" className="control-btn" onClick={this.cardUp}><i className="fas fa-angle-up"></i></button>
+              <button id="down-btn" className="control-btn" onClick={this.cardDown}><i className="fas fa-angle-down"></i></button>
+            </div>
           </div>
+          <button id="shuffle-btn" onClick={this.shuffle} ><i className="fas fa-random"></i></button>
           <div id="progress-container">
             <div id="progress">{(this.state.currentCard + 1) + ' / ' + this.props.cards.length}</div>
             <div id="pb-container">
