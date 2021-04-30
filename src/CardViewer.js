@@ -39,14 +39,9 @@ export default class CardViewer extends React.Component {
 
   shuffle = () => {
     //ui updates
-    let up = document.querySelector('#up-btn')
-    up.style.color = 'var(--main)'
-    up.style.cursor = 'auto'
-    let down = document.querySelector('#down-btn')
-    down.style.color = 'var(--lighter)'
-    down.style.cursor = 'auto'
-    let pbPosition = 230
-    document.querySelector('#pb2').style.top = `-${pbPosition}px`
+    this.setBtnStyle('up', 'var(--main)', 'pointer')
+    this.setBtnStyle('down', 'var(--lighter)', 'auto')
+    this.setPB(0)
 
     let oldCards = this.state.cards.slice()
     let newCards = []
@@ -131,13 +126,9 @@ export default class CardViewer extends React.Component {
     let numCards = this.props.cards.length
 
     //btn style
-    let down = document.querySelector('#down-btn')
-    down.style.color = 'var(--main)'
-    down.style.cursor = 'pointer'
+    this.setBtnStyle('down', 'var(--main)', 'pointer')
     if (current === numCards - 2) {
-      let up = document.querySelector('#up-btn')
-      up.style.color = 'var(--lighter)'
-      up.style.cursor = 'auto'
+      this.setBtnStyle('up', 'var(--lighter)', 'auto')
     }
 
     if (current !== numCards - 1) {
@@ -149,8 +140,7 @@ export default class CardViewer extends React.Component {
       }, 200);
 
       //progress bar anim
-      let pbPosition = 230 + 200 * ((current + 1) / (numCards - 1))
-      document.querySelector('#pb2').style.top = `-${pbPosition}px`
+      this.setPB(current + 1)
 
       this.setState({ currentCard: this.state.currentCard + 1 })
 
@@ -169,13 +159,9 @@ export default class CardViewer extends React.Component {
     let numCards = this.props.cards.length
 
     //btn style
-    let up = document.querySelector('#up-btn')
-    up.style.color = 'var(--main)'
-    up.style.cursor = 'pointer'
+    this.setBtnStyle('up', 'var(--main)', 'pointer')
     if (current === 1) {
-      let down = document.querySelector('#down-btn')
-      down.style.color = 'var(--lighter)'
-      down.style.cursor = 'auto'
+      this.setBtnStyle('down', 'var(--lighter)', 'auto')
     }
     
     if (current !== 0) {
@@ -187,8 +173,7 @@ export default class CardViewer extends React.Component {
       }, 200);
 
       //progress bar anim
-      let pbPosition = 230 + 200 * ((current - 1) / (numCards - 1))
-      document.querySelector('#pb2').style.top = `-${pbPosition}px`
+      this.setPB(current - 1)
 
       this.setState({ currentCard: this.state.currentCard - 1 })
 
@@ -199,6 +184,19 @@ export default class CardViewer extends React.Component {
         this.toFront()
       }
     }
+  }
+
+  //changes up/down btn style
+  setBtnStyle = (name, color, cursor) => {
+    let btn = document.querySelector(`#${name}-btn`)
+    btn.style.color = color
+    btn.style.cursor = cursor
+  }
+
+  //changes progress bar
+  setPB = (num) => {
+    let pbPosition = 230 + 200 * (num / (this.props.cards.length - 1))
+    document.querySelector('#pb2').style.top = `-${pbPosition}px`
   }
 
   render() {
