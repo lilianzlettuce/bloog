@@ -39,7 +39,6 @@ export default class CardViewer extends React.Component {
 
   shuffle = () => {
     //ui updates
-    this.toFront()
     let up = document.querySelector('#up-btn')
     up.style.color = 'var(--main)'
     up.style.cursor = 'auto'
@@ -53,6 +52,7 @@ export default class CardViewer extends React.Component {
     let newCards = []
     let taken = []
     
+    //randomize cards
     for (let i = 0; i < oldCards.length; i++) {
       let isNew = false
       let newCard
@@ -69,11 +69,28 @@ export default class CardViewer extends React.Component {
       taken.push(randInt)
     }
 
-    this.setState({
-      currentCard: 0,
-      front: true,
-      cards: newCards,
-    })
+    //card anim
+    let card = document.querySelector('#card')
+    card.style.top = '-30px'
+    setTimeout(() => {
+      card.style.top = '0px'
+      this.toFront()
+    }, 200)
+    setTimeout(() => {
+      card.style.top = '-30px'
+      this.toBack()
+    }, 400)
+    setTimeout(() => {
+      card.style.top = '0px'
+
+      this.setState({
+        currentCard: 0,
+        front: true,
+        cards: newCards,
+      })
+
+      this.toFront()
+    }, 600)
   }
 
   flipCard = () => {
