@@ -96,7 +96,13 @@ export default class CardViewer extends React.Component {
       document.querySelector('#pb2').style.top = `-${pbPosition}px`
 
       this.setState({ currentCard: this.state.currentCard + 1 })
-      this.toFront()
+
+      //prevent seeing back of card
+      if (!this.state.front) {
+        document.querySelector('#text-display-front').style.display = 'none'
+        document.querySelector('#text-display-back').style.display = 'none'
+        this.toFront()
+      }
     }
   }
 
@@ -128,7 +134,13 @@ export default class CardViewer extends React.Component {
       document.querySelector('#pb2').style.top = `-${pbPosition}px`
 
       this.setState({ currentCard: this.state.currentCard - 1 })
-      this.toFront()
+
+      //prevent seeing back of card
+      if (!this.state.front) {
+        document.querySelector('#text-display-front').style.display = 'none'
+        document.querySelector('#text-display-back').style.display = 'none'
+        this.toFront()
+      }
     }
   }
 
@@ -151,7 +163,7 @@ export default class CardViewer extends React.Component {
             </div>
           </div>
           <div id="progress-container">
-            <div>{(this.state.currentCard + 1) + ' / ' + this.props.cards.length}</div>
+            <div id="progress">{(this.state.currentCard + 1) + ' / ' + this.props.cards.length}</div>
             <div id="pb-container">
               <div id="pb1"></div>
               <div id="pb3"></div>

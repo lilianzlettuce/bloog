@@ -3,7 +3,8 @@
   --dark: rgb(0, 11, 168);
   --main: rgb(24, 40, 255);
   --light: rgb(103, 126, 255);
-  --lighter: rgb(232, 236, 255);
+  --lighter: rgb(163, 177, 255);
+  --lighterer: rgb(232, 236, 255);
 }
 
 html{

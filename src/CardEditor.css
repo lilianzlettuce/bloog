@@ -20,6 +20,18 @@ thead, tbody, tr, th, td {
     border-radius: 5px;
 }
 
+.index-box {
+    padding: 0px 10px 0px 12px;
+}
+
+.index {
+    padding: 8px 20px 8px 0;
+    border-right: 1px solid var(--lighter);
+    color: var(--main);
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
 .front-box, .back-box {
     width: 50%;
     height: 100%;

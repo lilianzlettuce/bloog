@@ -45,6 +45,7 @@ export default class CardEditor extends React.Component {
     const cards = this.props.cards.map((card, index) => {
       return (
         <tr key={index} className="row">
+          <td className="index-box"><div className="index">{index + 1}</div></td>
           <td className="front-box" >
             <textarea
               id={"front" + index}
@@ -86,6 +87,7 @@ export default class CardEditor extends React.Component {
         <table>
           <thead>
             <tr>
+              <th></th>
               <th id="front-col">Front</th>
               <th id="back-col">Back</th>
               <th id="delete-col"></th>
