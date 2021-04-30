@@ -38,7 +38,42 @@ export default class CardViewer extends React.Component {
   }
 
   shuffle = () => {
+    //ui updates
+    this.toFront()
+    let up = document.querySelector('#up-btn')
+    up.style.color = 'var(--main)'
+    up.style.cursor = 'auto'
+    let down = document.querySelector('#down-btn')
+    down.style.color = 'var(--lighter)'
+    down.style.cursor = 'auto'
+    let pbPosition = 230
+    document.querySelector('#pb2').style.top = `-${pbPosition}px`
+
+    let oldCards = this.state.cards.slice()
+    let newCards = []
+    let taken = []
     
+    for (let i = 0; i < oldCards.length; i++) {
+      let isNew = false
+      let newCard
+      let randInt
+      while (!isNew) {
+        isNew = true
+        randInt = Math.floor(Math.random() * this.state.cards.length)
+        newCard = oldCards[randInt]
+        for (let j = 0; j < taken.length; j++) {
+          if (randInt === taken[j]) isNew = false
+        }
+      }
+      newCards.push(newCard)
+      taken.push(randInt)
+    }
+
+    this.setState({
+      currentCard: 0,
+      front: true,
+      cards: newCards,
+    })
   }
 
   flipCard = () => {
@@ -159,8 +194,8 @@ export default class CardViewer extends React.Component {
         <div id="body">
           <div id="card-container">
             <div id="card" onClick={this.flipCard}>
-              <div id="text-display-front" >{this.props.cards[this.state.currentCard].front}</div>
-              <div id="text-display-back" >{this.props.cards[this.state.currentCard].back}</div>
+              <div id="text-display-front" >{this.state.cards[this.state.currentCard].front}</div>
+              <div id="text-display-back" >{this.state.cards[this.state.currentCard].back}</div>
             </div>
             <div id="controls">
               <button id="up-btn" className="control-btn" onClick={this.cardUp}><i className="fas fa-angle-up"></i></button>

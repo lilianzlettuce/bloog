@@ -66,9 +66,13 @@ class Main extends React.Component {
   }
 
   deleteCard = i => {
-    const cards = this.state.cards.slice()
-    cards.splice(i, 1)
-    this.setState({ cards })
+    if (this.state.cards.length > 1) {
+      const cards = this.state.cards.slice()
+      cards.splice(i, 1)
+      this.setState({ cards })
+    } else {
+      alert('Card set cannot be empty!')
+    }
   }
 
   switchMode = () => {
@@ -76,13 +80,9 @@ class Main extends React.Component {
       document.body.style.overflow = 'scroll'
       this.setState({ editor: true })
     } else {
-      if (this.state.cards.length > 0) {
-        document.body.style.overflow = 'hidden'
-        document.documentElement.scrollTop = 0;
-        this.setState({ editor: false })
-      } else {
-        alert('Card set cannot be empty!')
-      }
+      document.body.style.overflow = 'hidden'
+      document.documentElement.scrollTop = 0;
+      this.setState({ editor: false })
     }
   }
 
