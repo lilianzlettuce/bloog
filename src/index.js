@@ -39,6 +39,7 @@ class Main extends React.Component {
     this.setState({ [e.target.name]: e.target.value })
   }
 
+  //edit existing card
   handleChangeCard = (i, val, side) => {
     let half1 = this.state.cards.slice(0, i)
     let half2 = this.state.cards.slice(i + 1)

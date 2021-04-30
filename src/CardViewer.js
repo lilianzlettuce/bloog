@@ -11,13 +11,13 @@ export default class CardViewer extends React.Component {
   }
 
   componentDidMount() {
-    document.addEventListener('keydown', this.keyPress, false)
+    document.addEventListener('keydown', this.keyDown, false)
   }
   componentWillUnmount() {
-    document.removeEventListener('keydown', this.keyPress, false)
+    document.removeEventListener('keydown', this.keyDown, false)
   }
 
-  keyPress = (e) => {
+  keyDown = (e) => {
     switch(e.key) {
       case 'ArrowUp':
         this.cardUp()
@@ -38,30 +38,42 @@ export default class CardViewer extends React.Component {
 
   flipCard = () => {
     if (this.state.front) {
-      document.querySelector('#card').style.transform = 'rotateY(180deg)'
-      setTimeout(() => {
-        document.querySelector('#text-display-front').style.display = 'none'
-        document.querySelector('#text-display-back').style.display = 'block'
-      }, 150);
-      this.setState({ front: false })
+      this.toBack()
     } else {
       this.toFront()
     }
   }
 
+  //flip to front
   toFront = () => {
+    //ui updates
     document.querySelector('#card').style.transform = 'rotateY(0deg)'
     setTimeout(() => {
       document.querySelector('#text-display-front').style.display = 'block'
       document.querySelector('#text-display-back').style.display = 'none'
     }, 150);
+    
     this.setState({ front: true })
   }
 
+  //flip to back
+  toBack = () => {
+    //ui updates
+    document.querySelector('#card').style.transform = 'rotateY(180deg)'
+    setTimeout(() => {
+      document.querySelector('#text-display-front').style.display = 'none'
+      document.querySelector('#text-display-back').style.display = 'block'
+    }, 150);
+
+    this.setState({ front: false })
+  }
+
+  //next card
   cardUp = () => {
     let current = this.state.currentCard
     let numCards = this.props.cards.length
 
+    //btn style
     let down = document.querySelector('#down-btn')
     down.style.color = 'var(--main)'
     down.style.cursor = 'pointer'
@@ -72,12 +84,14 @@ export default class CardViewer extends React.Component {
     }
 
     if (current !== numCards - 1) {
+      //card anim
       let card = document.querySelector('#card')
       card.style.top = '30px'
       setTimeout(() => {
         card.style.top = '0px'
       }, 200);
 
+      //progress bar anim
       let pbPosition = 230 + 200 * ((current + 1) / (numCards - 1))
       document.querySelector('#pb2').style.top = `-${pbPosition}px`
 
@@ -86,10 +100,12 @@ export default class CardViewer extends React.Component {
     }
   }
 
+  //previous card
   cardDown = () => {
     let current = this.state.currentCard
     let numCards = this.props.cards.length
 
+    //btn style
     let up = document.querySelector('#up-btn')
     up.style.color = 'var(--main)'
     up.style.cursor = 'pointer'
@@ -100,12 +116,14 @@ export default class CardViewer extends React.Component {
     }
     
     if (current !== 0) {
+      //card anim
       let card = document.querySelector('#card')
       card.style.top = '30px'
       setTimeout(() => {
         card.style.top = '0px'
       }, 200);
 
+      //progress bar anim
       let pbPosition = 230 + 200 * ((current - 1) / (numCards - 1))
       document.querySelector('#pb2').style.top = `-${pbPosition}px`
 
