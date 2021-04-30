@@ -12,26 +12,52 @@ class Main extends React.Component {
       cards: [
         {
           front: 'BLOOG',
-          back: 'bob loves oily orange geese'
+          back: 'bob loves oily orange geese',
+          id: '0',
         },
         {
           front: 'YOU THERE (○｀д´)ﾉｼ STOP ',
-          back: 'ooo=============Σ(っﾟДﾟ)っ !'
+          back: 'ooo=============Σ(っﾟДﾟ)っ !',
+          id: '1',
         },
         {
           front: '1 + 1',
-          back: '11'
+          back: '11',
+          id: '2',
         },
         {
           front: 'curry chicken',
-          back: 'yum'
+          back: 'yum',
+          id: '3',
         },
         {
           front: 'yet another',
-          back: 'curry chicken'
+          back: 'curry chicken',
+          id: '4',
+        },
+        {
+          front: 'sem malesuada. Sed nec auctor libero. Aliquam non dignissim ante. Morbi condi',
+          back: 'met, consectetur adipiscing elit. Etiam gravida laoreet varius. Donec iaculis erat vel ligula vestibulum, in sagittis ',
+          id: '5',
+        },
+        {
+          front: 'your favorite food',
+          back: 'a sandwich with only bread',
+          id: '6',
+        },
+        {
+          front: 'asistir',
+          back: 'Lorem ipsum dolor sit aleifend turpis ac viverra. Vivamus et justo nec lacu',
+          id: '7',
+        },
+        {
+          front: '*beep*',
+          back: 'You have mail!',
+          id: '8',
         },
       ],
-      editor: false,
+      editor: true,
+      cardIDs: [],
     }
   }
 
@@ -62,7 +88,10 @@ class Main extends React.Component {
 
   addCard = card => {
     const cards = this.state.cards.slice().concat(card)
-    this.setState({ cards })
+    this.setState({ 
+      cards,
+      cardIDs: this.state.cardIDs.concat(card.id)
+    })
   }
 
   deleteCard = i => {
@@ -92,6 +121,7 @@ class Main extends React.Component {
         <CardEditor 
           title={this.state.title}
           cards={this.state.cards} 
+          cardIDs={this.state.cardIDs}
           addCard={this.addCard} 
           deleteCard={this.deleteCard} 
           switchMode={this.switchMode}

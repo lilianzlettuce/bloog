@@ -7,6 +7,7 @@ export default class CardEditor extends React.Component {
     this.state = {
       front: '',
       back: '',
+      id: this.genID(),
     }
   }
 
@@ -31,7 +32,11 @@ export default class CardEditor extends React.Component {
 
   addCard = () => {
     this.props.addCard(this.state)
-    this.setState({front: '', back: '',})
+    this.setState({
+      front: '', 
+      back: '',
+      id: this.genID(),
+    })
   }
 
   deleteCard = i => this.props.deleteCard(i)
@@ -41,10 +46,32 @@ export default class CardEditor extends React.Component {
     this.setState({ [e.target.name]: e.target.value })
   }
 
+  genID = () => {
+    let id = '0'
+    let dupe = true
+    while (dupe === true) {
+      dupe = false
+      for (let i = 0; i < 10; i++) {
+        let randInt = Math.floor(Math.random() * 10)
+        id += randInt
+      }
+
+      //check for no repeat
+      let cardIDs = this.props.cardIDs
+      for (let i = 0; i < cardIDs.length; i++) {
+        if (id === cardIDs[i]) {
+          dupe = true
+        }
+      }
+    }
+    console.log(id)
+    return id
+  }
+
   render() {
     const cards = this.props.cards.map((card, index) => {
       return (
-        <tr key={index} className="row">
+        <tr key={card.id} className="row">
           <td className="index-box"><div className="index">{index + 1}</div></td>
           <td className="front-box" >
             <textarea
