@@ -75,11 +75,13 @@ class Main extends React.Component {
       newCard = {
         front: val,
         back: this.state.cards[i].back,
+        id: this.state.cards[i].id,
       }
     } else {
       newCard = {
         front: this.state.cards[i].front,
         back: val,
+        id: this.state.cards[i].id,
       }
     }
 

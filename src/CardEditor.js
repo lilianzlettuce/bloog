@@ -1,4 +1,5 @@
 import React from 'react'
+import TextareaAutosize from 'react-textarea-autosize'
 import './CardEditor.css'
 
 export default class CardEditor extends React.Component {
@@ -9,26 +10,6 @@ export default class CardEditor extends React.Component {
       back: '',
       id: this.genID(),
     }
-  }
-
-  componentDidMount() {
-    //resize all textareas
-    for (let i = 0; i < this.props.cards.length; i++) {
-      this.resizeTextArea(i)
-    }
-  }
-
-  componentDidUpdate() {
-    //resize newest textarea
-    let i = this.props.cards.length - 1
-    this.resizeTextArea(i)
-  }
-
-  resizeTextArea = (i) => {
-    let f = document.querySelector('#front' + i)
-    f.style.height = f.scrollHeight + "px"
-    let b = document.querySelector('#back' + i)
-    b.style.height = b.scrollHeight + "px"
   }
 
   addCard = () => {
@@ -76,24 +57,24 @@ export default class CardEditor extends React.Component {
         <tr key={card.id} className="row">
           <td className="index-box"><div className="index">{index + 1}</div></td>
           <td className="front-box" >
-            <textarea
+            <TextareaAutosize 
+              cacheMeasurements
               id={"front" + index}
               className="card-text"
               name={"front" + index}
               onChange={(e) => {
-                e.target.style.height = e.target.scrollHeight + "px"
                 this.props.handleChangeCard(index, e.target.value, 'front')
               }}
               value={card.front}
             />
           </td>
           <td className="back-box" >
-            <textarea
+            <TextareaAutosize
+              cacheMeasurements 
               id={"back" + index}
               className="card-text"
               name={"back" + index}
               onChange={(e) => {
-                e.target.style.height = e.target.scrollHeight + "px"
                 this.props.handleChangeCard(index, e.target.value, 'back')
               }}
               value={card.back}
