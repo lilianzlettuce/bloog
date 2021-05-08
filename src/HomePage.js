@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom'
 
 export default function HomePage() {
     return (
-        <div>
+        <div id="main">
             <div className="section">
-                <div className="container-btn">
-                    <Link to="/viewer">Study Cards</Link>
-                </div>
-                <div className="container-btn">
-                    <Link to="/editor">Edit Cards</Link>
-                </div>
+                <Link className="btn-container" to="/viewer">
+                    <div className="btn-header">Study Cards</div>
+                </Link>
+                <Link className="btn-container" to="/editor">
+                    <div className="btn-header">Edit Cards</div>
+                </Link>
             </div>
         </div>
     )
