@@ -2,6 +2,8 @@ import React from 'react'
 import TextareaAutosize from 'react-textarea-autosize'
 import './CardEditor.css'
 
+import { Link } from 'react-router-dom'
+
 export default class CardEditor extends React.Component {
   constructor(props) {
     super(props)
@@ -91,7 +93,7 @@ export default class CardEditor extends React.Component {
         <div className="heading">
           <div></div>
           <button className="switch-btn">
-            <a href="/viewer">Study Cards →</a>
+            <Link to="/viewer">Study Cards →</Link>
           </button>
         </div>
         <table>

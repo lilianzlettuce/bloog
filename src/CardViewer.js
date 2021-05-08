@@ -1,6 +1,8 @@
 import React/*, { useState }*/ from 'react'
 import './CardViewer.css'
 
+import { Link } from 'react-router-dom'
+
 export default class CardViewer extends React.Component {
   constructor(props) {
     super(props)
@@ -204,7 +206,7 @@ export default class CardViewer extends React.Component {
         <div className="heading">
           <div></div>
           <button className="switch-btn">
-            <a href="/editor">Edit Cards →</a>
+            <Link to="/editor">Edit Cards →</Link>
           </button>
         </div>
         <div id="body">

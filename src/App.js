@@ -1,4 +1,5 @@
 import React from 'react'
+import HomePage from './HomePage'
 import CardEditor from './CardEditor'
 import CardViewer from './CardViewer'
 
@@ -105,20 +106,12 @@ export default class App extends React.Component {
     }
   }
 
-  switchMode = () => {
-    if (this.state.editor === false) {
-      document.body.style.overflow = 'scroll'
-      this.setState({ editor: true })
-    } else {
-      document.body.style.overflow = 'hidden'
-      document.documentElement.scrollTop = 0;
-      this.setState({ editor: false })
-    }
-  }
-
   render() {
     return (
         <Switch>
+            <Route exact path="/">
+                <HomePage />
+            </Route>
             <Route exact path="/editor">
                 <CardEditor 
                     title={this.state.title}
@@ -131,9 +124,7 @@ export default class App extends React.Component {
                 />
             </Route>
             <Route exact path="/viewer">
-                <CardViewer 
-                    cards={this.state.cards} 
-                />
+                <CardViewer cards={this.state.cards} />
             </Route>
         </Switch>
     )
