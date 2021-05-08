@@ -6,6 +6,9 @@ export default function HomePage() {
     return (
         <div id="main">
             <div className="section">
+                <h1 id="bg">BLOOG</h1>
+            </div>
+            <div className="section">
                 <Link className="btn-container" to="/viewer">
                     <div className="btn-header">Study Cards</div>
                     <svg id="cards-icon" width="170px" height="120px">

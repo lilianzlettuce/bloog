@@ -1,16 +1,30 @@
-#main {
-    padding-top: 100px;
+#bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--lighter);
+    opacity: 100%;
+    transition: opacity .8s ease;
 }
 
 .section {
     width: 100vw;
-    height: 400px;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+h1 {
+    color: white;
+    font-family: inherit;
+    z-index: inherit;
+}
+
 .btn-container {
+    background-color: white;
     position: relative;
     width: 250px;
     height: 250px;
@@ -21,19 +35,20 @@
     flex-direction: column;
     justify-content: baseline;
     align-items: center;
-    transition: transform .6s ease;
+    transition: .6s ease;
     box-shadow: 0px 0px 4px 1px rgba(128, 128, 128, 0.322);
 }
 .btn-container:hover {
     cursor: pointer;
     transform: scale(1.0) translateY(-30px);
+    box-shadow: 0px 0px 10px 1px rgba(65, 94, 255, 0.322);
 }
 
 .btn-header {
     color: var(--light);
     font-size: 2.7rem;
-    font-weight: 700;
-    margin: 15% 0 40px 0;
+    font-weight: 500;
+    margin: 15% 0 30px 0;
 }
 
 .btn-icon {
@@ -45,5 +60,5 @@
 #cards-icon {
     transform: scale(.8);
     position: relative;
-    top: -20px;
+    top: -15px;
 }
