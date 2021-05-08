@@ -203,7 +203,9 @@ export default class CardViewer extends React.Component {
       <div className="container">
         <div className="heading">
           <div></div>
-          <button className="switch-btn" onClick={this.props.switchMode}>Edit Cards →</button>
+          <button className="switch-btn">
+            <a href="/editor">Edit Cards →</a>
+          </button>
         </div>
         <div id="body">
           <div id="card-container">

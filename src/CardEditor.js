@@ -90,7 +90,9 @@ export default class CardEditor extends React.Component {
       <div className="container">
         <div className="heading">
           <div></div>
-          <button className="switch-btn" onClick={this.props.switchMode}>Study Cards →</button>
+          <button className="switch-btn">
+            <a href="/viewer">Study Cards →</a>
+          </button>
         </div>
         <table>
           <thead>

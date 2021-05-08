@@ -73,6 +73,8 @@
 #pb-container {
     margin: 80px 0;
     width: 100%;
+    height: var(--bheight);
+    overflow: hidden;
 }
 
 #pb1 {

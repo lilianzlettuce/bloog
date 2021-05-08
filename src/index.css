@@ -20,7 +20,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
-  overflow: scroll;
 }
 
 * {
@@ -68,6 +67,12 @@ input{
   color: black;
   width: 45%;
   line-height: 23px;
+}
+
+a {
+  color: var(--light);
+  text-decoration: none;
+  font-size: inherit;
 }
 
 button{
