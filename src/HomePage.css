@@ -13,25 +13,37 @@
 .btn-container {
     position: relative;
     width: 250px;
-    height: 300px;
-    border-radius: 80px;
+    height: 250px;
+    border-radius: 20%;
     margin: 5%;
+    padding: 20px 20px;
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: baseline;
     align-items: center;
-    transition: .6s ease;
-    box-shadow: 0px 0px 10px 0px rgba(128, 128, 128, 0.5);
+    transition: transform .6s ease;
+    box-shadow: 0px 0px 4px 1px rgba(128, 128, 128, 0.322);
 }
 .btn-container:hover {
     cursor: pointer;
-    transform: scale(1.2);
-    top: -30px;
+    transform: scale(1.0) translateY(-30px);
 }
 
 .btn-header {
     color: var(--light);
-    font-size: 2.8rem;
-    font-weight: 500;
+    font-size: 2.7rem;
+    font-weight: 700;
+    margin: 15% 0 40px 0;
+}
+
+.btn-icon {
+    color: var(--main);
+    font-size: 7.5rem;
+    padding: 0px;
+}
+
+#cards-icon {
+    transform: scale(.8);
+    position: relative;
+    top: -20px;
 }

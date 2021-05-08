@@ -20,8 +20,14 @@ thead, tbody, tr, th, td {
 }
 
 .row {
-    box-shadow: 0px 0px 5px 0px rgba(128, 128, 128, 0.363);
+    box-shadow: 0px 0px 3px 0px rgba(128, 128, 128, 0.363);
     border-radius: 5px;
+    transition: transform .3s ease;
+}
+
+.row:hover {
+    transform: scale(1.03);
+    cursor: pointer;
 }
 
 .index-box {
@@ -58,7 +64,7 @@ thead, tbody, tr, th, td {
 }
 
 .card-text {
-    width: 95%;
+    width: 100%;
     height: 42px;
     margin: 0;
     padding: 10px 10px;
@@ -68,6 +74,9 @@ thead, tbody, tr, th, td {
     border: none;
     color: black;
     line-height: 27px;
+}
+.card-text:hover {
+    cursor: pointer;
 }
 
 .add-btn {
