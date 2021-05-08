@@ -106,14 +106,16 @@ export default class CardEditor extends React.Component {
         </table>
         <br />
         <div id="input-container">
-          <input 
+          <TextareaAutosize
+            cacheMeasurements
             className="input"
             name="front"
             onChange={this.handleChange}
             placeholder="Front of card"
             value={this.state.front}
           />
-          <input 
+          <TextareaAutosize
+            cacheMeasurements
             className="input"
             name="back"
             onChange={this.handleChange}
