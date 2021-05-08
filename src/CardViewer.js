@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React/*, { useState }*/ from 'react'
 import './CardViewer.css'
 
 export default class CardViewer extends React.Component {
@@ -156,7 +156,6 @@ export default class CardViewer extends React.Component {
   //previous card
   cardDown = () => {
     let current = this.state.currentCard
-    let numCards = this.props.cards.length
 
     //btn style
     this.setBtnStyle('up', 'var(--main)', 'pointer')
@@ -203,7 +202,7 @@ export default class CardViewer extends React.Component {
     return (
       <div className="container">
         <div className="heading">
-          <h2></h2>
+          <div></div>
           <button className="switch-btn" onClick={this.props.switchMode}>Edit Cards →</button>
         </div>
         <div id="body">
