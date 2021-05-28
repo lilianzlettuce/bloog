@@ -91,7 +91,15 @@ export default class CardEditor extends React.Component {
     return (
       <div className="container">
         <div className="heading">
-          <div></div>
+          <input 
+            name="title"
+            className="cardset-title"
+            onChange={(e) => {
+              this.props.handleChangeTitle(e)
+            }}
+            placeholder="Cardset Title"
+            value={this.props.title}
+          />
           <button className="switch-btn">
             <Link to="/viewer">Study Cards →</Link>
           </button>

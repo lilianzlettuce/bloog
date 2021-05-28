@@ -10,6 +10,7 @@ table {
     width: 100%;
     border-spacing: 10px;
     font-weight: 300;
+    margin-top: 10px;
 }
 
 thead, tbody, tr, th, td {
@@ -22,11 +23,9 @@ thead, tbody, tr, th, td {
 .row {
     box-shadow: 0px 0px 3px 0px rgba(128, 128, 128, 0.363);
     border-radius: 5px;
-    transition: transform .3s ease;
 }
 
 .row:hover {
-    transform: scale(1.03);
     cursor: pointer;
 }
 
@@ -70,6 +69,7 @@ thead, tbody, tr, th, td {
     padding: 10px 10px;
     border-radius: 2px;
     transition: background-color 1s ease;
+    background-color: transparent;
     outline: none;
     border: none;
     color: black;

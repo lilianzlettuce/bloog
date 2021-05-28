@@ -124,7 +124,10 @@ export default class App extends React.Component {
                 />
             </Route>
             <Route exact path="/viewer">
-                <CardViewer cards={this.state.cards} />
+                <CardViewer 
+                  cards={this.state.cards} 
+                  title={this.state.title}
+                />
             </Route>
         </Switch>
     )

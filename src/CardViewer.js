@@ -204,7 +204,7 @@ export default class CardViewer extends React.Component {
     return (
       <div className="container">
         <div className="heading">
-          <div></div>
+          <div className="cardset-title">{this.props.title}</div>
           <button className="switch-btn">
             <Link to="/editor">Edit Cards →</Link>
           </button>

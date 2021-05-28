@@ -59,6 +59,7 @@ input{
   font-size: 1.6rem;
   font-weight: 300;
   color: black;
+  background-color: transparent;
 }
 .input {
   border-bottom: 1px solid var(--main);
@@ -67,6 +68,7 @@ input{
   color: black;
   width: 45%;
   line-height: 23px;
+  background-color: transparent;
 }
 
 a {
@@ -112,4 +114,11 @@ button:hover{
 }
 .switch-btn:hover {
   background-color: white;
+}
+
+.cardset-title {
+  width: 80%;
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: var(--main);
 }

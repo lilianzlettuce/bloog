@@ -12,6 +12,7 @@ import {
   ReactReduxFirebaseProvider,
   firebaseReducer
 } from 'react-redux-firebase'
+import { composeWithDevTools } from 'redux-devtools-extension'
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -34,7 +35,7 @@ const rootReducer = combineReducers({
 })
 
 // Create store with reducers and initial state
-const store = createStore(rootReducer)
+const store = createStore(rootReducer, composeWithDevTools())
 
 // react-redux-firebase config
 const rrfConfig = {
