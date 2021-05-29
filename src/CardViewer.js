@@ -224,7 +224,7 @@ class CardViewer extends React.Component {
         <div className="heading">
           <div className="cardset-title">{this.props.title}</div>
           <button className="switch-btn">
-            <Link to="/editor">Edit Cards →</Link>
+            <Link to="/">Home →</Link>
           </button>
         </div>
         <div id="body">
@@ -253,9 +253,9 @@ class CardViewer extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, props) => {
   console.log(state)
-  const deck = state.firebase.data.deck2
+  const deck = state.firebase.data[props.match.params.deckId]
   const name = deck && deck.name
   const cards = deck && deck.cards
   return { cards: cards, name: name }
@@ -266,7 +266,7 @@ export default compose(
   firebaseConnect(props => {
     console.log("props: " + props)
     const deckId = props.match.params.deckId
-    return [{ path: `/flashcards/${deckId}`, storeAs: 'deck2'}]
+    return [{ path: `/flashcards/${deckId}`, storeAs: deckId}]
   }),
   connect(mapStateToProps),
 )(CardViewer)
