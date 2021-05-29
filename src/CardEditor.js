@@ -66,7 +66,7 @@ export default class CardEditor extends React.Component {
   componentDidUpdate() {
     //creat btn styling
     let createBtn = document.querySelector('#create-btn')
-    if (this.state.name.trim()) {
+    if (this.state.name.trim() && this.state.cards.length > 0) {
       createBtn.classList.add('usable-btn')
       createBtn.classList.remove('unusable-btn')
     } else {
@@ -93,13 +93,9 @@ export default class CardEditor extends React.Component {
   }
 
   deleteCard = i => {
-    if (this.state.cards.length > 1) {
-      const cards = this.state.cards.slice()
-      cards.splice(i, 1)
-      this.setState({ cards })
-    } else {
-      alert('Card set cannot be empty!')
-    }
+    const cards = this.state.cards.slice()
+    cards.splice(i, 1)
+    this.setState({ cards })
   }
 
   //for add card and name inputs
@@ -240,7 +236,7 @@ export default class CardEditor extends React.Component {
             className="usable-btn"
             id="create-btn"
             onClick={() => {alert('test')}}
-            disabled={!this.state.name.trim()}
+            disabled={!this.state.name.trim() || this.state.cards.length === 0}
           >
             Create Deck
           </button>
