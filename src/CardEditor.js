@@ -10,22 +10,87 @@ export default class CardEditor extends React.Component {
     this.state = {
       front: '',
       back: '',
-      id: this.genID(),
+      id: 99,
+      cardIDs: [],
+      name: 'My Awesome Card Set',
+      cards: [
+        {
+          front: 'BLOOG',
+          back: 'bob loves oily orange geese',
+          id: '0',
+        },
+        {
+          front: 'YOU THERE (○｀д´)ﾉｼ STOP ',
+          back: 'ooo=============Σ(っﾟДﾟ)っ !',
+          id: '1',
+        },
+        {
+          front: '1 + 1',
+          back: '11',
+          id: '2',
+        },
+        {
+          front: 'curry chicken',
+          back: 'yum',
+          id: '3',
+        },
+        {
+          front: 'yet another',
+          back: 'curry chicken',
+          id: '4',
+        },
+        {
+          front: 'sem malesuada. Sed nec auctor libero. Aliquam non dignissim ante. Morbi condi',
+          back: 'met, consectetur adipiscing elit. Etiam gravida laoreet varius. Donec iaculis erat vel ligula vestibulum, in sagittis ',
+          id: '5',
+        },
+        {
+          front: 'deep within your heart there lies... ',
+          back: '...a sandwich with only bread.',
+          id: '6',
+        },
+        {
+          front: 'dog',
+          back: 'donde esta la biblioteca',
+          id: '7',
+        },
+        {
+          front: '*beep*',
+          back: 'You have mail!',
+          id: '8',
+        },
+      ],
     }
   }
 
   addCard = () => {
-    this.props.addCard(this.state)
-    this.setState({
+    const newCard = {
+      front: this.state.front,
+      back: this.state.back,
+      id: this.state.id,
+    }
+    const cards = this.state.cards.slice().concat(newCard)
+    this.setState({ 
       front: '', 
       back: '',
       id: this.genID(),
+      cardIDs: this.state.cardIDs.slice().concat(this.state.id),
+      name: this.state.name,
+      cards,
     })
   }
 
-  deleteCard = i => this.props.deleteCard(i)
+  deleteCard = i => {
+    if (this.state.cards.length > 1) {
+      const cards = this.state.cards.slice()
+      cards.splice(i, 1)
+      this.setState({ cards })
+    } else {
+      alert('Card set cannot be empty!')
+    }
+  }
 
-  //for add card inputs
+  //for add card and name inputs
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value })
   }
@@ -42,7 +107,7 @@ export default class CardEditor extends React.Component {
       }
 
       //check for no repeat
-      let cardIDs = this.props.cardIDs
+      let cardIDs = this.state.cardIDs
       for (let i = 0; i < cardIDs.length; i++) {
         if (id === cardIDs[i]) {
           dupe = true
@@ -52,8 +117,31 @@ export default class CardEditor extends React.Component {
     return id
   }
 
+  //edit existing card
+  handleChangeCard = (i, val, side) => {
+    let half1 = this.state.cards.slice(0, i)
+    let half2 = this.state.cards.slice(i + 1)
+
+    let newCard
+    if (side === 'front') {
+      newCard = {
+        front: val,
+        back: this.state.cards[i].back,
+        id: this.state.cards[i].id,
+      }
+    } else {
+      newCard = {
+        front: this.state.cards[i].front,
+        back: val,
+        id: this.state.cards[i].id,
+      }
+    }
+
+    this.setState({ cards: half1.concat(newCard).concat(half2) })
+  }
+
   render() {
-    const cards = this.props.cards.map((card, index) => {
+    const cards = this.state.cards.map((card, index) => {
       return (
         <tr key={card.id} className="row">
           <td className="index-box"><div className="index">{index + 1}</div></td>
@@ -64,7 +152,7 @@ export default class CardEditor extends React.Component {
               className="card-text"
               name={"front" + index}
               onChange={(e) => {
-                this.props.handleChangeCard(index, e.target.value, 'front')
+                this.handleChangeCard(index, e.target.value, 'front')
               }}
               value={card.front}
             />
@@ -76,7 +164,7 @@ export default class CardEditor extends React.Component {
               className="card-text"
               name={"back" + index}
               onChange={(e) => {
-                this.props.handleChangeCard(index, e.target.value, 'back')
+                this.handleChangeCard(index, e.target.value, 'back')
               }}
               value={card.back}
             />
@@ -95,10 +183,10 @@ export default class CardEditor extends React.Component {
             name="name"
             className="cardset-name"
             onChange={(e) => {
-              this.props.handleChangeName(e)
+              this.handleChange(e)
             }}
             placeholder="Cardset Title"
-            value={this.props.name}
+            value={this.state.name}
           />
           <button className="switch-btn">
             <Link to="/viewer">Study Cards →</Link>
