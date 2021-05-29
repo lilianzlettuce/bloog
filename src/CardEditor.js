@@ -223,6 +223,15 @@ export default class CardEditor extends React.Component {
           />
           <button className="add-btn" onClick={this.addCard} ><i className="fas fa-plus"></i></button>
         </div>
+        <div>
+          <button
+            className="filled-button create-btn"
+            onClick={() => {alert('test')}}
+            disabled={!this.state.name.trim() || this.state.cards.length === 0}
+          >
+            Create Deck
+          </button>
+        </div>
       </div>
     )
   }
