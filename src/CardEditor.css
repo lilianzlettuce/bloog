@@ -88,10 +88,3 @@ thead, tbody, tr, th, td {
     justify-content: space-between;
     align-items: flex-start;
 }
-
-.create-btn {
-    background-color: var(--main);
-}
-.create-btn:hover {
-    background-color: var(--light);
-}

@@ -63,6 +63,18 @@ export default class CardEditor extends React.Component {
     }
   }
 
+  componentDidUpdate() {
+    //creat btn styling
+    let createBtn = document.querySelector('#create-btn')
+    if (this.state.name.trim()) {
+      createBtn.classList.add('usable-btn')
+      createBtn.classList.remove('unusable-btn')
+    } else {
+      createBtn.classList.add('unusable-btn')
+      createBtn.classList.remove('usable-btn')
+    }
+  }
+
   addCard = () => {
     const newCard = {
       front: this.state.front,
@@ -225,9 +237,10 @@ export default class CardEditor extends React.Component {
         </div>
         <div>
           <button
-            className="filled-button create-btn"
+            className="usable-btn"
+            id="create-btn"
             onClick={() => {alert('test')}}
-            disabled={!this.state.name.trim() || this.state.cards.length === 0}
+            disabled={!this.state.name.trim()}
           >
             Create Deck
           </button>

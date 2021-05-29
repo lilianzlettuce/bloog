@@ -96,13 +96,23 @@ button:hover {
   color: var(--light);
 }
 
-.filled-button {
+.usable-btn {
   background-color: var(--main);
   color: white;
   padding: 10px 12px;
 }
-.filled-button:hover {
+.usable-btn:hover {
   background-color: var(--light);
+  color: white;
+}
+
+.unusable-btn {
+  background-color: var(--lighter);
+  color: white;
+  padding: 10px 12px;
+}
+.unusable-btn:hover {
+  cursor: auto;
   color: white;
 }
 
