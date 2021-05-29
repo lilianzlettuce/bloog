@@ -222,7 +222,7 @@ class CardViewer extends React.Component {
     return (
       <div className="container">
         <div className="heading">
-          <div className="cardset-title">{this.props.title}</div>
+          <div className="cardset-name">{this.props.name}</div>
           <button className="switch-btn">
             <Link to="/">Home →</Link>
           </button>

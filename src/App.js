@@ -9,7 +9,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      title: 'My Awesome Card Set',
+      name: 'My Awesome Card Set',
       cards: [
         {
           front: 'BLOOG',
@@ -61,7 +61,7 @@ export default class App extends React.Component {
     }
   }
 
-  handleChangeTitle = e => {
+  handleChangeName = e => {
     this.setState({ [e.target.name]: e.target.value })
   }
 
@@ -114,20 +114,23 @@ export default class App extends React.Component {
             </Route>
             <Route exact path="/editor">
                 <CardEditor 
-                    title={this.state.title}
+                    name={this.state.name}
                     cards={this.state.cards} 
                     cardIDs={this.state.cardIDs}
                     addCard={this.addCard} 
                     deleteCard={this.deleteCard}
-                    handleChangeTitle={this.handleChangeTitle}
+                    handleChangeName={this.handleChangeName}
                     handleChangeCard={this.handleChangeCard}
                 />
             </Route>
             <Route exact path="/viewer/:deckId">
                 <CardViewer 
                   cards={this.state.cards} 
-                  title={this.state.title}
+                  name={this.state.name}
                 />
+            </Route>
+            <Route>
+              <div>Page not found!</div>
             </Route>
         </Switch>
     )

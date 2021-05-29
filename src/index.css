@@ -116,11 +116,11 @@ button:hover{
   background-color: white;
 }
 
-.cardset-title {
+.cardset-name {
   width: 70%;
   font-size: 3rem;
   font-weight: 600;
-  color: var(--main);
+  color: var(--light);
   position: relative;
   top: -10px;
   left: 20px;
