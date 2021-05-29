@@ -2,7 +2,7 @@ import React/*, { useState }*/ from 'react'
 import './CardViewer.css'
 
 import { Link } from 'react-router-dom'
-import { firebaseConnect, isLoaded } from 'react-redux-firebase'
+import { firebaseConnect, isEmpty, isLoaded } from 'react-redux-firebase'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 
@@ -213,6 +213,10 @@ class CardViewer extends React.Component {
   render() {
     if (!isLoaded(this.props.cards)) {
       return <div>Loading...</div>
+    }
+
+    if (isEmpty(this.state.cards)) {
+      return <div>Page not found!</div>
     }
 
     return (
