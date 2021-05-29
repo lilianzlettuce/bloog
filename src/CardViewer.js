@@ -2,7 +2,7 @@ import React/*, { useState }*/ from 'react'
 import './CardViewer.css'
 
 import { Link } from 'react-router-dom'
-import { firebaseConnect } from 'react-redux-firebase'
+import { firebaseConnect, isLoaded } from 'react-redux-firebase'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 
@@ -19,8 +19,15 @@ class CardViewer extends React.Component {
   componentDidMount() {
     document.addEventListener('keydown', this.keyDown, false)
   }
+
   componentWillUnmount() {
     document.removeEventListener('keydown', this.keyDown, false)
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.cards !== prevProps.cards) {
+      this.setState({ cards: this.props.cards })
+    }
   }
 
   keyDown = (e) => {
@@ -204,6 +211,10 @@ class CardViewer extends React.Component {
   }
 
   render() {
+    if (!isLoaded(this.props.cards)) {
+      return <div>Loading...</div>
+    }
+
     return (
       <div className="container">
         <div className="heading">
