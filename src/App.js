@@ -123,7 +123,7 @@ export default class App extends React.Component {
                     handleChangeCard={this.handleChangeCard}
                 />
             </Route>
-            <Route exact path="/viewer">
+            <Route exact path="/viewer/:deckId">
                 <CardViewer 
                   cards={this.state.cards} 
                   title={this.state.title}

@@ -1,7 +1,7 @@
 import React/*, { useState }*/ from 'react'
 import './CardViewer.css'
 
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { firebaseConnect, isEmpty, isLoaded } from 'react-redux-firebase'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
@@ -255,13 +255,19 @@ class CardViewer extends React.Component {
 
 const mapStateToProps = state => {
   console.log(state)
-  const deck = state.firebase.data.deck1
+  const deck = state.firebase.data.deck2
   const name = deck && deck.name
   const cards = deck && deck.cards
   return { cards: cards, name: name }
 }
 
 export default compose(
-  firebaseConnect([{ path: '/flashcards/deck1', storeAs: 'deck1'}]),
+  withRouter,
+  firebaseConnect(props => {
+    console.log("props: " + props)
+    const deckId = props.match.params.deckId
+    return [{ path: `/flashcards/${deckId}`, storeAs: 'deck2'}]
+  }),
   connect(mapStateToProps),
 )(CardViewer)
+
