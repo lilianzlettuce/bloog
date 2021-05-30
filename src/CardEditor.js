@@ -2,8 +2,9 @@ import React from 'react'
 import TextareaAutosize from 'react-textarea-autosize'
 import './CardEditor.css'
 
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { firebaseConnect } from 'react-redux-firebase'
+import { compose } from 'redux'
 
 class CardEditor extends React.Component {
   constructor(props) {
@@ -155,7 +156,10 @@ class CardEditor extends React.Component {
       cards: this.state.cards,
       name: this.state.name,
     }
-    this.props.firebase.update(`/flashcards/${deckId}`, newDeck)
+    this.props.firebase.update(`/flashcards/${deckId}`, newDeck, () => {
+      //redirect route after firebase has updated
+      this.props.history.push(`/viewer/${deckId}`)
+    })
   }
 
   render() {
@@ -256,4 +260,4 @@ class CardEditor extends React.Component {
   }
 }
 
-export default firebaseConnect()(CardEditor)
+export default compose(firebaseConnect(), withRouter)(CardEditor)
