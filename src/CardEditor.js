@@ -149,6 +149,15 @@ class CardEditor extends React.Component {
     this.setState({ cards: half1.concat(newCard).concat(half2) })
   }
 
+  createDeck = () => {
+    const deckId = this.props.firebase.push('/flashcards').key
+    const newDeck = {
+      cards: this.state.cards,
+      name: this.state.name,
+    }
+    this.props.firebase.update(`/flashcards/${deckId}`, newDeck)
+  }
+
   render() {
     const cards = this.state.cards.map((card, index) => {
       return (
@@ -236,7 +245,7 @@ class CardEditor extends React.Component {
           <button
             className="usable-btn"
             id="create-btn"
-            onClick={() => {alert('test')}}
+            onClick={this.createDeck}
             disabled={!this.state.name.trim() || this.state.cards.length === 0}
           >
             Create Deck
