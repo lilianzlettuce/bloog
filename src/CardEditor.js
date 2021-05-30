@@ -3,8 +3,9 @@ import TextareaAutosize from 'react-textarea-autosize'
 import './CardEditor.css'
 
 import { Link } from 'react-router-dom'
+import { firebaseConnect } from 'react-redux-firebase'
 
-export default class CardEditor extends React.Component {
+class CardEditor extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -246,3 +247,4 @@ export default class CardEditor extends React.Component {
   }
 }
 
+export default firebaseConnect()(CardEditor)
