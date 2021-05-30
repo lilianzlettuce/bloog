@@ -211,7 +211,7 @@ class CardEditor extends React.Component {
             value={this.state.name}
           />
           <button className="switch-btn">
-            <Link to="/viewer">Study Cards →</Link>
+            <Link to="/">Home →</Link>
           </button>
         </div>
         <table>
