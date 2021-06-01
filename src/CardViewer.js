@@ -227,8 +227,12 @@ class CardViewer extends React.Component {
         <TopBar />
         <div className="heading">
           <div className="cardset-name">{this.props.name}</div>
-          <button className="switch-btn">
-            <Link to="/">Home →</Link>
+          <button
+            className="usable-btn"
+            id="save-btn"
+            onClick={() => {}}
+          >
+            Save Deck
           </button>
         </div>
         <div id="body">

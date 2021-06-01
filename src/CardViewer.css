@@ -9,6 +9,10 @@
     --bborder: 10px;
 }
 
+#save-btn {
+    width: 110px;
+}
+
 #card-container {
     width: 78%;
     height: 66vh;

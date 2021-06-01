@@ -2,6 +2,7 @@
   --darker: rgb(0, 7, 112);
   --dark: rgb(0, 11, 168);
   --main: rgb(24, 40, 255);
+  --main-light: rgb(66, 94, 255);
   --light: rgb(103, 126, 255);
   --lighter: rgb(163, 177, 255);
   --lighterer: rgb(232, 236, 255);
@@ -97,7 +98,8 @@ button:hover {
 }
 
 .usable-btn {
-  background-color: var(--main);
+  border-radius: 25px;
+  background-color: var(--main-light);
   color: white;
   padding: 10px 12px;
 }
@@ -107,6 +109,7 @@ button:hover {
 }
 
 .unusable-btn {
+  border-radius: 25px;
   background-color: var(--lighter);
   color: white;
   padding: 10px 12px;

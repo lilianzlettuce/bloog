@@ -88,3 +88,7 @@ thead, tbody, tr, th, td {
     justify-content: space-between;
     align-items: flex-start;
 }
+
+#create-btn {
+    width: 120px;
+}
