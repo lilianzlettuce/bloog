@@ -137,7 +137,7 @@ class CardViewer extends React.Component {
   //next card
   cardUp = () => {
     let current = this.state.currentCard
-    let numCards = this.props.cards.length
+    let numCards = this.state.cards.length
 
     //btn style
     this.setBtnStyle('down', 'var(--main)', 'pointer')
@@ -208,12 +208,12 @@ class CardViewer extends React.Component {
 
   //changes progress bar
   setPB = (num) => {
-    let pbPosition = 230 + 200 * (num / (this.props.cards.length - 1))
+    let pbPosition = 230 + 200 * (num / (this.state.cards.length - 1))
     document.querySelector('#pb2').style.top = `-${pbPosition}px`
   }
 
   render() {
-    if (!isLoaded(this.props.cards)) {
+    if (!isLoaded(this.state.cards)) {
       return <div>Loading...</div>
     }
 
@@ -243,7 +243,7 @@ class CardViewer extends React.Component {
           </div>
           <button id="shuffle-btn" onClick={this.shuffle} ><i className="fas fa-random"></i></button>
           <div id="progress-container">
-            <div id="progress">{(this.state.currentCard + 1) + ' / ' + this.props.cards.length}</div>
+            <div id="progress">{(this.state.currentCard + 1) + ' / ' + this.state.cards.length}</div>
             <div id="pb-container">
               <div id="pb1"></div>
               <div id="pb3"></div>
@@ -257,7 +257,6 @@ class CardViewer extends React.Component {
 }
 
 const mapStateToProps = (state, props) => {
-  console.log(state)
   const deck = state.firebase.data[props.match.params.deckId]
   const name = deck && deck.name
   const cards = deck && deck.cards

@@ -216,8 +216,13 @@ class CardEditor extends React.Component {
             placeholder="Cardset Title"
             value={this.state.name}
           />
-          <button className="switch-btn">
-            <Link to="/">Home →</Link>
+          <button
+            className="usable-btn"
+            id="create-btn"
+            onClick={this.createDeck}
+            disabled={!this.state.name.trim() || this.state.cards.length === 0}
+          >
+            Create Deck
           </button>
         </div>
         <table>
@@ -250,16 +255,6 @@ class CardEditor extends React.Component {
             value={this.state.back}
           />
           <button className="add-btn" onClick={this.addCard} ><i className="fas fa-plus"></i></button>
-        </div>
-        <div>
-          <button
-            className="usable-btn"
-            id="create-btn"
-            onClick={this.createDeck}
-            disabled={!this.state.name.trim() || this.state.cards.length === 0}
-          >
-            Create Deck
-          </button>
         </div>
       </div>
     )
