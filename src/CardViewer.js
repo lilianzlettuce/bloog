@@ -15,6 +15,7 @@ class CardViewer extends React.Component {
       currentCard: 0,
       front: true,
       cards: this.props.cards,
+      saved: this.props.saved,
     }
   }
 
@@ -29,6 +30,9 @@ class CardViewer extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.props.cards !== prevProps.cards) {
       this.setState({ cards: this.props.cards })
+    }
+    if (this.props.saved !== prevProps.saved) {
+      this.setState({ saved: this.props.saved })
     }
   }
 
@@ -213,6 +217,12 @@ class CardViewer extends React.Component {
     document.querySelector('#pb2').style.top = `-${pbPosition}px`
   }
 
+  saveDeck = () => {
+    if (this.state.saved) {
+      this.props.firebase.update('/')
+    }
+  }
+
   render() {
     if (!isLoaded(this.state.cards)) {
       return <div>Loading...</div>
@@ -230,7 +240,7 @@ class CardViewer extends React.Component {
           <button
             className="usable-btn"
             id="save-btn"
-            onClick={() => {}}
+            onClick={this.saveDeck}
           >
             Save Deck
           </button>

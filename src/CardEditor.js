@@ -121,8 +121,11 @@ class CardEditor extends React.Component {
       saved: false,
     }
     updates[`/flashcards/${deckId}`] = newDeck
-    updates[`/homepage/${deckId}`] = { name: this.state.name }
-    this.props.firebase.update(`/`, updates, () => {
+    updates[`/homepage/${deckId}`] = { 
+      name: this.state.name,
+      saved: false,
+    }
+    this.props.firebase.update('/', updates, () => {
       //redirect route after firebase has updated
       this.props.history.push(`/viewer/${deckId}`)
     })
