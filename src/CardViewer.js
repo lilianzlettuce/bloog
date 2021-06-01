@@ -33,6 +33,7 @@ class CardViewer extends React.Component {
   }
 
   keyDown = (e) => {
+    e.preventDefault()
     switch(e.key) {
       case 'ArrowUp':
         this.cardUp()

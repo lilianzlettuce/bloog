@@ -23,46 +23,6 @@ class CardEditor extends React.Component {
           back: 'bob loves oily orange geese',
           id: '0',
         },
-        {
-          front: 'YOU THERE (○｀д´)ﾉｼ STOP ',
-          back: 'ooo=============Σ(っﾟДﾟ)っ !',
-          id: '1',
-        },
-        {
-          front: '1 + 1',
-          back: '11',
-          id: '2',
-        },
-        {
-          front: 'curry chicken',
-          back: 'yum',
-          id: '3',
-        },
-        {
-          front: 'yet another',
-          back: 'curry chicken',
-          id: '4',
-        },
-        {
-          front: 'sem malesuada. Sed nec auctor libero. Aliquam non dignissim ante. Morbi condi',
-          back: 'met, consectetur adipiscing elit. Etiam gravida laoreet varius. Donec iaculis erat vel ligula vestibulum, in sagittis ',
-          id: '5',
-        },
-        {
-          front: 'deep within your heart there lies... ',
-          back: '...a sandwich with only bread.',
-          id: '6',
-        },
-        {
-          front: 'dog',
-          back: 'donde esta la biblioteca',
-          id: '7',
-        },
-        {
-          front: '*beep*',
-          back: 'You have mail!',
-          id: '8',
-        },
       ],
     }
   }
