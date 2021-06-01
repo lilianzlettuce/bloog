@@ -1,5 +1,7 @@
-import React/*, { useState }*/ from 'react'
+import React from 'react'
 import './CardViewer.css'
+
+import TopBar from './TopBar'
 
 import { Link, withRouter } from 'react-router-dom'
 import { firebaseConnect, isEmpty, isLoaded } from 'react-redux-firebase'
@@ -221,6 +223,7 @@ class CardViewer extends React.Component {
 
     return (
       <div className="container">
+        <TopBar />
         <div className="heading">
           <div className="cardset-name">{this.props.name}</div>
           <button className="switch-btn">

@@ -2,6 +2,8 @@ import React from 'react'
 import TextareaAutosize from 'react-textarea-autosize'
 import './CardEditor.css'
 
+import TopBar from './TopBar'
+
 import { Link, withRouter } from 'react-router-dom'
 import { firebaseConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
@@ -203,6 +205,7 @@ class CardEditor extends React.Component {
   
     return (
       <div className="container">
+        <TopBar />
         <div className="heading">
           <input 
             name="name"

@@ -1,18 +1,35 @@
-h1 {
+h4 {
     color: white;
     font-family: inherit;
     z-index: inherit;
-    margin: 0;
+    font-size: 1.6rem;
 }
 
 #topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 60px;
     padding: 18px 22px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    background-color: var(--light);
+    background-color: var(--darker);
 }
 
+.top-link {
+    margin: 30px;
+}
+
+#cards-icon {
+    transform: scale(.3);
+    position: relative;
+    top: 0px;
+    left: -40px;
+}
 .cards-path {
     stroke: white;
+    stroke-width: 7;
+    fill: transparent;
 }
