@@ -16,10 +16,10 @@ const HomePage = (props) => {
         return <div>Page not found!</div>
     }
 
-    const decks = Object.keys(props.homepage).map((key, index) => {
+    const decks = Object.keys(props.homepage).map((key) => {
         return (
             <Link key={key} className="deck-container" to={`/viewer/${key}`}>
-                <div>{props.homepage[key].name}</div>
+                <h3>{props.homepage[key].name}</h3>
             </Link>
         )
     })
@@ -28,7 +28,8 @@ const HomePage = (props) => {
         <div id="main">
             <TopBar />
             <div className="section">
-                {decks}
+                <h2>Decks</h2>
+                <div className="deck-section">{decks}</div>
             </div>
         </div>
     )

@@ -9,13 +9,22 @@
     margin: 0;
 }
 
+.deck-section {
+    width: 95%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 30px auto;
+}
+
 .deck-container {
     background-color: white;
     position: relative;
     width: 250px;
     height: 200px;
     border-radius: 10%;
-    margin: 0 5%;
+    margin: 20px;
     padding: 20px 20px;
     display: flex;
     flex-direction: column;
