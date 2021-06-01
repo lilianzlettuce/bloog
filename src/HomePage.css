@@ -5,12 +5,6 @@
     margin: 0;
 }
 
-h1 {
-    color: var(--darker);
-    font-family: inherit;
-    z-index: inherit;
-}
-
 .btn-container {
     background-color: white;
     position: relative;

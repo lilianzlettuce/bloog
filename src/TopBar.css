@@ -1,0 +1,18 @@
+h1 {
+    color: white;
+    font-family: inherit;
+    z-index: inherit;
+    margin: 0;
+}
+
+#topbar {
+    padding: 18px 22px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: var(--light);
+}
+
+.cards-path {
+    stroke: white;
+}
