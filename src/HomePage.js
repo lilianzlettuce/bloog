@@ -8,29 +8,37 @@ import { connect } from 'react-redux'
 import { compose } from 'redux'
 
 const HomePage = (props) => {
-    /*const decks = this.props.decks.map((deck, index) => {
-        <Link className="btn-container" to="/viewer">
+    if (!isLoaded(props.homepage)) {
+        return <div>Loading...</div>
+    }
 
+    if (isEmpty(props.homepage)) {
+        return <div>Page not found!</div>
+    }
+
+    const decks = Object.keys(props.homepage).map((key, index) => {
+        <Link className="deck-container" to="/viewer">
+            <div>{key}</div>
         </Link>
-    })*/
+    })
 
     return (
         <div id="main">
             <TopBar />
             <div className="section">
-                {}
+                {decks}
             </div>
         </div>
     )
 }
 
 const mapStateToProps = (state) => {
-    console.log(state.firebase.data.homepage)
-    return {homepage: state.firebase.data.homepage}
+    const homepage = state.firebase.data.homepage
+    return { homepage: homepage }
 }
 
 export default compose(
     withRouter,
-    firebaseConnect([{path: '/homepage'}]),
+    firebaseConnect([{ path: '/homepage', storeAs: 'homepage' }]),
     connect(mapStateToProps),
 )(HomePage)

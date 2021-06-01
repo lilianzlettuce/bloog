@@ -4,7 +4,7 @@ import './CardEditor.css'
 
 import TopBar from './TopBar'
 
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { firebaseConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 
