@@ -17,9 +17,11 @@ const HomePage = (props) => {
     }
 
     const decks = Object.keys(props.homepage).map((key, index) => {
-        <Link className="deck-container" to="/viewer">
-            <div>{key}</div>
-        </Link>
+        return (
+            <Link key={key} className="deck-container" to={`/viewer/${key}`}>
+                <div>{props.homepage[key].name}</div>
+            </Link>
+        )
     })
 
     return (

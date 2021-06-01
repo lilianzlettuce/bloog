@@ -15,7 +15,8 @@ h4 {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    background-color: var(--darker);
+    background-color: var(--lighter);
+    z-index: 9999;
 }
 
 .top-link {
