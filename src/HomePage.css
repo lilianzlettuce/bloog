@@ -97,8 +97,14 @@ h3 {
         width: 37%;
     }
 }
-@media(max-width: 300px) {
+@media(max-width: 450px) {
+    h2 {
+        margin: 0;
+    }
+    .deck-section {
+        padding: 20px 0px;
+    }
     .deck-container {
-        width: 100%;
+        width: 70%;
     }
 }
