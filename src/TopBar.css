@@ -20,6 +20,7 @@ h4 {
 }
 
 .top-link {
+    position: relative;
     margin: 30px;
 }
 
@@ -33,4 +34,11 @@ h4 {
     stroke: white;
     stroke-width: 7;
     fill: transparent;
+}
+
+@media(max-width: 415px) {
+    .top-link {
+        left: -100px;
+        margin: 20px;
+    }
 }
