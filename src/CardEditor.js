@@ -160,7 +160,7 @@ class CardEditor extends React.Component {
             Create Deck
           </button>
         </div>
-        <table>
+        <table id="editor-table">
           <thead>
             <tr>
               <th></th>

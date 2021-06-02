@@ -98,3 +98,20 @@ thead, tbody, tr, th, td {
 #create-btn {
     width: 120px;
 }
+
+@media(max-width: 650px) {
+    #name-input {
+        width: 60%;
+    }
+}
+@media(max-width: 500px) {
+    #name-input {
+        width: 100%;
+        left: 0px;
+    }
+    #create-btn {
+        position: relative;
+        top: 15px;
+        left: 0px;
+    }
+}
