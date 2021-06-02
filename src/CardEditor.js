@@ -143,6 +143,7 @@ class CardEditor extends React.Component {
         <div className="heading">
           <input 
             name="name"
+            id="name-input"
             className="cardset-name"
             onChange={(e) => {
               this.handleChange(e)

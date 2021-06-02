@@ -2,6 +2,12 @@ body {
   overflow: scroll;
 }
 
+#name-input {
+    padding: 10px 15px;
+    color: var(--dark);
+    border-bottom: 1px solid var(--lighterer);
+}
+
 .heading {
     margin-bottom: 0px;
 }
