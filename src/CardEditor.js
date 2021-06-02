@@ -14,14 +14,11 @@ class CardEditor extends React.Component {
     this.state = {
       front: '',
       back: '',
-      id: 99,
-      cardIDs: [],
       name: 'My Awesome Card Set',
       cards: [
         {
           front: 'BLOOG',
           back: 'bob loves oily orange geese',
-          id: '0',
         },
       ],
     }
@@ -43,14 +40,11 @@ class CardEditor extends React.Component {
     const newCard = {
       front: this.state.front,
       back: this.state.back,
-      id: this.state.id,
     }
     const cards = this.state.cards.slice().concat(newCard)
     this.setState({ 
       front: '', 
       back: '',
-      id: this.genID(),
-      cardIDs: this.state.cardIDs.slice().concat(this.state.id),
       name: this.state.name,
       cards,
     })
@@ -67,28 +61,6 @@ class CardEditor extends React.Component {
     this.setState({ [e.target.name]: e.target.value })
   }
 
-  //id for map key so that cards render properly when deleted
-  genID = () => {
-    let id = '0'
-    let dupe = true
-    while (dupe === true) {
-      dupe = false
-      for (let i = 0; i < 10; i++) {
-        let randInt = Math.floor(Math.random() * 10)
-        id += randInt
-      }
-
-      //check for no repeat
-      let cardIDs = this.state.cardIDs
-      for (let i = 0; i < cardIDs.length; i++) {
-        if (id === cardIDs[i]) {
-          dupe = true
-        }
-      }
-    }
-    return id
-  }
-
   //edit existing card
   handleChangeCard = (i, val, side) => {
     let half1 = this.state.cards.slice(0, i)
@@ -99,13 +71,11 @@ class CardEditor extends React.Component {
       newCard = {
         front: val,
         back: this.state.cards[i].back,
-        id: this.state.cards[i].id,
       }
     } else {
       newCard = {
         front: this.state.cards[i].front,
         back: val,
-        id: this.state.cards[i].id,
       }
     }
 
@@ -134,7 +104,7 @@ class CardEditor extends React.Component {
   render() {
     const cards = this.state.cards.map((card, index) => {
       return (
-        <tr key={card.id} className="row">
+        <tr key={index} className="row">
           <td className="index-box"><div className="index">{index + 1}</div></td>
           <td className="front-box" >
             <TextareaAutosize 
