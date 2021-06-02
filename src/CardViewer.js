@@ -218,8 +218,21 @@ class CardViewer extends React.Component {
   }
 
   saveDeck = () => {
+    console.log('test save clicekd')
+    let saved = true
     if (this.state.saved) {
-      this.props.firebase.update('/')
+      let deckId = this.props.deckId
+      let updates = {}
+      updates[`/flashcards/${deckId}`] = {
+        cards: this.props.cards,
+        name: this.props.name,
+        saved: saved,
+      }
+      updates[`/homepage/${deckId}`] = { 
+        name: this.props.name,
+        saved: saved,
+      }
+      this.props.firebase.update('/', updates)
     }
   }
 
@@ -272,10 +285,12 @@ class CardViewer extends React.Component {
 }
 
 const mapStateToProps = (state, props) => {
-  const deck = state.firebase.data[props.match.params.deckId]
+  const deckId = props.match.params.deckId
+  const deck = state.firebase.data[deckId]
   const name = deck && deck.name
   const cards = deck && deck.cards
-  return { cards: cards, name: name }
+  const saved = deck&& deck.saved
+  return { cards: cards, name: name, saved: saved, deckId: deckId }
 }
 
 export default compose(
