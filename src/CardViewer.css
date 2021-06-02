@@ -218,5 +218,6 @@
         position: relative;
         left: 220px;
         top: -450px;
+        background-color: transparent;
     }
 }
