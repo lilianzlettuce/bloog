@@ -1,5 +1,6 @@
 #main {
     margin-top: 70px;
+    overflow-x: hidden;
 }
 
 h2 {

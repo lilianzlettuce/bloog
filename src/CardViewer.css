@@ -10,6 +10,7 @@
 }
 
 .save-btn {
+    min-width: 100px;
     border-radius: 25px;
     background-color: var(--main-light);
     color: white;
@@ -21,6 +22,7 @@
 }
 
 .unsave-btn {
+    min-width: 85px;
     border-radius: 25px;
     background-color: var(--sub-light);
     color: white;
@@ -90,6 +92,7 @@
 
 #progress {
     margin-top: 30px;
+    min-width: 30px;
 }
 
 #pb-container {
@@ -137,4 +140,29 @@
     font-size: 2rem;
     position: relative;
     left: -62px;
+}
+
+@media(max-width: 750px) {
+    #card {
+        height: 80%;
+        font-size: 3rem;
+    }
+}
+@media(max-width: 650px) {
+    #body {
+        flex-direction: column;
+    }
+    #card-container {
+        width: 100%;
+        flex-direction: row;
+    }
+    #card {
+        min-width: 350px;
+    }
+    #progress-container {
+        transform: rotate(90deg);
+    }
+    #progress {
+        transform: rotate((-90deg));
+    }
 }

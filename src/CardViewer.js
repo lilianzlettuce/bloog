@@ -3,7 +3,7 @@ import './CardViewer.css'
 
 import TopBar from './TopBar'
 
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { firebaseConnect, isEmpty, isLoaded } from 'react-redux-firebase'
 import { connect } from 'react-redux'
 import { compose } from 'redux'

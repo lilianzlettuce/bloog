@@ -24,6 +24,9 @@ const HomePage = (props) => {
                 </Link>
             )
         }
+        return (
+            <div key={key}></div>
+        )
     })
 
     const decks = Object.keys(props.homepage).map((key) => {
