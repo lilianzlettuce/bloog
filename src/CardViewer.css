@@ -206,8 +206,12 @@
         transform: rotate(90deg);
         margin: 0;
     }
+    .cardset-name {
+        width: 85%;
+    }
     #shuffle-btn {
-        left: 200px;
-        top: -480px;
+        position: absolute;
+        left: 70vw;
+        top: 225px;
     }
 }
