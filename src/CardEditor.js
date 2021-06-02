@@ -163,8 +163,8 @@ class CardEditor extends React.Component {
           <thead>
             <tr>
               <th></th>
-              <th id="front-col">Front</th>
-              <th id="back-col">Back</th>
+              <th id="front-col"></th>
+              <th id="back-col"></th>
               <th id="delete-col"></th>
             </tr>
           </thead>
