@@ -21,6 +21,7 @@ class CardViewer extends React.Component {
 
   componentDidMount() {
     document.addEventListener('keydown', this.keyDown, false)
+    this.updateStyling()
   }
 
   componentWillUnmount() {
@@ -33,6 +34,21 @@ class CardViewer extends React.Component {
     }
     if (this.props.saved !== prevProps.saved) {
       this.setState({ saved: this.props.saved })
+    }
+    this.updateStyling()
+  }
+
+  updateStyling = () => {
+    //saved btn styling
+    let savedBtn = document.querySelector('#save-btn')
+    if (savedBtn && this.state.saved) {
+      savedBtn.classList.add('unsave-btn')
+      savedBtn.classList.remove('save-btn')
+      savedBtn.textContent = "Saved ✓"
+    } else if (savedBtn) {
+      savedBtn.classList.add('save-btn')
+      savedBtn.classList.remove('unsave-btn')
+      savedBtn.textContent = "Save Deck"
     }
   }
 
@@ -218,10 +234,13 @@ class CardViewer extends React.Component {
   }
 
   saveDeck = () => {
-    console.log('test save clicekd')
     let saved = true
     if (this.state.saved) {
-      let deckId = this.props.deckId
+      saved = false
+    }
+
+    //update saved status in database
+    let deckId = this.props.deckId
       let updates = {}
       updates[`/flashcards/${deckId}`] = {
         cards: this.props.cards,
@@ -233,7 +252,6 @@ class CardViewer extends React.Component {
         saved: saved,
       }
       this.props.firebase.update('/', updates)
-    }
   }
 
   render() {
@@ -251,7 +269,7 @@ class CardViewer extends React.Component {
         <div className="heading">
           <div className="cardset-name">{this.props.name}</div>
           <button
-            className="usable-btn"
+            className="save-btn"
             id="save-btn"
             onClick={this.saveDeck}
           >
