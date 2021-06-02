@@ -141,7 +141,8 @@ class CardEditor extends React.Component {
       <div className="container">
         <TopBar />
         <div className="heading">
-          <input 
+          <TextareaAutosize
+            cacheMeasurements
             name="name"
             id="name-input"
             className="cardset-name"
