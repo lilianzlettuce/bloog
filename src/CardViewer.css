@@ -214,4 +214,9 @@
         left: 70vw;
         top: 225px;
     }
+    #shuffle-btn {
+        position: relative;
+        left: 220px;
+        top: -450px;
+    }
 }
