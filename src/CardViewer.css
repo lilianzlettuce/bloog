@@ -92,7 +92,7 @@
 
 #progress {
     margin-top: 30px;
-    min-width: 30px;
+    min-width: 40px;
 }
 
 #pb-container {
@@ -154,15 +154,60 @@
     }
     #card-container {
         width: 100%;
-        flex-direction: row;
     }
     #card {
         min-width: 350px;
     }
     #progress-container {
-        transform: rotate(90deg);
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        height: 50px;
+        position: relative;
+        top: -35px;
     }
     #progress {
-        transform: rotate((-90deg));
+        top: 0;
+        left: 0;
+    }
+    #pb-container {
+        transform: rotate(90deg);
+        position: relative;
+        top: -145px;
+        left: 100px;
+    }
+    #shuffle-btn {
+        left: 320px;
+        top: 20px;
+    }
+}
+@media(max-width: 500px) {
+    .heading {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+    #save-btn {
+        position: relative;
+        top: 5px;
+        left: 15px;
+    }
+    #card-container {
+        width: 100%;
+        flex-direction: column;
+    }
+    #card {
+        min-width: 250px;
+        height: 40vh;
+        font-size: 2.4rem;
+    }
+    #controls {
+        transform: rotate(90deg);
+        margin: 0;
+    }
+    #shuffle-btn {
+        left: 200px;
+        top: -480px;
     }
 }
