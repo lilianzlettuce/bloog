@@ -2,6 +2,7 @@ import React from 'react'
 import HomePage from './HomePage'
 import CardEditor from './CardEditor'
 import CardViewer from './CardViewer'
+import PageRegister from './PageRegister'
 
 import { Route, Switch } from 'react-router-dom'
 
@@ -16,6 +17,9 @@ const App = () => {
         </Route>
         <Route exact path="/viewer/:deckId">
             <CardViewer />
+        </Route>
+        <Route exact path="/register">
+          <PageRegister />
         </Route>
         <Route>
           <div>Page not found!</div>
