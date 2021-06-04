@@ -2,7 +2,7 @@ import React from 'react'
 import HomePage from './HomePage'
 import CardEditor from './CardEditor'
 import CardViewer from './CardViewer'
-import PageRegister from './PageRegister'
+import RegisterPage from './RegisterPage'
 
 import { Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -25,7 +25,7 @@ const App = props => {
             <CardViewer />
         </Route>
         <Route exact path="/register">
-          <PageRegister />
+          <RegisterPage />
         </Route>
         <Route>
           <div>Page not found!</div>

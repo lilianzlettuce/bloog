@@ -17,6 +17,12 @@ export default function TopBar(props) {
             <Link className="top-link" to="/editor">
                 <h4>Create</h4>
             </Link>
+            <Link className="top-link" to="/LoginPage">
+                <h4>Log In</h4>
+            </Link>
+            <Link className="top-link" to="/RegisterPage">
+                <h4>Sign Up</h4>
+            </Link>
         </div>
     )
 }

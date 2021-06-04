@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom'
 
 import './AccountPages.css'
 
-class PageRegister extends React.Component {
+class RegisterPage extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -78,4 +78,4 @@ const mapStateToProps = state => {
 export default compose(
     firebaseConnect(),
     connect(mapStateToProps),
-)(PageRegister)
+)(RegisterPage)
