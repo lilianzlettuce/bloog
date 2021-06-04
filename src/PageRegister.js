@@ -30,7 +30,7 @@ class PageRegister extends React.Component {
         try {
             await this.props.firebase.createUser(credentials)
         } catch (error) {
-            this.setState({ error: error.message})
+            this.setState({ error: error.message })
         }
     }
 
@@ -56,9 +56,9 @@ class PageRegister extends React.Component {
                     />
                 </div>
                 <br/>
-                <div>{this.state.error}</div>
-                <br/>
                 <button onClick={this.register}>Sign up</button>
+                <br/>
+                <div className="error-message" id="signup-error">{this.state.error}</div>
             </div>
         )
     }
