@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
 
-import './PageRegister.css'
+import './AccountPages.css'
 
 class PageRegister extends React.Component {
     constructor(props) {
