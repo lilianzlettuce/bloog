@@ -314,7 +314,6 @@ const mapStateToProps = (state, props) => {
 export default compose(
   withRouter,
   firebaseConnect(props => {
-    console.log("props: " + props)
     const deckId = props.match.params.deckId
     return [{ path: `/flashcards/${deckId}`, storeAs: deckId}]
   }),

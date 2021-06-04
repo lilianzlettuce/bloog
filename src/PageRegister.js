@@ -1,4 +1,5 @@
 import React from 'react'
+import { firebaseConnect } from 'react-redux-firebase'
 
 class PageRegister extends React.Component {
     constructor(props) {
@@ -14,10 +15,15 @@ class PageRegister extends React.Component {
         this.setState({ [e.target.name]: e.target.value })
     }
 
+    register = () => {
+
+    }
+
     render() {
         return (
             <div>
-                <h2>Register</h2>
+                <h2>Create an Account</h2>
+                <br/>
                 <div>
                     <input 
                         name="email"
@@ -28,14 +34,17 @@ class PageRegister extends React.Component {
                     <br/>
                     <input 
                         name="password"
+                        type="password"
                         placeholder="Password"
                         onChange={this.handleChange}
                         value={this.setState.password}
                     />
                 </div>
+                <br/>
+                <button onClick={this.register}>Sign up</button>
             </div>
         )
     }
 }
 
-export default PageRegister
+export default firebaseConnect()(PageRegister)
