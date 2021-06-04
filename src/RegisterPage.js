@@ -51,7 +51,7 @@ class RegisterPage extends React.Component {
                         name="email"
                         placeholder="Email"
                         onChange={this.handleChange}
-                        value={this.setState.email}
+                        value={this.state.email}
                     />
                     <br/>
                     <input 
@@ -59,7 +59,7 @@ class RegisterPage extends React.Component {
                         type="password"
                         placeholder="Password"
                         onChange={this.handleChange}
-                        value={this.setState.password}
+                        value={this.state.password}
                     />
                 </div>
                 <br/>
