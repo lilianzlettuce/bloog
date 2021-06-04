@@ -9,7 +9,7 @@ import { connect } from 'react-redux'
 import { isLoaded } from 'react-redux-firebase'
 
 const App = props => {
-  if (!isLoaded(props.auth)) {
+  if (!isLoaded(props.auth, props.profile)) {
     return <div>Authentication loading...</div>
   }
 
@@ -35,7 +35,7 @@ const App = props => {
 }
 
 const mapStateToProps = state => {
-  return { auto: state.firebase.auth }
+  return { auth: state.firebase.auth, profile: state.firebase.profile }
 }
 
 export default connect(mapStateToProps)(App)

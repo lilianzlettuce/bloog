@@ -1,3 +1,9 @@
+.acct-container {
+    width: 500px;
+    border: 1px solid black;
+    margin: auto;
+}
+
 .error-message {
     color: red;
     font-size: 1.4rem;

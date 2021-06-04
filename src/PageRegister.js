@@ -43,7 +43,7 @@ class PageRegister extends React.Component {
         }
 
         return (
-            <div>
+            <div className="acct-container">
                 <h2>Create an Account</h2>
                 <br/>
                 <div>
