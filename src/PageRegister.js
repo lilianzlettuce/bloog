@@ -1,5 +1,8 @@
 import React from 'react'
 import { firebaseConnect } from 'react-redux-firebase'
+import { connect } from 'react-redux'
+import { compose } from 'redux'
+import { Redirect } from 'react-router-dom'
 
 import './PageRegister.css'
 
@@ -35,6 +38,10 @@ class PageRegister extends React.Component {
     }
 
     render() {
+        if (this.props.isLoggedIn) {
+            return <Redirect to="/" />
+        }
+
         return (
             <div>
                 <h2>Create an Account</h2>
@@ -64,4 +71,11 @@ class PageRegister extends React.Component {
     }
 }
 
-export default firebaseConnect()(PageRegister)
+const mapStateToProps = state => {
+    return { isLoggedIn: state.firebase.auth.uid }
+}
+
+export default compose(
+    firebaseConnect(),
+    connect(mapStateToProps),
+)(PageRegister)

@@ -5,8 +5,14 @@ import CardViewer from './CardViewer'
 import PageRegister from './PageRegister'
 
 import { Route, Switch } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { isLoaded } from 'react-redux-firebase'
 
-const App = () => {
+const App = props => {
+  if (!isLoaded(props.auth)) {
+    return <div>Authentication loading...</div>
+  }
+
   return (
     <Switch>
         <Route exact path="/">
@@ -28,4 +34,8 @@ const App = () => {
   )
 }
 
-export default App
+const mapStateToProps = state => {
+  return { auto: state.firebase.auth }
+}
+
+export default connect(mapStateToProps)(App)
