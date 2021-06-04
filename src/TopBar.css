@@ -36,6 +36,10 @@ h4 {
     fill: transparent;
 }
 
+#login-container {
+    display: flex;
+}
+
 @media(max-width: 415px) {
     .top-link {
         left: -100px;

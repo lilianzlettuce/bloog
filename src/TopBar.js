@@ -1,8 +1,33 @@
 import './TopBar.css'
 
 import { Link } from 'react-router-dom'
+import { firebaseConnect, isLoaded } from 'react-redux-firebase'
+import { connect } from 'react-redux'
+import { compose } from 'redux'
 
-export default function TopBar(props) {
+const TopBar = (props) => {
+    const accountStuff = () => {
+        if (!isLoaded(props.email)) {
+            return (
+                <div id="login-container">
+                    <Link className="top-link" to="/LoginPage">
+                        <h4>Log In</h4>
+                    </Link>
+                    <Link className="top-link" to="/RegisterPage">
+                        <h4>Sign Up</h4>
+                    </Link>
+                </div>
+            )
+        } else {
+            return (
+                <div>
+                    <h5>{props.email}</h5>
+                    <button className="" onClick={() => props.firebase.logout()}>Sign Out</button>
+                </div>
+            )
+        }
+    }
+
     return (
         <div id="topbar">
             <Link id="cards-icon" to="/">
@@ -17,12 +42,18 @@ export default function TopBar(props) {
             <Link className="top-link" to="/editor">
                 <h4>Create</h4>
             </Link>
-            <Link className="top-link" to="/LoginPage">
-                <h4>Log In</h4>
-            </Link>
-            <Link className="top-link" to="/RegisterPage">
-                <h4>Sign Up</h4>
-            </Link>
+            <div>
+                {accountStuff()}
+            </div>
         </div>
     )
 }
+
+const mapStateToProps = state => {
+    return { email: state.firebase.auth.email }
+}
+
+export default compose(
+    firebaseConnect(),
+    connect(mapStateToProps)
+)(TopBar)
