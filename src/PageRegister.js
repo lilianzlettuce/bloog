@@ -1,22 +1,37 @@
 import React from 'react'
 import { firebaseConnect } from 'react-redux-firebase'
 
+import './PageRegister.css'
+
 class PageRegister extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             email: '',
             password: '',
+            error: '',
         }
     }
 
     //for inputs
     handleChange = e => {
-        this.setState({ [e.target.name]: e.target.value })
+        this.setState({ 
+            [e.target.name]: e.target.value,
+            error: '',
+        })
     }
 
-    register = () => {
+    register = async () => {
+        const credentials = {
+            email: this.state.email,
+            password: this.state.password,
+        }
 
+        try {
+            await this.props.firebase.createUser(credentials)
+        } catch (error) {
+            this.setState({ error: error.message})
+        }
     }
 
     render() {
@@ -40,6 +55,8 @@ class PageRegister extends React.Component {
                         value={this.setState.password}
                     />
                 </div>
+                <br/>
+                <div>{this.state.error}</div>
                 <br/>
                 <button onClick={this.register}>Sign up</button>
             </div>
