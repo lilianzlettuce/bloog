@@ -1,7 +1,7 @@
 import './TopBar.css'
 
 import { Link } from 'react-router-dom'
-import { firebaseConnect, isLoaded } from 'react-redux-firebase'
+import { firebaseConnect } from 'react-redux-firebase'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 
@@ -10,7 +10,7 @@ const TopBar = (props) => {
         if (props.isLoggedIn) {
             return (
                 <div>
-                    <h5>{props.email}</h5>
+                    <h5>{props.username}</h5>
                     <button className="" onClick={() => props.firebase.logout()}>Sign Out</button>
                 </div>
             )
@@ -53,6 +53,7 @@ const mapStateToProps = state => {
     return { 
         email: state.firebase.auth.email,
         isLoggedIn: state.firebase.auth.uid,
+        username: state.firebase.profile.username
     }
 }
 

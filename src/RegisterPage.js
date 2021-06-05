@@ -2,7 +2,7 @@ import React from 'react'
 import { firebaseConnect } from 'react-redux-firebase'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
-import { Redirect } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 import './AccountPages.css'
 
@@ -12,6 +12,7 @@ class RegisterPage extends React.Component {
         this.state = {
             email: '',
             password: '',
+            username: '',
             error: '',
         }
     }
@@ -30,8 +31,13 @@ class RegisterPage extends React.Component {
             password: this.state.password,
         }
 
+        const profile = {
+            email: this.state.email,
+            username: this.state.username,
+        }
+
         try {
-            await this.props.firebase.createUser(credentials)
+            await this.props.firebase.createUser(credentials, profile)
         } catch (error) {
             this.setState({ error: error.message })
         }
@@ -55,6 +61,13 @@ class RegisterPage extends React.Component {
                     />
                     <br/>
                     <input 
+                        name="username"
+                        placeholder="Username"
+                        onChange={this.handleChange}
+                        value={this.state.username}
+                    />
+                    <br/>
+                    <input 
                         name="password"
                         type="password"
                         placeholder="Password"
@@ -63,9 +76,12 @@ class RegisterPage extends React.Component {
                     />
                 </div>
                 <br/>
-                <button onClick={this.register}>Sign up</button>
+                <button disabled={!this.state.username.trim()} onClick={this.register}>Sign up</button>
                 <br/>
                 <div className="error-message" id="signup-error">{this.state.error}</div>
+                <br/>
+                <div>Already have an account? <Link to="/login">Sign in</Link></div>
+                <Link to="/">Back to home</Link>
             </div>
         )
     }

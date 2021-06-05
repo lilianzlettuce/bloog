@@ -2,7 +2,7 @@ import React from 'react'
 import { firebaseConnect } from 'react-redux-firebase'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
-import { Redirect } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 import './AccountPages.css'
 
@@ -66,6 +66,9 @@ class LoginPage extends React.Component {
                 <button onClick={this.login}>Log in</button>
                 <br/>
                 <div className="error-message" id="signup-error">{this.state.error}</div>
+                <br/>
+                <div>New to BLOOG? <Link to="/register">Create an account</Link></div>
+                <Link to="/">Back to home</Link>
             </div>
         )
     }
