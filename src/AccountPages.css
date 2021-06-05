@@ -8,24 +8,28 @@
     width: 100vw;
     height: 100vh;
     display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
 }
 
 .back-btn {
     position: absolute;
-    top: 4vh;
-    left: 3vw;
+    top: 23px;
+    left: 32px;
 }
 
 .acct-child1 {
-    width: 500px;
-    margin: auto;
+    width: 40vw;
+    max-width: 600px;
+    height: 100vh;
+    min-height: 500px;
+    margin: 0;
     margin-bottom: 200px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     position: relative;
-    top: 80px;
 }
 
 .acct-header {
@@ -72,9 +76,17 @@
     font-size: 1.4rem;
 }
 
+.acct-child2 {
+    width: 40vw;
+    height: 100vh;
+}
+
+.acct-svg {
+    transform: scale(2.5);
+}
+
 .acct-path {
     stroke: var(--main-light);
     stroke-width: 10px;
     fill: transparent;
-    transform: scale(.8);
 }
