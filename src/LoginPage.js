@@ -18,9 +18,9 @@ class LoginPage extends React.Component {
 
     //for inputs
     handleChange = e => {
+        document.querySelector('#signin-error').style.display = 'none'
         this.setState({ 
             [e.target.name]: e.target.value,
-            error: '',
         })
     }
 
@@ -34,6 +34,7 @@ class LoginPage extends React.Component {
             await this.props.firebase.login(credentials)
         } catch (error) {
             this.setState({ error: error.message })
+            document.querySelector('#signin-error').style.display = 'block'
         }
     }
 
@@ -65,7 +66,7 @@ class LoginPage extends React.Component {
                 <br/>
                 <button onClick={this.login}>Log in</button>
                 <br/>
-                <div className="error-message" id="signup-error">{this.state.error}</div>
+                <div className="error-message" id="signin-error">{this.state.error}</div>
                 <br/>
                 <div>New to BLOOG? <Link to="/register">Create an account</Link></div>
                 <Link to="/">Back to home</Link>

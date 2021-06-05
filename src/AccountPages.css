@@ -3,6 +3,20 @@
 }
 
 .acct-container {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+
+.back-btn {
+    position: absolute;
+    top: 4vh;
+    left: 3vw;
+}
+
+.acct-child1 {
     width: 500px;
     margin: auto;
     margin-bottom: 200px;
@@ -11,39 +25,56 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    top: 100px;
+    top: 80px;
 }
 
 .acct-header {
     margin: 0;
+    font-weight: 400;
 }
 
 .input-container {
     width: var(--width);
+    background-color: var(--lighterer);
+    border: 1px solid var(--lighter);
+    border-radius: 5px;
+    padding: 20px 30px;
 }
 
 .acct-input {
     width: 100%;
-    border: 1px solid var(--darker);
+    height: 50px;
+    background-color: white;
+    border: 1px solid var(--lighter);
     border-radius: 5px;
-    margin: 10px 0;
+    margin: 10px auto;
     padding: 10px;
 }
 
 .acct-btn {
     width: var(--width);
+    height: 45px;
     border: 1px solid var(--main);
     padding: 10px;
     margin: 0;
 }
 
 .error-message {
+    display: none;
     width: var(--width);
-    padding: 10px;
-    background-color: rgb(255, 220, 220);
-    border: 1px solid rgb(255, 82, 82);
+    height: 35px;
+    padding: 8px;
+    background-color: white;
+    border: 1px solid rgb(255, 133, 133);
     border-radius: 5px;
-    color: rgb(0, 0, 0);
+    color: red;
     text-align: center;
     font-size: 1.4rem;
+}
+
+.acct-path {
+    stroke: var(--main-light);
+    stroke-width: 10px;
+    fill: transparent;
+    transform: scale(.8);
 }
