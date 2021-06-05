@@ -1,11 +1,49 @@
+:root {
+    --width: 80%;
+}
+
 .acct-container {
     width: 500px;
-    border: 1px solid black;
     margin: auto;
+    margin-bottom: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 100px;
+}
+
+.acct-header {
+    margin: 0;
+}
+
+.input-container {
+    width: var(--width);
+}
+
+.acct-input {
+    width: 100%;
+    border: 1px solid var(--darker);
+    border-radius: 5px;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+.acct-btn {
+    width: var(--width);
+    border: 1px solid var(--main);
+    padding: 10px;
+    margin: 0;
 }
 
 .error-message {
-    color: red;
+    width: var(--width);
+    padding: 10px;
+    background-color: rgb(255, 220, 220);
+    border: 1px solid rgb(255, 82, 82);
+    border-radius: 5px;
+    color: rgb(0, 0, 0);
+    text-align: center;
     font-size: 1.4rem;
-    height: 10px;
 }

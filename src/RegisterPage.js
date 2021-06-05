@@ -13,7 +13,7 @@ class RegisterPage extends React.Component {
             email: '',
             password: '',
             username: '',
-            error: '',
+            error: 'Example error message.',
         }
     }
 
@@ -26,6 +26,11 @@ class RegisterPage extends React.Component {
     }
 
     register = async () => {
+        if (!this.state.username.trim()) {
+            this.setState({ error: 'Fill in all fields to create user.' })
+            return
+        }
+
         const credentials = {
             email: this.state.email,
             password: this.state.password,
@@ -50,10 +55,11 @@ class RegisterPage extends React.Component {
 
         return (
             <div className="acct-container">
-                <h2>Create an Account</h2>
+                <h2 className="acct-header">Create an Account</h2>
                 <br/>
-                <div>
+                <div className="input-container">
                     <input 
+                        className="acct-input"
                         name="email"
                         placeholder="Email"
                         onChange={this.handleChange}
@@ -61,6 +67,7 @@ class RegisterPage extends React.Component {
                     />
                     <br/>
                     <input 
+                        className="acct-input"
                         name="username"
                         placeholder="Username"
                         onChange={this.handleChange}
@@ -68,6 +75,7 @@ class RegisterPage extends React.Component {
                     />
                     <br/>
                     <input 
+                        className="acct-input"
                         name="password"
                         type="password"
                         placeholder="Password"
@@ -76,7 +84,7 @@ class RegisterPage extends React.Component {
                     />
                 </div>
                 <br/>
-                <button disabled={!this.state.username.trim()} onClick={this.register}>Sign up</button>
+                <button className="acct-btn" onClick={this.register}>Sign up</button>
                 <br/>
                 <div className="error-message" id="signup-error">{this.state.error}</div>
                 <br/>
