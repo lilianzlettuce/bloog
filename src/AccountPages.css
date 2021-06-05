@@ -104,12 +104,13 @@
     background-color: white;
     border-radius: 50px;
     transition: top 1s ease-in;
-    animation: card-ani 3s linear 0s 1 forwards;
 }
 
 #path1 {
     top: 0px;
+    left: 120px;
     transition: .3s ease-out;
+    animation: card-anim 1.2s ease-in-out .2s 1 forwards;
 }
 #path1:hover {
     top: -30px;
@@ -127,8 +128,9 @@
     border: 10px solid white;
     position: relative;
     top: -210px;
-    left: -70px;
+    left: 50px;
     transition: .3s ease-out;
+    animation: card-anim2 1.2s ease-in-out 0s 1 forwards;
 }
 #path2:hover {
     top: -230px;
@@ -136,6 +138,11 @@
 
 @keyframes card-anim {
     to {
-        stroke-dashoffset: 0;
+        left: 0;
+    }
+}
+@keyframes card-anim2 {
+    to {
+        left: -70px;
     }
 }

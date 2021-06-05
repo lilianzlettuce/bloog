@@ -45,7 +45,10 @@ class LoginPage extends React.Component {
 
         return (
             <div className="acct-container">
-                <h2>Log In</h2>
+                <Link className="back-btn" to="/">Back to home</Link>
+                <h2 className="acct-header">Log In</h2>
+                <br/>
+                <div className="error-message" id="signin-error">{this.state.error}</div>
                 <br/>
                 <div>
                     <input 
@@ -66,10 +69,7 @@ class LoginPage extends React.Component {
                 <br/>
                 <button onClick={this.login}>Log in</button>
                 <br/>
-                <div className="error-message" id="signin-error">{this.state.error}</div>
-                <br/>
                 <div>New to BLOOG? <Link to="/register">Create an account</Link></div>
-                <Link to="/">Back to home</Link>
             </div>
         )
     }
