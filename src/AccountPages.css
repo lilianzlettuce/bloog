@@ -16,6 +16,7 @@
     position: absolute;
     top: 23px;
     left: 32px;
+    z-index: 900;
 }
 
 .acct-child1 {

@@ -46,30 +46,41 @@ class LoginPage extends React.Component {
         return (
             <div className="acct-container">
                 <Link className="back-btn" to="/">Back to home</Link>
-                <h2 className="acct-header">Log In</h2>
-                <br/>
-                <div className="error-message" id="signin-error">{this.state.error}</div>
-                <br/>
-                <div>
-                    <input 
-                        name="email"
-                        placeholder="Email"
-                        onChange={this.handleChange}
-                        value={this.state.email}
-                    />
+                <div className="acct-child1">
+                    <h2 className="acct-header">Log In</h2>
                     <br/>
-                    <input 
-                        name="password"
-                        type="password"
-                        placeholder="Password"
-                        onChange={this.handleChange}
-                        value={this.state.password}
-                    />
+                    <div className="error-message" id="signin-error">{this.state.error}</div>
+                    <br/>
+                    <div className="input-container">
+                        <input 
+                            className="acct-input"
+                            name="email"
+                            placeholder="Email"
+                            onChange={this.handleChange}
+                            value={this.state.email}
+                        />
+                        <br/>
+                        <input 
+                            className="acct-input"
+                            name="password"
+                            type="password"
+                            placeholder="Password"
+                            onChange={this.handleChange}
+                            value={this.state.password}
+                        />
+                    </div>
+                    <br/>
+                    <button className="acct-btn" onClick={this.login}>Log in</button>
+                    <br/>
+                    <br/>
+                    <div>New to BLOOG? <Link to="/register">Create an account.</Link></div>
                 </div>
-                <br/>
-                <button onClick={this.login}>Log in</button>
-                <br/>
-                <div>New to BLOOG? <Link to="/register">Create an account</Link></div>
+                <div className="acct-child2">
+                    <div className="cards-container">
+                        <div className="acct-card" id="path1"></div>
+                        <div className="acct-card" id="path2">BLOOG</div>
+                    </div>
+                </div>
             </div>
         )
     }
