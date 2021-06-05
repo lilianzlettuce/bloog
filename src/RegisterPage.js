@@ -96,10 +96,10 @@ class RegisterPage extends React.Component {
                     <div>Already have an account? <Link to="/login">Sign in.</Link></div>
                 </div>
                 <div className="acct-child2">
-                    <svg className="acct-svg" width="170px" height="120px">
-                        <rect className="acct-path" width="110px" height="80px" x="40" y="10" rx="10" ry="10" stroke="rgb(24, 40, 255)"  strokeLinecap="round" strokeWidth="4" fill="white"/>
-                        <rect className="acct-path" width="110px" height="80px" x="20" y="25" rx="10" ry="10" stroke="rgb(24, 40, 255)"  strokeLinecap="round" strokeWidth="4" fill="white"/>
-                    </svg>
+                    <div className="cards-container">
+                        <div className="acct-card" id="path1"></div>
+                        <div className="acct-card" id="path2">BLOOG</div>
+                    </div>
                 </div>
             </div>
         )
