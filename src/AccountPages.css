@@ -258,6 +258,9 @@
         height: 53px;
         border-radius: 20px;
     }
+    #path1:hover {
+        top: 90px;
+    }
 
     #path2 {
         top: 50px;
@@ -266,5 +269,8 @@
         height: 53px;
         border-radius: 20px;
         font-size: 1.4rem;
+    }
+    #path2:hover {
+        top: 50px;
     }
 }
