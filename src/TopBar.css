@@ -1,5 +1,5 @@
 h4 {
-    color: white;
+    color: var(--sub);
     font-family: inherit;
     z-index: inherit;
     font-size: 1.6rem;
@@ -15,8 +15,9 @@ h4 {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    background-color: var(--lighter);
+    background-color: white;
     z-index: 9999;
+    box-shadow: 0px 0px 4px 1px rgba(128, 128, 128, 0.322);
 }
 
 .top-link {
@@ -31,7 +32,7 @@ h4 {
     left: -40px;
 }
 .cards-path {
-    stroke: white;
+    stroke: var(--sub);
     stroke-width: 7;
     fill: transparent;
 }
