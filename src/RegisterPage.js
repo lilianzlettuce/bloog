@@ -112,7 +112,7 @@ class RegisterPage extends React.Component {
                     <button className="acct-btn" onClick={this.register}>Create account</button>
                     <br/>
                     <br/>
-                    <div>Already have an account? <Link to="/login">Sign in.</Link></div>
+                    <div className="subtext">Already have an account? <Link className="link" to="/login">Sign in.</Link></div>
                 </div>
                 <div className="acct-child2">
                     <div className="cards-container">

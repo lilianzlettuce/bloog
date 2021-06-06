@@ -145,6 +145,17 @@
     }
 }
 
+.subtext {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.link {
+    margin-left: 5px;
+}
+
 @media (max-width: 1000px) {
     .cards-container {
         height: 200px;
@@ -222,13 +233,6 @@
         position: absolute;
         top: 0;
     }
-
-    .cards-container {
-        width: 60px;
-        min-width: none;
-        height: 50px;
-        min-height: none;
-    }
     
     #path1 {
         top: 60px;
@@ -243,5 +247,24 @@
 }
 
 @media (max-width: 400px) {
-    
+    :root {
+        --width: 100%;
+    }
+
+    #path1 {
+        top: 90px;
+        left: 25px;
+        width: 70px;
+        height: 53px;
+        border-radius: 20px;
+    }
+
+    #path2 {
+        top: 50px;
+        left: 5px;
+        width: 70px;
+        height: 53px;
+        border-radius: 20px;
+        font-size: 1.4rem;
+    }
 }

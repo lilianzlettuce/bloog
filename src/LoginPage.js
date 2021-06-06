@@ -73,7 +73,7 @@ class LoginPage extends React.Component {
                     <button className="acct-btn" onClick={this.login}>Log in</button>
                     <br/>
                     <br/>
-                    <div>New to BLOOG? <Link to="/register">Create an account.</Link></div>
+                    <div  className="subtext">New to BLOOG? <Link className="link" to="/register">Create an account.</Link></div>
                 </div>
                 <div className="acct-child2">
                     <div className="cards-container">
