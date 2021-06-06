@@ -26,23 +26,31 @@ class RegisterPage extends React.Component {
     }
 
     register = async () => {
+        const un = this.state.username.trim()
+
         //username input is empty
-        if (!this.state.username.trim()) {
+        if (!un) {
             this.setState({ error: 'Fill in all fields to create user.' })
             document.querySelector('#signup-error').style.display = 'block'
             return
         }
 
         //check if username is taken
-        let uns = this.props.usernames
+        const uns = this.props.usernames
         for (let i = 0; i < uns.length; i++) {
-            if (uns[i] === this.state.username.trim()) {
+            if (uns[i] === un) {
                 this.setState({ error: 'Username unavailable.' })
                 document.querySelector('#signup-error').style.display = 'block'
                 return
             }
         }
 
+        //add username
+        let newUns = this.props.usernames.slice().concat(un)
+        const updates = { '/usernames': newUns }
+        this.props.firebase.update('/', updates)
+
+        //create user
         const credentials = {
             email: this.state.email,
             password: this.state.password,
@@ -50,7 +58,7 @@ class RegisterPage extends React.Component {
 
         const profile = {
             email: this.state.email,
-            username: this.state.username.trim(),
+            username: un,
         }
 
         try {
