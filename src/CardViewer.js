@@ -308,7 +308,12 @@ const mapStateToProps = (state, props) => {
   const name = deck && deck.name
   const cards = deck && deck.cards
   const saved = deck&& deck.saved
-  return { cards: cards, name: name, saved: saved, deckId: deckId }
+  return { 
+    cards: cards, 
+    name: name, 
+    saved: saved, 
+    deckId: deckId,
+  }
 }
 
 export default compose(

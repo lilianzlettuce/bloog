@@ -14,8 +14,8 @@
 
 .back-btn {
     position: absolute;
-    top: 23px;
-    left: 32px;
+    top: 28px;
+    left: 36px;
     z-index: 900;
 }
 
@@ -67,10 +67,7 @@
 .error-message {
     display: none;
     width: var(--width);
-    height: 35px;
-    padding: 8px;
     background-color: white;
-    border: 1px solid rgb(255, 133, 133);
     border-radius: 5px;
     color: red;
     text-align: center;

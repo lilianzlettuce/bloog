@@ -41,7 +41,7 @@ const HomePage = (props) => {
                 <div className="deck-section">{savedDecks}</div>
             </div>
             <div className="section">
-                <h2>All Decks</h2>
+                <h2>Public Decks</h2>
                 <div className="deck-section">{decks}</div>
             </div>
         </div>
@@ -54,6 +54,6 @@ const mapStateToProps = (state) => {
 }
 
 export default compose(
-    firebaseConnect([{ path: '/homepage', storeAs: 'homepage' }]),
+    firebaseConnect(['/homepage']),
     connect(mapStateToProps),
 )(HomePage)
