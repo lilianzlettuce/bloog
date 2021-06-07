@@ -1,5 +1,5 @@
 h4 {
-    color: var(--sub);
+    color: var(--dark);
     font-family: inherit;
     z-index: inherit;
     font-size: 1.6rem;
@@ -32,7 +32,7 @@ h4 {
     left: -40px;
 }
 .cards-path {
-    stroke: var(--sub);
+    stroke: var(--main-light);
     stroke-width: 7;
     fill: transparent;
 }

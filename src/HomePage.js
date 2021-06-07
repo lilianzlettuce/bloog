@@ -17,6 +17,7 @@ const HomePage = (props) => {
             return (
                 <Link key={key} className="deck-container" to={`/viewer/${key}`}>
                     <h3>{props.homepage[key].name}</h3>
+                    <h4>{props.homepage[key].owner}</h4>
                 </Link>
             )
         }
@@ -29,6 +30,7 @@ const HomePage = (props) => {
         return (
             <Link key={key} className="deck-container" to={`/viewer/${key}`}>
                 <h3>{props.homepage[key].name}</h3>
+                <h4>{props.homepage[key].owner}</h4>
             </Link>
         )
     })

@@ -22,6 +22,7 @@ class CardEditor extends React.Component {
           back: 'bob loves oily orange geese',
         },
       ],
+      public: true,
     }
   }
 
@@ -90,11 +91,15 @@ class CardEditor extends React.Component {
       cards: this.state.cards,
       name: this.state.name,
       saved: false,
+      owner: this.props.username,
+      public: this.state.public,
     }
     updates[`/flashcards/${deckId}`] = newDeck
     updates[`/homepage/${deckId}`] = { 
       name: this.state.name,
       saved: false,
+      owner: this.props.username,
+      public: this.state.public,
     }
     this.props.firebase.update('/', updates, () => {
       //redirect route after firebase has updated
@@ -203,7 +208,10 @@ class CardEditor extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return { isLoggedIn: state.firebase.auth.uid }
+  return { 
+    isLoggedIn: state.firebase.auth.uid,
+    username: state.firebase.profile.username,
+  }
 }
 
 export default compose(
