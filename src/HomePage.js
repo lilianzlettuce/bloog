@@ -12,6 +12,31 @@ const HomePage = (props) => {
         return <div>Loading...</div>
     }
 
+    const myDecksSection = () => {
+        if (props.username) {
+            return (
+                <div className="section">
+                    <h2>My Decks</h2>
+                    <div className="deck-section">{myDecks}</div>
+                </div>
+            )
+        }
+    }
+
+    const myDecks = Object.keys(props.homepage).map((key) => {
+        if (props.homepage[key].owner === props.username) {
+            return (
+                <Link key={key} className="deck-container" to={`/viewer/${key}`}>
+                    <h3>{props.homepage[key].name}</h3>
+                    <h4>{props.homepage[key].owner}</h4>
+                </Link>
+            )
+        }
+        return (
+            <div key={key}></div>
+        )
+    })
+
     const savedDecks = Object.keys(props.homepage).map((key) => {
         if (props.homepage[key].saved) {
             return (
@@ -26,33 +51,41 @@ const HomePage = (props) => {
         )
     })
 
-    const decks = Object.keys(props.homepage).map((key) => {
+    const publicDecks = Object.keys(props.homepage).map((key) => {
+        if (props.homepage[key].public) {
+            return (
+                <Link key={key} className="deck-container" to={`/viewer/${key}`}>
+                    <h3>{props.homepage[key].name}</h3>
+                    <h4>{props.homepage[key].owner}</h4>
+                </Link>
+            )
+        }
         return (
-            <Link key={key} className="deck-container" to={`/viewer/${key}`}>
-                <h3>{props.homepage[key].name}</h3>
-                <h4>{props.homepage[key].owner}</h4>
-            </Link>
+            <div key={key}></div>
         )
     })
 
     return (
         <div id="main">
             <TopBar />
+            {myDecksSection()}
             <div className="section">
                 <h2>Saved Decks</h2>
                 <div className="deck-section">{savedDecks}</div>
             </div>
             <div className="section">
                 <h2>Public Decks</h2>
-                <div className="deck-section">{decks}</div>
+                <div className="deck-section">{publicDecks}</div>
             </div>
         </div>
     )
 }
 
 const mapStateToProps = (state) => {
-    const homepage = state.firebase.data.homepage
-    return { homepage: homepage }
+    return { 
+        homepage: state.firebase.data.homepage,
+        username: state.firebase.profile.username,
+    }
 }
 
 export default compose(
