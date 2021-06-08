@@ -8,21 +8,35 @@ h2 {
 }
 
 h3 {
+    color: var(--darker);
     text-align: start;
     line-height: 25px;
     font-weight: 600;
 }
 
-.vis {
+.public {
+    text-transform: capitalize;
     width: fit-content;
     font-size: 1.2rem;
     color: white;
     font-weight: 800;
-    background-color: black;
+    background-color: var(--lighter);
     padding: 4px 6px;
     border-radius: 5px;
     position: relative;
     top: -7px;
+}
+.private {
+    text-transform: capitalize;
+    width: fit-content;
+    font-size: 1.2rem;
+    color: white;
+    font-weight: 800;
+    padding: 4px 6px;
+    border-radius: 5px;
+    position: relative;
+    top: -7px;
+    background-color: rgb(204, 204, 204);
 }
 
 .owner {
