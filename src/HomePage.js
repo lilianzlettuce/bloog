@@ -4,7 +4,7 @@ import TopBar from './TopBar'
 
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { firebaseConnect, isLoaded } from 'react-redux-firebase'
+import { firebaseConnect, isLoaded, populate } from 'react-redux-firebase'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 
@@ -20,14 +20,14 @@ const HomePage = (props) => {
             visibility = 'private'
         }
 
-        if (props.homepage[key].owner === props.username) {
+        if (props.homepage[key].owner.username === props.username) {
             return (
                 <Link key={key} className="deck-container" to={`/viewer/${key}`}>
                     <div>
                         <h3>{props.homepage[key].name}</h3>
                         <div className={visibility}>{visibility}</div>
                     </div>
-                    <h4 className="owner you"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + props.homepage[key].owner}</h4>
+                    <h4 className="owner you"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + props.homepage[key].owner.username}</h4>
                 </Link>
             )
         }
@@ -47,10 +47,10 @@ const HomePage = (props) => {
                 <Link key={key} className="deck-container" to={`/viewer/${key}`}>
                     <div>
                         <h3>{props.homepage[key].name}</h3>
-                        {(props.homepage[key].owner === props.username) && <div className={visibility}>{visibility}</div>}
+                        {(props.homepage[key].owner.username === props.username) && <div className={visibility}>{visibility}</div>}
                     </div>
-                    {(props.homepage[key].owner !== props.username) && <h4 className="owner"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + props.homepage[key].owner}</h4>}
-                    {(props.homepage[key].owner === props.username) && <h4 className="owner you"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + props.homepage[key].owner}</h4>}
+                    {(props.homepage[key].owner.username !== props.username) && <h4 className="owner"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + props.homepage[key].owner.username}</h4>}
+                    {(props.homepage[key].owner.username === props.username) && <h4 className="owner you"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + props.homepage[key].owner.username}</h4>}
                 </Link>
             )
         }
@@ -70,10 +70,10 @@ const HomePage = (props) => {
                 <Link key={key} className="deck-container" to={`/viewer/${key}`}>
                     <div>
                         <h3>{props.homepage[key].name}</h3>
-                        {(props.homepage[key].owner === props.username) && <div className={visibility}>{visibility}</div>}
+                        {(props.homepage[key].owner.username === props.username) && <div className={visibility}>{visibility}</div>}
                     </div>
-                    {(props.homepage[key].owner !== props.username) && <h4 className="owner"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + props.homepage[key].owner}</h4>}
-                    {(props.homepage[key].owner === props.username) && <h4 className="owner you"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + props.homepage[key].owner}</h4>}
+                    {(props.homepage[key].owner.username !== props.username) && <h4 className="owner"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + props.homepage[key].owner.username}</h4>}
+                    {(props.homepage[key].owner.username === props.username) && <h4 className="owner you"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + props.homepage[key].owner.username}</h4>}
                 </Link>
             )
         }
@@ -105,14 +105,20 @@ const HomePage = (props) => {
     )
 }
 
-const mapStateToProps = (state) => {
+const populates = [
+    { child: 'owner', root: 'users' }
+]
+
+const mapStateToProps = state => {
     return { 
-        homepage: state.firebase.data.homepage,
+        homepage: populate(state.firebase, 'homepage', populates),
         username: state.firebase.profile.username,
     }
 }
 
 export default compose(
-    firebaseConnect(['/homepage']),
+    firebaseConnect([
+        { path: '/homepage', populates },
+    ]),
     connect(mapStateToProps),
 )(HomePage)

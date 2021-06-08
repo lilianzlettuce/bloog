@@ -4,7 +4,7 @@ import './CardViewer.css'
 import TopBar from './TopBar'
 
 import { withRouter } from 'react-router-dom'
-import { firebaseConnect, isEmpty, isLoaded } from 'react-redux-firebase'
+import { firebaseConnect, isEmpty, isLoaded, populate } from 'react-redux-firebase'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 
@@ -314,7 +314,7 @@ class CardViewer extends React.Component {
                 <button id="up-btn" className="control-btn" onClick={this.cardUp}><i className="fas fa-angle-up"></i></button>
                 <button id="down-btn" className="control-btn" onClick={this.cardDown}><i className="fas fa-angle-down"></i></button>
               </div>
-              <div class="owner">Created by{'\xa0'} <i className="fas fa-user-circle"></i> {this.props.owner}slajfddssssj</div>
+              <div className="owner">Created by{'\xa0'} <i className="fas fa-user-circle"></i> {this.props.deck.owner.username}</div>
             </div>
           </div>
           <div id="progress-container">
@@ -331,21 +331,20 @@ class CardViewer extends React.Component {
   }
 }
 
+const populates = [
+  { child: 'owner', root: 'users' }
+]
+
 const mapStateToProps = (state, props) => {
   const deckId = props.match.params.deckId
   const deck = state.firebase.data[deckId]
-  const name = deck && deck.name
-  const cards = deck && deck.cards
-  const saved = deck && deck.saved
-  const owner = deck && deck.owner
-  const pub = deck && deck.public
   return { 
-    cards: cards, 
-    name: name, 
-    saved: saved, 
-    owner: owner,
-    pub: pub,
+    cards: deck && deck.cards, 
+    name: deck && deck.name, 
+    saved: deck && deck.saved, 
+    pub: deck && deck.public,
     deckId: deckId,
+    deck: populate(state.firebase, deckId , populates),
   }
 }
 
@@ -353,7 +352,9 @@ export default compose(
   withRouter,
   firebaseConnect(props => {
     const deckId = props.match.params.deckId
-    return [{ path: `/flashcards/${deckId}`, storeAs: deckId}]
+    return [
+      { path: `/flashcards/${deckId}`, storeAs: deckId, populates},
+    ]
   }),
   connect(mapStateToProps),
 )(CardViewer)
