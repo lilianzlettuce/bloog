@@ -16,6 +16,7 @@ class CardViewer extends React.Component {
       front: true,
       cards: this.props.cards,
       saved: this.props.saved,
+      pub: this.props.pub,
     }
   }
 
@@ -35,20 +36,27 @@ class CardViewer extends React.Component {
     if (this.props.saved !== prevProps.saved) {
       this.setState({ saved: this.props.saved })
     }
+    if (this.props.pub !== prevProps.pub) {
+      this.setState({ pub: this.props.pub })
+    }
     this.updateStyling()
   }
 
   updateStyling = () => {
-    //saved btn styling
-    let savedBtn = document.querySelector('#save-btn')
-    if (savedBtn && this.state.saved) {
-      savedBtn.classList.add('unsave-btn')
-      savedBtn.classList.remove('save-btn')
-      savedBtn.textContent = "Saved ✓"
-    } else if (savedBtn) {
-      savedBtn.classList.add('save-btn')
-      savedBtn.classList.remove('unsave-btn')
-      savedBtn.textContent = "Save Deck"
+    this.updateCheckBtns('#save-btn', 'Saved ✓', 'Save Deck')
+    this.updateCheckBtns('#public-btn', 'Public ✓', 'Make Public')
+  }
+
+  updateCheckBtns = (id, text1, text2) => {
+    let btn = document.querySelector(id)
+    if (btn && this.state.saved) {
+      btn.classList.add('uncheck-btn')
+      btn.classList.remove('check-btn')
+      btn.textContent = text1
+    } else if (btn) {
+      btn.classList.add('check-btn')
+      btn.classList.remove('uncheck-btn')
+      btn.textContent = text2
     }
   }
 
@@ -233,10 +241,17 @@ class CardViewer extends React.Component {
     document.querySelector('#pb2').style.top = `-${pbPosition}px`
   }
 
-  saveDeck = () => {
+  updateDeck = (key) => {
     let saved = true
-    if (this.state.saved) {
+    if (key === 'saved' && this.state.saved) {
       saved = false
+      console.log('jesus')
+    }
+    console.log(key)
+    let pub = true
+    if (key === 'pub' && this.state.pub) {
+      pub = false
+      console.log('heh')
     }
 
     //update saved status in database
@@ -246,10 +261,14 @@ class CardViewer extends React.Component {
         cards: this.props.cards,
         name: this.props.name,
         saved: saved,
+        owner: this.props.owner,
+        public: pub,
       }
       updates[`/homepage/${deckId}`] = { 
         name: this.props.name,
         saved: saved,
+        owner: this.props.owner,
+        public: pub,
       }
       this.props.firebase.update('/', updates)
   }
@@ -269,9 +288,16 @@ class CardViewer extends React.Component {
         <div className="heading">
           <div className="cardset-name">{this.props.name}</div>
           <button
-            className="save-btn"
+            className="check-btn"
+            id="public-btn"
+            onClick={() => this.updateDeck('pub')}
+          >
+            Make Public
+          </button>
+          <button
+            className="check-btn"
             id="save-btn"
-            onClick={this.saveDeck}
+            onClick={() => this.updateDeck('saved')}
           >
             Save Deck
           </button>
@@ -307,11 +333,15 @@ const mapStateToProps = (state, props) => {
   const deck = state.firebase.data[deckId]
   const name = deck && deck.name
   const cards = deck && deck.cards
-  const saved = deck&& deck.saved
+  const saved = deck && deck.saved
+  const owner = deck && deck.owner
+  const pub = deck && deck.public
   return { 
     cards: cards, 
     name: name, 
     saved: saved, 
+    owner: owner,
+    pub: pub,
     deckId: deckId,
   }
 }

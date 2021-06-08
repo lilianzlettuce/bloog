@@ -9,26 +9,26 @@
     --bborder: 10px;
 }
 
-.save-btn {
+.check-btn {
     min-width: 100px;
     border-radius: 25px;
     background-color: var(--main-light);
     color: white;
     padding: 10px 12px;
 }
-.save-btn:hover {
+.check-btn:hover {
     background-color: var(--light);
     color: white;
 }
 
-.unsave-btn {
+.uncheck-btn {
     min-width: 85px;
     border-radius: 25px;
     background-color: var(--sub-light);
     color: white;
     padding: 10px 12px;
 }
-.unsave-btn:hover {
+.uncheck-btn:hover {
     background-color: var(--sub-lighter);
     color: white;
 }
