@@ -285,20 +285,22 @@ class CardViewer extends React.Component {
         <TopBar />
         <div className="heading">
           <div className="cardset-name">{this.props.name}</div>
-          <button
-            className="check-btn"
-            id="public-btn"
-            onClick={() => this.updateDeck('pub')}
-          >
-            Make Public
-          </button>
-          <button
-            className="check-btn"
-            id="save-btn"
-            onClick={() => this.updateDeck('saved')}
-          >
-            Save Deck
-          </button>
+          <div className="btn-container">
+            <button
+              className="check-btn"
+              id="public-btn"
+              onClick={() => this.updateDeck('pub')}
+            >
+              Make Public
+            </button>
+            <button
+              className="check-btn"
+              id="save-btn"
+              onClick={() => this.updateDeck('saved')}
+            >
+              Save Deck
+            </button>
+          </div>
         </div>
         <div id="body">
           <div id="card-container">
@@ -306,12 +308,15 @@ class CardViewer extends React.Component {
               <div id="text-display-front" >{this.state.cards[this.state.currentCard].front}</div>
               <div id="text-display-back" >{this.state.cards[this.state.currentCard].back}</div>
             </div>
-            <div id="controls">
-              <button id="up-btn" className="control-btn" onClick={this.cardUp}><i className="fas fa-angle-up"></i></button>
-              <button id="down-btn" className="control-btn" onClick={this.cardDown}><i className="fas fa-angle-down"></i></button>
+            <div className="controls-container">
+              <button id="shuffle-btn" onClick={this.shuffle} ><i className="fas fa-random"></i></button>
+              <div id="controls">
+                <button id="up-btn" className="control-btn" onClick={this.cardUp}><i className="fas fa-angle-up"></i></button>
+                <button id="down-btn" className="control-btn" onClick={this.cardDown}><i className="fas fa-angle-down"></i></button>
+              </div>
+              <div class="owner">Created by{'\xa0'} <i className="fas fa-user-circle"></i> {this.props.owner}slajfddssssj</div>
             </div>
           </div>
-          <button id="shuffle-btn" onClick={this.shuffle} ><i className="fas fa-random"></i></button>
           <div id="progress-container">
             <div id="progress">{(this.state.currentCard + 1) + ' / ' + this.state.cards.length}</div>
             <div id="pb-container">

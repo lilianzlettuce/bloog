@@ -9,6 +9,19 @@
     --bborder: 10px;
 }
 
+.btn-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.owner {
+    min-width: 30vw;
+    font-size: 1.4rem;
+    line-height: 20px;
+    margin-bottom: 5px;
+}
+
 .check-btn {
     min-width: fit-content;
     border-radius: 25px;
@@ -34,7 +47,7 @@
 }
 
 #card-container {
-    width: 78%;
+    width: 83%;
     height: 66vh;
     margin: 0;
     display: flex;
@@ -43,10 +56,20 @@
     align-items: center;
 }
 
+.controls-container {
+    width: 72px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-left: 20px;
+}
+
 #controls {
     width: 50px;
     height: 90px;
-    margin: 0 0 0 40px;
+    margin: 0;
 }
 
 .control-btn {
@@ -63,7 +86,7 @@
 
 #card {
     position: relative;
-    width: 80%;
+    width: 78%;
     height: 100%;
     padding: 5%;
     box-shadow: 0px 0px 6px 0px rgba(128, 128, 128, 0.5);
@@ -85,7 +108,7 @@
 }
 
 #progress-container {
-    margin-left: 0px;
+    margin-left: 20px;
     width: 80px;
     text-align: center;
 }
@@ -139,13 +162,15 @@
     transform: rotate(180deg);
     font-size: 2rem;
     position: relative;
-    left: -62px;
 }
 
 @media(max-width: 750px) {
     #card {
         height: 80%;
         font-size: 3rem;
+    }
+    .controls-container {
+        height: 80%;
     }
 }
 @media(max-width: 650px) {
@@ -188,9 +213,9 @@
         align-items: flex-start;
         flex-direction: column;
     }
-    #save-btn {
+    #save-btn, #public-btn {
         position: relative;
-        top: 5px;
+        top: 10px;
         left: 15px;
     }
     #card-container {
@@ -207,7 +232,7 @@
         margin: 0;
     }
     .cardset-name {
-        width: 85%;
+        width: 100%;
     }
     #shuffle-btn {
         left: 280px;
