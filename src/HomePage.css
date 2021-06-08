@@ -15,19 +15,22 @@ h3 {
 
 .vis {
     width: fit-content;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     color: white;
     font-weight: 800;
     background-color: black;
-    padding: 4px 7px;
+    padding: 4px 6px;
     border-radius: 5px;
     position: relative;
-    top: -10px;
+    top: -7px;
 }
 
 .owner {
     color: var(--darker);
     margin: 0px 0;
+}
+.you {
+    color: var(--sub-light)
 }
 
 .section {

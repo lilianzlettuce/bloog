@@ -14,17 +14,6 @@ const HomePage = (props) => {
         return <div>Loading...</div>
     }
 
-    const myDecksSection = () => {
-        if (props.username) {
-            return (
-                <div className="section">
-                    <h2>My Decks</h2>
-                    <div className="deck-section">{myDecks}</div>
-                </div>
-            )
-        }
-    }
-
     const myDecks = Object.keys(props.homepage).map((key) => {
         let visibility = 'Public'
         if (!props.homepage[key].public) {
@@ -38,7 +27,7 @@ const HomePage = (props) => {
                         <h3>{props.homepage[key].name}</h3>
                         <div className="vis">{visibility}</div>
                     </div>
-                    <h4 className="owner"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + props.homepage[key].owner}</h4>
+                    <h4 className="owner you"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + props.homepage[key].owner}</h4>
                 </Link>
             )
         }
@@ -48,11 +37,20 @@ const HomePage = (props) => {
     })
 
     const savedDecks = Object.keys(props.homepage).map((key) => {
+        let visibility = 'Public'
+        if (!props.homepage[key].public) {
+            visibility = 'Private'
+        }
+
         if (props.homepage[key].saved) {
             return (
                 <Link key={key} className="deck-container" to={`/viewer/${key}`}>
-                    <h3>{props.homepage[key].name}</h3>
-                    <h4 className="owner"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + props.homepage[key].owner}</h4>
+                    <div>
+                        <h3>{props.homepage[key].name}</h3>
+                        {(props.homepage[key].owner === props.username) && <div className="vis">{visibility}</div>}
+                    </div>
+                    {(props.homepage[key].owner !== props.username) && <h4 className="owner"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + props.homepage[key].owner}</h4>}
+                    {(props.homepage[key].owner === props.username) && <h4 className="owner you"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + props.homepage[key].owner}</h4>}
                 </Link>
             )
         }
@@ -62,11 +60,20 @@ const HomePage = (props) => {
     })
 
     const publicDecks = Object.keys(props.homepage).map((key) => {
+        let visibility = 'Public'
+        if (!props.homepage[key].public) {
+            visibility = 'Private'
+        }
+
         if (props.homepage[key].public) {
             return (
                 <Link key={key} className="deck-container" to={`/viewer/${key}`}>
-                    <h3>{props.homepage[key].name}</h3>
-                    <h4 className="owner"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + props.homepage[key].owner}</h4>
+                    <div>
+                        <h3>{props.homepage[key].name}</h3>
+                        {(props.homepage[key].owner === props.username) && <div className="vis">{visibility}</div>}
+                    </div>
+                    {(props.homepage[key].owner !== props.username) && <h4 className="owner"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + props.homepage[key].owner}</h4>}
+                    {(props.homepage[key].owner === props.username) && <h4 className="owner you"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + props.homepage[key].owner}</h4>}
                 </Link>
             )
         }
@@ -78,11 +85,18 @@ const HomePage = (props) => {
     return (
         <div id="main">
             <TopBar />
-            {myDecksSection()}
-            <div className="section">
-                <h2>Saved Decks</h2>
-                <div className="deck-section">{savedDecks}</div>
-            </div>
+            {(props.username) &&
+                <div className="section">
+                    <h2>My Decks</h2>
+                    <div className="deck-section">{myDecks}</div>
+                </div>
+            }
+            {(props.username) &&
+                <div className="section">
+                    <h2>Saved Decks</h2>
+                    <div className="deck-section">{savedDecks}</div>
+                </div>
+            }
             <div className="section">
                 <h2>Public Decks</h2>
                 <div className="deck-section">{publicDecks}</div>
