@@ -2,12 +2,14 @@ import './HomePage.css'
 
 import TopBar from './TopBar'
 
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { firebaseConnect, isLoaded } from 'react-redux-firebase'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 
 const HomePage = (props) => {
+
     if (!isLoaded(props.homepage)) {
         return <div>Loading...</div>
     }
@@ -24,11 +26,19 @@ const HomePage = (props) => {
     }
 
     const myDecks = Object.keys(props.homepage).map((key) => {
+        let visibility = 'Public'
+        if (!props.homepage[key].public) {
+            visibility = 'Private'
+        }
+
         if (props.homepage[key].owner === props.username) {
             return (
                 <Link key={key} className="deck-container" to={`/viewer/${key}`}>
-                    <h3>{props.homepage[key].name}</h3>
-                    <h4>{props.homepage[key].owner}</h4>
+                    <div>
+                        <h3>{props.homepage[key].name}</h3>
+                        <div className="vis">{visibility}</div>
+                    </div>
+                    <h4 className="owner"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + props.homepage[key].owner}</h4>
                 </Link>
             )
         }
@@ -42,7 +52,7 @@ const HomePage = (props) => {
             return (
                 <Link key={key} className="deck-container" to={`/viewer/${key}`}>
                     <h3>{props.homepage[key].name}</h3>
-                    <h4>{props.homepage[key].owner}</h4>
+                    <h4 className="owner"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + props.homepage[key].owner}</h4>
                 </Link>
             )
         }
@@ -56,7 +66,7 @@ const HomePage = (props) => {
             return (
                 <Link key={key} className="deck-container" to={`/viewer/${key}`}>
                     <h3>{props.homepage[key].name}</h3>
-                    <h4>{props.homepage[key].owner}</h4>
+                    <h4 className="owner"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + props.homepage[key].owner}</h4>
                 </Link>
             )
         }
