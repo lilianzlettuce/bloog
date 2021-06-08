@@ -10,7 +10,7 @@
 }
 
 .check-btn {
-    min-width: 100px;
+    min-width: fit-content;
     border-radius: 25px;
     background-color: var(--main-light);
     color: white;
@@ -22,7 +22,7 @@
 }
 
 .uncheck-btn {
-    min-width: 85px;
+    min-width: fit-content;
     border-radius: 25px;
     background-color: var(--sub-light);
     color: white;

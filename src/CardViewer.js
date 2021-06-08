@@ -43,20 +43,20 @@ class CardViewer extends React.Component {
   }
 
   updateStyling = () => {
-    this.updateCheckBtns('#save-btn', 'Saved ✓', 'Save Deck')
-    this.updateCheckBtns('#public-btn', 'Public ✓', 'Make Public')
+    this.updateCheckBtns('#save-btn', 'saved', 'Saved ✓', 'Save Deck')
+    this.updateCheckBtns('#public-btn', 'pub', 'Public ✓', 'Make Public')
   }
 
-  updateCheckBtns = (id, text1, text2) => {
+  updateCheckBtns = (id, text1, text2, text3) => {
     let btn = document.querySelector(id)
-    if (btn && this.state.saved) {
+    if (btn && this.state[text1]) {
       btn.classList.add('uncheck-btn')
       btn.classList.remove('check-btn')
-      btn.textContent = text1
+      btn.textContent = text2
     } else if (btn) {
       btn.classList.add('check-btn')
       btn.classList.remove('uncheck-btn')
-      btn.textContent = text2
+      btn.textContent = text3
     }
   }
 
@@ -242,16 +242,14 @@ class CardViewer extends React.Component {
   }
 
   updateDeck = (key) => {
-    let saved = true
-    if (key === 'saved' && this.state.saved) {
-      saved = false
-      console.log('jesus')
+    let saved = this.state.saved
+    if (key === 'saved') {
+      saved = !this.state.saved
     }
-    console.log(key)
-    let pub = true
-    if (key === 'pub' && this.state.pub) {
-      pub = false
-      console.log('heh')
+    
+    let pub = this.state.pub
+    if (key === 'pub') {
+      pub = !this.state.pub
     }
 
     //update saved status in database
