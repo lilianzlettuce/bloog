@@ -345,6 +345,7 @@ const mapStateToProps = (state, props) => {
     name: deck && deck.name, 
     saved: deck && deck.saved, 
     pub: deck && deck.public,
+    owner: deck && deck.owner,
     deckId: deckId,
     deck: populate(state.firebase, deckId , populates),
     username: state.firebase.profile.username,

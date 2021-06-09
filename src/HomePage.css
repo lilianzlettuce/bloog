@@ -5,11 +5,11 @@
 
 h2 {
     margin: 0 0 0 40px;
-    color: var(--dark);
+    color: var(--darker);
 }
 
 h3 {
-    color: var(--darker);
+    color: black;
     text-align: start;
     line-height: 25px;
     font-weight: 500;
