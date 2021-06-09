@@ -260,6 +260,12 @@ class CardViewer extends React.Component {
       this.props.firebase.update('/', updates)
   }
 
+  saveDeck = () => {
+    if (!this.props.username) {
+      this.props.history.push('/register')
+    }
+  }
+
   render() {
     if (!isLoaded(this.state.cards)) {
       return <div>Loading...</div>
@@ -286,7 +292,7 @@ class CardViewer extends React.Component {
             }
             <button
               id="save-btn"
-              onClick={() => this.updateDeck('saved')}
+              onClick={this.saveDeck}
             >
               <i id= "save-icon" className="far fa-heart"></i>
             </button>
