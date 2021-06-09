@@ -42,7 +42,7 @@ const HomePage = (props) => {
             visibility = 'private'
         }
 
-        if (props.homepage[key].saved) {
+        if (props.homepage[key].saved && props.homepage[key].public) {
             return (
                 <Link key={key} className="deck-container" to={`/viewer/${key}`}>
                     <div>

@@ -43,20 +43,20 @@ class CardViewer extends React.Component {
   }
 
   updateStyling = () => {
-    this.updateCheckBtns('#save-btn', 'saved', 'Saved ✓', 'Save Deck')
-    this.updateCheckBtns('#public-btn', 'pub', 'Public ✓', 'Make Public')
+    this.updateCheckBtns('#public-btn', 'pub', 'Public ✓', 'Make Public', 'uncheck-btn', 'check-btn')
+    this.updateCheckBtns('#save-icon', 'saved', '', '', 'fas', 'far')
   }
 
-  updateCheckBtns = (id, text1, text2, text3) => {
+  updateCheckBtns = (id, key, text1, text2, class1, class2) => {
     let btn = document.querySelector(id)
-    if (btn && this.state[text1]) {
-      btn.classList.add('uncheck-btn')
-      btn.classList.remove('check-btn')
-      btn.textContent = text2
+    if (btn && this.state[key]) {
+      btn.classList.add(class1)
+      btn.classList.remove(class2)
+      btn.textContent = text1
     } else if (btn) {
-      btn.classList.add('check-btn')
-      btn.classList.remove('uncheck-btn')
-      btn.textContent = text3
+      btn.classList.add(class2)
+      btn.classList.remove(class1)
+      btn.textContent = text2
     }
   }
 
@@ -296,11 +296,10 @@ class CardViewer extends React.Component {
               </button>
             }
             <button
-              className="check-btn"
               id="save-btn"
               onClick={() => this.updateDeck('saved')}
             >
-              Save Deck
+              <i id= "save-icon" className="far fa-heart"></i>
             </button>
           </div>
         </div>

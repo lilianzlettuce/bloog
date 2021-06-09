@@ -24,10 +24,10 @@
 
 .check-btn {
     min-width: fit-content;
-    border-radius: 25px;
+    border-radius: 5px;
     background-color: var(--main-light);
     color: white;
-    padding: 10px 12px;
+    padding: 5px 8px;
 }
 .check-btn:hover {
     background-color: var(--light);
@@ -36,14 +36,19 @@
 
 .uncheck-btn {
     min-width: fit-content;
-    border-radius: 25px;
+    border-radius: 5px;
     background-color: var(--sub-light);
     color: white;
-    padding: 10px 12px;
+    padding: 5px 8px;
 }
 .uncheck-btn:hover {
     background-color: var(--sub-lighter);
     color: white;
+}
+
+#save-btn {
+    color: rgb(255, 93, 120);
+    font-size: 2.6rem;
 }
 
 #card-container {
