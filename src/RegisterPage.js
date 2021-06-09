@@ -45,11 +45,6 @@ class RegisterPage extends React.Component {
             }
         }
 
-        //add username
-        let newUns = this.props.usernames.slice().concat(un)
-        const updates = { '/usernames': newUns }
-        this.props.firebase.update('/', updates)
-
         //create user
         const credentials = {
             email: this.state.email,
@@ -67,6 +62,13 @@ class RegisterPage extends React.Component {
             this.setState({ error: error.message })
             document.querySelector('#signup-error').style.display = 'block'
         }
+
+        //add username
+        let newUns = this.props.usernames.slice().concat(un)
+        const updates = { 
+            '/usernames': newUns,
+        }
+        this.props.firebase.update('/', updates)
     }
 
     render() {

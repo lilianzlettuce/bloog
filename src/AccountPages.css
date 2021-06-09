@@ -110,9 +110,6 @@
     transition: .3s ease-out;
     animation: card-anim 1.2s ease-in-out .2s 1 forwards;
 }
-#path1:hover {
-    top: -30px;
-}
 
 #path2 {
     box-sizing: content-box;
@@ -129,9 +126,6 @@
     left: 100px;
     transition: .3s ease-out;
     animation: card-anim2 1.2s ease-in-out 0s 1 forwards;
-}
-#path2:hover {
-    top: -230px;
 }
 
 @keyframes card-anim {
@@ -258,9 +252,6 @@
         height: 53px;
         border-radius: 20px;
     }
-    #path1:hover {
-        top: 90px;
-    }
 
     #path2 {
         top: 50px;
@@ -269,8 +260,5 @@
         height: 53px;
         border-radius: 20px;
         font-size: 1.4rem;
-    }
-    #path2:hover {
-        top: 50px;
     }
 }
