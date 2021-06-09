@@ -23,7 +23,7 @@ class CardViewer extends React.Component {
   componentDidMount() {
     document.addEventListener('keydown', this.keyDown, false)
     //set correct value for saved
-    if (this.props.savedDecks && this.props.uid && this.props.savedDecks[this.props.uid] && this.props.savedDecks[this.props.uid].includes(this.props.deckId)) {
+    if (this.props.savedDecks && this.props.savedDecks[this.props.uid] && this.props.savedDecks[this.props.uid].includes(this.props.deckId)) {
       this.setState({ saved: true })
     }
     this.updateStyling()
@@ -39,6 +39,11 @@ class CardViewer extends React.Component {
     }
     if (this.props.pub !== prevProps.pub) {
       this.setState({ pub: this.props.pub })
+    }
+    if (this.props.savedDecks !== prevProps.savedDecks) {
+      if (this.props.savedDecks && this.props.savedDecks[this.props.uid] && this.props.savedDecks[this.props.uid].includes(this.props.deckId)) {
+        this.setState({ saved: true })
+      }
     }
     this.updateStyling()
   }
@@ -273,18 +278,18 @@ class CardViewer extends React.Component {
     let saved = this.props.savedDecks
     let uid = this.props.uid
     let deckId = this.props.deckId
-    if (saved && uid && saved[uid] && saved[uid].includes(deckId)) {
+    if (saved[uid].includes(deckId)) {
       this.setState({ saved: false })
       let i = saved[uid].indexOf(deckId)
       saved[uid].splice(i)
-    } else if (saved && uid && saved[uid]) {
+    } else {
       this.setState({ saved: true })
       saved[uid].push(deckId)
     }
   }
 
   render() {
-    if (!isLoaded(this.state.cards)) {
+    if (!isLoaded(this.state.cards) || (this.props.uid && !isLoaded(this.props.savedDecks))) {
       return <div>Loading...</div>
     }
 
