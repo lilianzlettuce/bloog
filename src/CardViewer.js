@@ -286,13 +286,15 @@ class CardViewer extends React.Component {
         <div className="heading">
           <div className="cardset-name">{this.props.name}</div>
           <div className="btn-container">
-            <button
-              className="check-btn"
-              id="public-btn"
-              onClick={() => this.updateDeck('pub')}
-            >
-              Make Public
-            </button>
+            {(this.props.deck.owner.username === this.props.username) &&
+              <button
+                className="check-btn"
+                id="public-btn"
+                onClick={() => this.updateDeck('pub')}
+              >
+                Make Public
+              </button>
+            }
             <button
               className="check-btn"
               id="save-btn"
@@ -345,6 +347,7 @@ const mapStateToProps = (state, props) => {
     pub: deck && deck.public,
     deckId: deckId,
     deck: populate(state.firebase, deckId , populates),
+    username: state.firebase.profile.username,
   }
 }
 
