@@ -42,7 +42,7 @@ const HomePage = (props) => {
             visibility = 'private'
         }
 
-        if (props.homepage[key].saved && props.homepage[key].public) {
+        if ((props.homepage[key].public || props.homepage[key].owner.username === props.username) && props.savedDecks.includes(key)) {
             return (
                 <Link key={key} className="deck-container" to={`/viewer/${key}`}>
                     <div>
@@ -86,15 +86,15 @@ const HomePage = (props) => {
         <div id="main">
             <TopBar />
             {(props.username) &&
-                <div className="section">
-                    <h2>My Decks</h2>
-                    <div className="deck-section">{myDecks}</div>
-                </div>
-            }
-            {(props.username) &&
-                <div className="section">
-                    <h2>Saved Decks</h2>
-                    <div className="deck-section">{savedDecks}</div>
+                <div>
+                    <div className="section">
+                        <h2>My Decks</h2>
+                        <div className="deck-section">{myDecks}</div>
+                    </div>
+                    <div className="section">
+                        <h2>Saved Decks</h2>
+                        <div className="deck-section">{savedDecks}</div>
+                    </div>
                 </div>
             }
             <div className="section">
@@ -110,15 +110,19 @@ const populates = [
 ]
 
 const mapStateToProps = state => {
+    const uid = state.firebase.auth.uid
     return { 
         homepage: populate(state.firebase, 'homepage', populates),
         username: state.firebase.profile.username,
+        uid: uid,
+        savedDecks: populate(state.firebase, `saved[${uid}]`, populates),
     }
 }
 
 export default compose(
     firebaseConnect([
         { path: '/homepage', populates },
+        { path: '/saved', populates },
     ]),
     connect(mapStateToProps),
 )(HomePage)
