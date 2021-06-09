@@ -16,11 +16,16 @@ class CardViewer extends React.Component {
       front: true,
       cards: this.props.cards,
       pub: this.props.pub,
+      saved: false,
     }
   }
 
   componentDidMount() {
     document.addEventListener('keydown', this.keyDown, false)
+    //set correct value for saved
+    if (this.props.savedDecks && this.props.uid && this.props.savedDecks[this.props.uid] && this.props.savedDecks[this.props.uid].includes(this.props.deckId)) {
+      this.setState({ saved: true })
+    }
     this.updateStyling()
   }
 
@@ -263,6 +268,18 @@ class CardViewer extends React.Component {
   saveDeck = () => {
     if (!this.props.username) {
       this.props.history.push('/register')
+      return
+    }
+    let saved = this.props.savedDecks
+    let uid = this.props.uid
+    let deckId = this.props.deckId
+    if (saved && uid && saved[uid] && saved[uid].includes(deckId)) {
+      this.setState({ saved: false })
+      let i = saved[uid].indexOf(deckId)
+      saved[uid].splice(i)
+    } else if (saved && uid && saved[uid]) {
+      this.setState({ saved: true })
+      saved[uid].push(deckId)
     }
   }
 
@@ -334,6 +351,7 @@ const populates = [
 const mapStateToProps = (state, props) => {
   const deckId = props.match.params.deckId
   const deck = state.firebase.data[deckId]
+  const uid = state.firebase.auth.uid
   return { 
     cards: deck && deck.cards, 
     name: deck && deck.name, 
@@ -342,6 +360,8 @@ const mapStateToProps = (state, props) => {
     deckId: deckId,
     deck: populate(state.firebase, deckId , populates),
     username: state.firebase.profile.username,
+    uid: uid,
+    savedDecks: state.firebase.data.saved,
   }
 }
 
@@ -351,6 +371,7 @@ export default compose(
     const deckId = props.match.params.deckId
     return [
       { path: `/flashcards/${deckId}`, storeAs: deckId, populates},
+      '/saved'
     ]
   }),
   connect(mapStateToProps),

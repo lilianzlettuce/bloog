@@ -11,8 +11,6 @@ import { compose } from 'redux'
 class HomePage extends React.Component {
 
     componentDidUpdate() {
-        console.log(this.props.uid)
-        console.log(this.props.saved)
         if (this.props.uid && this.props.saved && !Object.keys(this.props.saved).includes(this.props.uid)) {
             this.props.firebase.database()
                 .ref()
@@ -55,7 +53,6 @@ class HomePage extends React.Component {
             if (!this.props.homepage[key].public) {
                 visibility = 'private'
             }
-            console.log(this.props.saved)
     
             if (this.props.uid && this.props.saved && (this.props.homepage[key].public || this.props.homepage[key].owner.username === this.props.username) && this.props.saved[this.props.uid] && this.props.saved[this.props.uid].includes(key)) {
                 return (
@@ -131,14 +128,14 @@ const mapStateToProps = state => {
         homepage: populate(state.firebase, 'homepage', populates),
         username: state.firebase.profile.username,
         uid: uid,
-        saved: populate(state.firebase, `saved`, populates),
+        saved: state.firebase.data.saved,
     }
 }
 
 export default compose(
     firebaseConnect([
         { path: '/homepage', populates },
-        { path: '/saved', populates },
+        '/saved',
     ]),
     connect(mapStateToProps),
 )(HomePage)
