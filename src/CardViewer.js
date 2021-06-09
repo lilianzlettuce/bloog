@@ -275,17 +275,28 @@ class CardViewer extends React.Component {
       this.props.history.push('/register')
       return
     }
-    let saved = this.props.savedDecks
+
+    let updates = {}
     let uid = this.props.uid
+    let saved = this.props.savedDecks[uid].slice()
     let deckId = this.props.deckId
-    if (saved[uid].includes(deckId)) {
+    if (saved.includes(deckId)) {
       this.setState({ saved: false })
-      let i = saved[uid].indexOf(deckId)
-      saved[uid].splice(i)
+
+      let i = saved.indexOf(deckId)
+      let half1 = saved.slice(0, i)
+      let half2 = saved.slice(i + 1)
+      saved = half1.concat(half2)
     } else {
       this.setState({ saved: true })
-      saved[uid].push(deckId)
+
+      let half1 = saved.slice()
+      let half2 = [deckId]
+      saved = half1.concat(half2)
     }
+
+    updates[`/saved/${uid}`] = saved
+    this.props.firebase.update('/', updates)
   }
 
   render() {
@@ -303,7 +314,7 @@ class CardViewer extends React.Component {
         <div className="heading">
           <div className="cardset-name">{this.props.name}</div>
           <div className="btn-container">
-            {(this.props.deck.owner.username === this.props.username) &&
+            {(this.props.deck && this.props.deck.owner.username === this.props.username) &&
               <button
                 className="check-btn"
                 id="public-btn"
