@@ -24,7 +24,7 @@ class HomePage extends React.Component {
     }
 
     render() {
-        if (!isLoaded(this.props.homepage, this.props.saved)) {
+        if (!isLoaded(this.props.homepage)) {
             return <div>Loading...</div>
         }
     
@@ -57,7 +57,7 @@ class HomePage extends React.Component {
             }
             console.log(this.props.saved)
     
-            if ((this.props.homepage[key].public || this.props.homepage[key].owner.username === this.props.username) && this.props.uid && this.props.saved[this.props.uid].includes(key)) {
+            if (this.props.uid && this.props.saved && (this.props.homepage[key].public || this.props.homepage[key].owner.username === this.props.username) && this.props.saved[this.props.uid] && this.props.saved[this.props.uid].includes(key)) {
                 return (
                     <Link key={key} className="deck-container" to={`/viewer/${key}`}>
                         <div>
