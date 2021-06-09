@@ -15,7 +15,6 @@ class CardViewer extends React.Component {
       currentCard: 0,
       front: true,
       cards: this.props.cards,
-      saved: this.props.saved,
       pub: this.props.pub,
     }
   }
@@ -32,9 +31,6 @@ class CardViewer extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.props.cards !== prevProps.cards) {
       this.setState({ cards: this.props.cards })
-    }
-    if (this.props.saved !== prevProps.saved) {
-      this.setState({ saved: this.props.saved })
     }
     if (this.props.pub !== prevProps.pub) {
       this.setState({ pub: this.props.pub })
@@ -242,29 +238,22 @@ class CardViewer extends React.Component {
   }
 
   updateDeck = (key) => {
-    let saved = this.state.saved
-    if (key === 'saved') {
-      saved = !this.state.saved
-    }
-    
     let pub = this.state.pub
     if (key === 'pub') {
       pub = !this.state.pub
     }
 
-    //update saved status in database
+    //update properties database
     let deckId = this.props.deckId
       let updates = {}
       updates[`/flashcards/${deckId}`] = {
         cards: this.props.cards,
         name: this.props.name,
-        saved: saved,
         owner: this.props.owner,
         public: pub,
       }
       updates[`/homepage/${deckId}`] = { 
         name: this.props.name,
-        saved: saved,
         owner: this.props.owner,
         public: pub,
       }
@@ -342,7 +331,6 @@ const mapStateToProps = (state, props) => {
   return { 
     cards: deck && deck.cards, 
     name: deck && deck.name, 
-    saved: deck && deck.saved, 
     pub: deck && deck.public,
     owner: deck && deck.owner,
     deckId: deckId,

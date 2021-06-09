@@ -90,14 +90,12 @@ class CardEditor extends React.Component {
     const newDeck = {
       cards: this.state.cards,
       name: this.state.name,
-      saved: false,
       owner: this.props.username,
       public: this.state.public,
     }
     updates[`/flashcards/${deckId}`] = newDeck
     updates[`/homepage/${deckId}`] = { 
       name: this.state.name,
-      saved: false,
       owner: this.props.username,
       public: this.state.public,
     }
