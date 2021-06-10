@@ -8,7 +8,7 @@ import { compose } from 'redux'
 const TopBar = (props) => {
     function logOut() {
         props.firebase.logout()
-        props.history.push('/register')
+        props.history.push('/')
     }
 
     const accountStuff = () => {

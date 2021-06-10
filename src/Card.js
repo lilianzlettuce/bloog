@@ -81,8 +81,19 @@ class Card extends React.Component {
     }
 
     render() {
-        if (!isLoaded(this.props.savedDecks)) {
-            return <div>Loading...</div>
+        if (!isLoaded(this.props.savedDecks, this.props.uid)) {
+            return (
+                <div className="link-container">
+                    <Link className="deck-container">
+                        <div>
+                            <h3>...</h3>
+                            {(this.props.owner === this.props.user) && <div className={this.props.visibility}>{this.props.visibility}</div>}
+                        </div>
+                        {(this.props.owner !== this.props.user) && <h4 className="owner"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + this.props.owner}</h4>}
+                        {(this.props.owner === this.props.user) && <h4 className="owner you"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + this.props.owner}</h4>}
+                    </Link>
+                </div>
+            )
         }
 
         return (
