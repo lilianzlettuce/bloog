@@ -96,7 +96,7 @@ class CardEditor extends React.Component {
     updates[`/flashcards/${deckId}`] = newDeck
     updates[`/homepage/${deckId}`] = { 
       name: this.state.name,
-      owner: this.props.username,
+      owner: this.props.uid,
       public: this.state.public,
     }
     this.props.firebase.update('/', updates, () => {
