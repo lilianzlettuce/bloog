@@ -9,7 +9,6 @@ import { connect } from 'react-redux'
 import { compose } from 'redux'
 
 class HomePage extends React.Component {
-
     componentDidUpdate() {
         if (this.props.uid && this.props.saved && !Object.keys(this.props.saved).includes(this.props.uid)) {
             this.props.firebase.database()
