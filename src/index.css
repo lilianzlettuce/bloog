@@ -153,3 +153,66 @@ button:hover {
   top: -10px;
   left: 20px;
 }
+
+.section {
+  width: 100vw;
+  max-width: 1400px;
+  height: auto;
+  padding: 30px 30px 0px 30px;
+  margin: 0 auto;
+}
+
+.deck-section {
+  width: 100vw;
+  max-width: 1400px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: auto;
+  padding: 50px;
+}
+
+@media(max-width: 1500px) {
+  .deck-section {
+      padding: 20px 50px;
+  }
+  .link-container {
+      width: 20%;
+  }
+}
+@media(max-width: 1100px) {
+  .deck-section {
+      padding: 20px 30px;
+  }
+  .link-container {
+      width: 25%;
+  }
+}
+@media(max-width: 900px) {
+  .deck-section {
+      padding: 20px 20px;
+  }
+  .link-container {
+      width: 25%;
+  }
+}
+@media(max-width: 700px) {
+  .deck-section {
+      padding: 20px 10px;
+  }
+  .link-container {
+      width: 37%;
+  }
+}
+@media(max-width: 450px) {
+  h2 {
+      margin: 0;
+  }
+  .deck-section {
+      padding: 20px 0px;
+  }
+  .link-container {
+      width: 70%;
+  }
+}

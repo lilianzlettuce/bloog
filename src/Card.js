@@ -96,6 +96,14 @@ class Card extends React.Component {
             )
         }
 
+        const deckName = () => {
+            if (this.props.deckName.length < 26) {
+                return <h3>{this.props.deckName}</h3>
+            } else {
+                return <h3>{this.props.deckName.substring(0, 26) + '...'}</h3>
+            }
+        }
+
         return (
             <div className="link-container">
                 <button
@@ -107,7 +115,7 @@ class Card extends React.Component {
                 </button>
                 <Link className="deck-container" to={`/viewer/${this.props.deckId}`}>
                     <div>
-                        <h3>{this.props.deckName}</h3>
+                        {deckName()}
                         {(this.props.owner === this.props.user) && <div className={this.props.visibility}>{this.props.visibility}</div>}
                     </div>
                     {(this.props.owner !== this.props.user) && <h4 className="owner"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + this.props.owner}</h4>}

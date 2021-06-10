@@ -4,6 +4,7 @@ import CardEditor from './CardEditor'
 import CardViewer from './CardViewer'
 import RegisterPage from './RegisterPage'
 import LoginPage from './LoginPage'
+import Profile from './Profile'
 
 import { Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -30,6 +31,9 @@ const App = props => {
         </Route>
         <Route exact path="/login">
           <LoginPage />
+        </Route>
+        <Route exact path="/profile/:uid">
+            <Profile />
         </Route>
         <Route>
           <div>Page not found!</div>
