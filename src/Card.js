@@ -1,8 +1,6 @@
 
 import './Card.css'
 
-import TopBar from './TopBar'
-
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { firebaseConnect, isLoaded, populate } from 'react-redux-firebase'
@@ -26,12 +24,6 @@ class Card extends React.Component {
     }
     
     componentDidUpdate(prevProps) {
-        if (this.props.cards !== prevProps.cards) {
-            this.setState({ cards: this.props.cards })
-        }
-        if (this.props.pub !== prevProps.pub) {
-            this.setState({ pub: this.props.pub })
-        }
         if (this.props.savedDecks !== prevProps.savedDecks) {
             if (this.props.savedDecks && this.props.savedDecks[this.props.uid] && this.props.savedDecks[this.props.uid].includes(this.props.deckId)) {
                 this.setState({ saved: true })
@@ -41,8 +33,7 @@ class Card extends React.Component {
       }
     
     updateStyling = () => {
-        this.updateCheckBtns('#public-btn', 'pub', 'Public ✓', 'Make Public', 'uncheck-btn', 'check-btn')
-        this.updateCheckBtns('#save-icon', 'saved', '', '', 'fas', 'far')
+        this.updateCheckBtns(`#save-icon${this.props.deckId}`, 'saved', '', '', 'fas', 'far')
     }
     
     updateCheckBtns = (id, key, text1, text2, class1, class2) => {
@@ -88,43 +79,39 @@ class Card extends React.Component {
     }
 
     render() {
+        if (!isLoaded(this.props.savedDecks)) {
+            return <div>Loading...</div>
+        }
+
         return (
-            <Link key={key} className="deck-container" to={`/viewer/${key}`}>
+            <Link className="deck-container" to={`/viewer/${this.props.deckId}`}>
                 <div>
-                    <h3>{this.props.homepage[key].name}</h3>
-                    {(this.props.homepage[key].owner.username === this.props.username) && <div className={visibility}>{visibility}</div>}
+                    <h3>{this.props.deckName}</h3>
+                    {(this.props.owner === this.props.user) && <div className={this.props.visibility}>{this.props.visibility}</div>}
                 </div>
                 <button
                     id="homepage-save"
                     onClick={this.saveDeck}
                 >
-                    <i id= "save-icon" className="far fa-heart"></i>
+                    <i id={"save-icon" + this.props.deckId} className="far fa-heart"></i>
                 </button>
-                {(this.props.homepage[key].owner.username !== this.props.username) && <h4 className="owner"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + this.props.homepage[key].owner.username}</h4>}
-                {(this.props.homepage[key].owner.username === this.props.username) && <h4 className="owner you"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + this.props.homepage[key].owner.username}</h4>}
+                {(this.props.owner !== this.props.user) && <h4 className="owner"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + this.props.owner}</h4>}
+                {(this.props.owner === this.props.user) && <h4 className="owner you"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + this.props.owner}</h4>}
             </Link>
         )
     }
 }
 
-const populates = [
-    { child: 'owner', root: 'users' }
-]
-
-const mapStateToProps = state => {
-    const uid = state.firebase.auth.uid
+const mapStateToProps = (state) => {
     return { 
-        homepage: populate(state.firebase, 'homepage', populates),
-        username: state.firebase.profile.username,
-        uid: uid,
-        saved: state.firebase.data.saved,
+        uid: state.firebase.auth.uid,
+        savedDecks: state.firebase.data.saved,
     }
 }
 
 export default compose(
     firebaseConnect([
-        { path: '/homepage', populates },
         '/saved',
     ]),
     connect(mapStateToProps),
-)(HomePage)
+)(Card)

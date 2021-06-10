@@ -1,6 +1,7 @@
 import './HomePage.css'
 
 import TopBar from './TopBar'
+import Card from './Card'
 
 import React from 'react'
 import { Link } from 'react-router-dom'
@@ -83,27 +84,14 @@ class HomePage extends React.Component {
         })
     
         const publicDecks = Object.keys(this.props.homepage).map((key) => {
-            let visibility = 'public'
-            if (!this.props.homepage[key].public) {
-                visibility = 'private'
-            }
-    
             if (this.props.homepage[key].public) {
                 return (
-                    <Link key={key} className="deck-container" to={`/viewer/${key}`}>
-                        <div>
-                            <h3>{this.props.homepage[key].name}</h3>
-                            {(this.props.homepage[key].owner.username === this.props.username) && <div className={visibility}>{visibility}</div>}
-                        </div>
-                        <button
-                            id="homepage-save"
-                            onClick={this.saveDeck}
-                        >
-                            <i id= "save-icon" className="far fa-heart"></i>
-                        </button>
-                        {(this.props.homepage[key].owner.username !== this.props.username) && <h4 className="owner"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + this.props.homepage[key].owner.username}</h4>}
-                        {(this.props.homepage[key].owner.username === this.props.username) && <h4 className="owner you"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + this.props.homepage[key].owner.username}</h4>}
-                    </Link>
+                    <Card key={key} visibility="public" 
+                        deckId={key}
+                        deckName={this.props.homepage[key].name} 
+                        owner={this.props.homepage[key].owner.username}
+                        user={this.props.username}
+                    />
                 )
             }
             return (
