@@ -33,7 +33,7 @@ class Card extends React.Component {
     }
     
     updateStyling = () => {
-        this.updateCheckBtns(`#save-icon${this.props.deckId}`, 'saved', '', '', 'fas', 'far')
+        this.updateCheckBtns(`#save-icon${this.props.deckId + this.props.set}`, 'saved', '', '', 'fas', 'far')
     }
     
     updateCheckBtns = (id, key, text1, text2, class1, class2) => {
@@ -76,6 +76,8 @@ class Card extends React.Component {
     
         updates[`/saved/${uid}`] = saved
         this.props.firebase.update('/', updates)
+
+        this.props.history.push('/register')
     }
 
     render() {
@@ -86,10 +88,11 @@ class Card extends React.Component {
         return (
             <div className="link-container">
                 <button
-                    id="homepage-save"
+                    id={"homepage-save" + this.props.deckId + this.props.set}
+                    className="homepage-save"
                     onClick={this.saveDeck}
                 >
-                    <i id={"save-icon" + this.props.deckId} className="far fa-heart"></i>
+                    <i id={"save-icon" + this.props.deckId + this.props.set} className="far fa-heart"></i>
                 </button>
                 <Link className="deck-container" to={`/viewer/${this.props.deckId}`}>
                     <div>

@@ -62,20 +62,13 @@ class HomePage extends React.Component {
     
             if (this.props.uid && this.props.saved && (this.props.homepage[key].public || this.props.homepage[key].owner.username === this.props.username) && this.props.saved[this.props.uid] && this.props.saved[this.props.uid].includes(key)) {
                 return (
-                    <Link key={key} className="deck-container" to={`/viewer/${key}`}>
-                        <div>
-                            <h3>{this.props.homepage[key].name}</h3>
-                            {(this.props.homepage[key].owner.username === this.props.username) && <div className={visibility}>{visibility}</div>}
-                        </div>
-                        <button
-                            id="homepage-save"
-                            onClick={this.saveDeck}
-                        >
-                            <i id= "save-icon" className="far fa-heart"></i>
-                        </button>
-                        {(this.props.homepage[key].owner.username !== this.props.username) && <h4 className="owner"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + this.props.homepage[key].owner.username}</h4>}
-                        {(this.props.homepage[key].owner.username === this.props.username) && <h4 className="owner you"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + this.props.homepage[key].owner.username}</h4>}
-                    </Link>
+                    <Card key={key} visibility={visibility} 
+                        deckId={key}
+                        deckName={this.props.homepage[key].name} 
+                        owner={this.props.homepage[key].owner.username}
+                        user={this.props.username}
+                        set="2"
+                    />
                 )
             }
             return (
@@ -91,6 +84,7 @@ class HomePage extends React.Component {
                         deckName={this.props.homepage[key].name} 
                         owner={this.props.homepage[key].owner.username}
                         user={this.props.username}
+                        set="3"
                     />
                 )
             }
