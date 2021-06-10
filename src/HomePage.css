@@ -29,7 +29,7 @@ h2 {
     .deck-section {
         padding: 20px 50px;
     }
-    .deck-container {
+    .link-container {
         width: 20%;
     }
 }
@@ -37,7 +37,7 @@ h2 {
     .deck-section {
         padding: 20px 30px;
     }
-    .deck-container {
+    .link-container {
         width: 25%;
     }
 }
@@ -45,7 +45,7 @@ h2 {
     .deck-section {
         padding: 20px 20px;
     }
-    .deck-container {
+    .link-container {
         width: 25%;
     }
 }
@@ -53,7 +53,7 @@ h2 {
     .deck-section {
         padding: 20px 10px;
     }
-    .deck-container {
+    .link-container {
         width: 37%;
     }
 }
@@ -64,7 +64,7 @@ h2 {
     .deck-section {
         padding: 20px 0px;
     }
-    .deck-container {
+    .link-container {
         width: 70%;
     }
 }

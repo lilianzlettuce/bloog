@@ -2,8 +2,8 @@
 import './Card.css'
 
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { firebaseConnect, isLoaded, populate } from 'react-redux-firebase'
+import { Link, withRouter } from 'react-router-dom'
+import { firebaseConnect, isLoaded } from 'react-redux-firebase'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 
@@ -30,7 +30,7 @@ class Card extends React.Component {
             }
         }
         this.updateStyling()
-      }
+    }
     
     updateStyling = () => {
         this.updateCheckBtns(`#save-icon${this.props.deckId}`, 'saved', '', '', 'fas', 'far')
@@ -50,11 +50,11 @@ class Card extends React.Component {
     }
 
     saveDeck = () => {
-        if (!this.props.username) {
+        if (!this.props.uid) {
             this.props.history.push('/register')
             return
         }
-    
+        
         let updates = {}
         let uid = this.props.uid
         let saved = this.props.savedDecks[uid].slice()
@@ -84,20 +84,22 @@ class Card extends React.Component {
         }
 
         return (
-            <Link className="deck-container" to={`/viewer/${this.props.deckId}`}>
-                <div>
-                    <h3>{this.props.deckName}</h3>
-                    {(this.props.owner === this.props.user) && <div className={this.props.visibility}>{this.props.visibility}</div>}
-                </div>
+            <div className="link-container">
                 <button
                     id="homepage-save"
                     onClick={this.saveDeck}
                 >
                     <i id={"save-icon" + this.props.deckId} className="far fa-heart"></i>
                 </button>
-                {(this.props.owner !== this.props.user) && <h4 className="owner"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + this.props.owner}</h4>}
-                {(this.props.owner === this.props.user) && <h4 className="owner you"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + this.props.owner}</h4>}
-            </Link>
+                <Link className="deck-container" to={`/viewer/${this.props.deckId}`}>
+                    <div>
+                        <h3>{this.props.deckName}</h3>
+                        {(this.props.owner === this.props.user) && <div className={this.props.visibility}>{this.props.visibility}</div>}
+                    </div>
+                    {(this.props.owner !== this.props.user) && <h4 className="owner"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + this.props.owner}</h4>}
+                    {(this.props.owner === this.props.user) && <h4 className="owner you"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + this.props.owner}</h4>}
+                </Link>
+            </div>
         )
     }
 }
@@ -110,6 +112,7 @@ const mapStateToProps = (state) => {
 }
 
 export default compose(
+    withRouter,
     firebaseConnect([
         '/saved',
     ]),
