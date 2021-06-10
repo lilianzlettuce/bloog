@@ -34,19 +34,13 @@ class HomePage extends React.Component {
     
             if (this.props.homepage[key].owner.username === this.props.username) {
                 return (
-                    <Link key={key} className="deck-container" to={`/viewer/${key}`}>
-                        <div>
-                            <h3>{this.props.homepage[key].name}</h3>
-                            <div className={visibility}>{visibility}</div>
-                        </div>
-                        <button
-                            id="homepage-save"
-                            onClick={this.saveDeck}
-                        >
-                            <i id= "save-icon" className="far fa-heart"></i>
-                        </button>
-                        <h4 className="owner you"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + this.props.homepage[key].owner.username}</h4>
-                    </Link>
+                    <Card key={key} visibility="public" 
+                        deckId={key}
+                        deckName={this.props.homepage[key].name} 
+                        owner={this.props.homepage[key].owner.username}
+                        user={this.props.username}
+                        set="1"
+                    />
                 )
             }
             return (
