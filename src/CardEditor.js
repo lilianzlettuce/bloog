@@ -22,7 +22,7 @@ class CardEditor extends React.Component {
           back: 'bob loves oily orange geese',
         },
       ],
-      public: true,
+      public: false,
     }
   }
 
@@ -90,7 +90,7 @@ class CardEditor extends React.Component {
     const newDeck = {
       cards: this.state.cards,
       name: this.state.name,
-      owner: this.props.username,
+      owner: this.props.uid,
       public: this.state.public,
     }
     updates[`/flashcards/${deckId}`] = newDeck
@@ -106,7 +106,7 @@ class CardEditor extends React.Component {
   }
 
   render() {
-    if (!this.props.isLoggedIn) {
+    if (!this.props.uid) {
       return <Redirect to="/register" />
     }
 
@@ -207,7 +207,7 @@ class CardEditor extends React.Component {
 
 const mapStateToProps = state => {
   return { 
-    isLoggedIn: state.firebase.auth.uid,
+    uid: state.firebase.auth.uid,
     username: state.firebase.profile.username,
   }
 }

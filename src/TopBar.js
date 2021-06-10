@@ -1,17 +1,22 @@
 import './TopBar.css'
 
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { firebaseConnect } from 'react-redux-firebase'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 
 const TopBar = (props) => {
+    function logOut() {
+        props.firebase.logout()
+        props.history.push('/register')
+    }
+
     const accountStuff = () => {
         if (props.isLoggedIn) {
             return (
                 <div>
                     <h5>{props.username}</h5>
-                    <button className="" onClick={() => props.firebase.logout()}>Sign Out</button>
+                    <button className="" onClick={() => logOut()}>Sign Out</button>
                 </div>
             )
         } else {
@@ -58,6 +63,7 @@ const mapStateToProps = state => {
 }
 
 export default compose(
+    withRouter,
     firebaseConnect(),
     connect(mapStateToProps)
 )(TopBar)
