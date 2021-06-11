@@ -27,6 +27,8 @@ class Card extends React.Component {
         if (this.props.savedDecks !== prevProps.savedDecks) {
             if (this.props.savedDecks && this.props.savedDecks[this.props.uid] && this.props.savedDecks[this.props.uid].includes(this.props.deckId)) {
                 this.setState({ saved: true })
+            } else {
+                this.setState({ saved: false })
             }
         }
         this.updateStyling()
