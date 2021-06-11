@@ -4,12 +4,44 @@
 }
 
 #pf-section {
-    background-color: var(--lighter);
+    background-color: white;
 }
 
 .profile {
     margin: 10px 80px;
     font-size: 4rem;
     font-weight: 300;
+    color: var(--dark);
+}
+
+#un-input {
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+    width: 60%;
+}
+
+#edit-un-btn {
+    font-size: 2.5rem;
+    margin-left: 50px;
+}
+
+#cancel-un-btn {
+    background-color: rgb(255, 71, 71);
     color: white;
+    width: 80px;
+    height: 33px;
+    min-width: fit-content;
+    display: none;
+}
+#cancel-un-btn:hover {
+    background-color: rgb(255, 125, 125);
+}
+
+#save-un-btn {
+    border: 1px solid var(--main);
+    width: 80px;
+    height: 33px;
+    min-width: fit-content;
+    display: none;
 }

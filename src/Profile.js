@@ -10,7 +10,20 @@ import { compose } from 'redux'
 import { withRouter } from 'react-router'
 
 class HomePage extends React.Component {
-    componentDidUpdate() {
+    constructor(props) {
+        super(props)
+        this.state = {
+            username: '',
+        }
+    }
+
+    componentDidMount() {
+        if (this.props.user) {
+            this.setState({ username: this.props.user.username })
+        }
+    }
+
+    componentDidUpdate(prevProps) {
         if (this.props.uid && this.props.saved && !Object.keys(this.props.saved).includes(this.props.uid)) {
             this.props.firebase.database()
                 .ref()
@@ -19,10 +32,32 @@ class HomePage extends React.Component {
                 0: '',
             })
         }
+        if (this.props.user !== prevProps.user) {
+            this.setState({ username: this.props.user.username })
+        }
+    }
+
+    handleChange = e => {
+        this.setState({ [e.target.name]: e.target.value })
+    }
+
+    editOn = () => {
+        document.querySelector('#un-input').disabled = false
+        document.querySelector('#edit-un-btn').style.display = 'none'
+        document.querySelector('#cancel-un-btn').style.display = 'inline-block'
+        document.querySelector('#save-un-btn').style.display = 'inline-block'
+    }
+
+    cancel = () => {
+        this.setState({ username: this.props.user.username })
+
+        document.querySelector('#un-input').disabled = true
+        document.querySelector('#edit-un-btn').style.display = 'inline-block'
+        document.querySelector('#cancel-un-btn').style.display = 'none'
+        document.querySelector('#save-un-btn').style.display = 'none'
     }
 
     render() {
-
         if (!isLoaded(this.props.user, this.props.homepage) || (this.props.uid && !isLoaded(this.props.savedDecks))) {
             return <div>Loading...</div>
         }
@@ -80,7 +115,19 @@ class HomePage extends React.Component {
                 <TopBar />
                 <div>
                     <div className="section" id="pf-section">
-                        <div className="profile"><i className="far fa-user-circle pfp"></i> {`\xa0\xa0` + this.props.user.username}</div>
+                        <div className="profile">
+                            <i className="far fa-user-circle"></i> {`\xa0\xa0`}
+                            <input
+                                id="un-input"
+                                value={this.state.username}
+                                name="username"
+                                onChange={(e) => this.handleChange(e)}
+                                disabled
+                            />
+                            <button id="edit-un-btn" onClick={this.editOn}><i className="fas fa-marker"></i></button>
+                            <button id="cancel-un-btn" onClick={this.cancel}>Cancel</button>
+                            <button id="save-un-btn">Save</button>
+                        </div>
                     </div>
                     <div className="section">
                         <h2>Created Decks</h2>

@@ -1,8 +1,9 @@
 h4 {
-    color: var(--sub);
+    color: var(--main-light);
     font-family: inherit;
     z-index: inherit;
     font-size: 1.6rem;
+    font-weight: 500;
 }
 
 #topbar {
