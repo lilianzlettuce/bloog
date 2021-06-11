@@ -1,8 +1,8 @@
-
 import './Card.css'
 
 import React from 'react'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
+import { HashLink } from 'react-router-hash-link';
 import { firebaseConnect, isLoaded } from 'react-redux-firebase'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
@@ -84,14 +84,14 @@ class Card extends React.Component {
         if (this.props.uid && !isLoaded(this.props.savedDecks, this.props.uid)) {
             return (
                 <div className="link-container">
-                    <Link className="deck-container">
+                    <HashLink className="deck-container">
                         <div>
                             <h3>...</h3>
                             {(this.props.owner === this.props.user) && <div className={this.props.visibility}>{this.props.visibility}</div>}
                         </div>
                         {(this.props.owner !== this.props.user) && <h4 className="owner"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + this.props.owner}</h4>}
                         {(this.props.owner === this.props.user) && <h4 className="owner you"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + this.props.owner}</h4>}
-                    </Link>
+                    </HashLink>
                 </div>
             )
         }
@@ -113,14 +113,14 @@ class Card extends React.Component {
                 >
                     <i id={"save-icon" + this.props.deckId + this.props.set} className="far fa-heart"></i>
                 </button>
-                <Link className="deck-container" to={`/viewer/${this.props.deckId}`}>
+                <HashLink className="deck-container" to={`/viewer/${this.props.deckId}`}>
                     <div>
                         {deckName()}
                         {(this.props.owner === this.props.user) && <div className={this.props.visibility}>{this.props.visibility}</div>}
                     </div>
-                    {(this.props.owner !== this.props.user) && <h4 className="owner"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + this.props.owner}</h4>}
-                    {(this.props.owner === this.props.user) && <h4 className="owner you"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + this.props.owner}</h4>}
-                </Link>
+                </HashLink>
+                {(this.props.owner !== this.props.user) && <HashLink smooth to={`/profile/${this.props.owner_uid}#body`} className="owner"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + this.props.owner}</HashLink>}
+                {(this.props.owner === this.props.user) && <HashLink smooth to={`/profile/${this.props.owner_uid}#body`} className="owner you"><i className="fas fa-user-circle"></i>{`\xa0\xa0\xa0` + this.props.owner}</HashLink>}
             </div>
         )
     }

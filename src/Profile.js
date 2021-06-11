@@ -4,7 +4,7 @@ import TopBar from './TopBar'
 import Card from './Card'
 
 import React from 'react'
-import { firebaseConnect, isLoaded, isEmpty, populate } from 'react-redux-firebase'
+import { firebaseConnect, isLoaded, isEmpty } from 'react-redux-firebase'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { withRouter } from 'react-router'
@@ -58,7 +58,7 @@ class HomePage extends React.Component {
     }
 
     render() {
-        if (!isLoaded(this.props.user, this.props.homepage) || (this.props.uid && !isLoaded(this.props.savedDecks))) {
+        if (!isLoaded(this.props.user, this.props.homepage, this.props.users) || (this.props.uid && !isLoaded(this.props.savedDecks))) {
             return <div>Loading...</div>
         }
     
@@ -72,12 +72,13 @@ class HomePage extends React.Component {
                 visibility = 'private'
             }
     
-            if (this.props.homepage[key].owner.username === this.props.user.username && (visibility === 'public' || this.props.user.username === this.props.username)) {
+            if (this.props.users[this.props.homepage[key].owner].username === this.props.user.username && (visibility === 'public' || this.props.user.username === this.props.username)) {
                 return (
                     <Card key={key} visibility={visibility} 
                         deckId={key}
                         deckName={this.props.homepage[key].name} 
-                        owner={this.props.homepage[key].owner.username}
+                        owner={this.props.users[this.props.homepage[key].owner].username}
+                        owner_uid={this.props.homepage[key].owner}
                         user={this.props.username}
                         set="4"
                     />
@@ -99,7 +100,8 @@ class HomePage extends React.Component {
                     <Card key={key} visibility={visibility} 
                         deckId={key}
                         deckName={this.props.homepage[key].name} 
-                        owner={this.props.homepage[key].owner.username}
+                        owner={this.props.users[this.props.homepage[key].owner].username}
+                        owner_uid={this.props.homepage[key].owner}
                         user={this.props.username}
                         set="5"
                     />
@@ -111,31 +113,37 @@ class HomePage extends React.Component {
         })
     
         return (
-            <div id="main">
-                <TopBar />
-                <div>
-                    <div className="section" id="pf-section">
-                        <div className="profile">
-                            <i className="far fa-user-circle"></i> {`\xa0\xa0`}
-                            <input
-                                id="un-input"
-                                value={this.state.username}
-                                name="username"
-                                onChange={(e) => this.handleChange(e)}
-                                disabled
-                            />
-                            <button id="edit-un-btn" onClick={this.editOn}><i className="fas fa-marker"></i></button>
-                            <button id="cancel-un-btn" onClick={this.cancel}>Cancel</button>
-                            <button id="save-un-btn">Save</button>
+            <div id="body">
+                <div id="main">
+                    <TopBar />
+                    <div>
+                        <div className="section" id="pf-section">
+                            <div className="profile">
+                                <i className="far fa-user-circle"></i> {`\xa0\xa0`}
+                                <input
+                                    id="un-input"
+                                    value={this.state.username}
+                                    name="username"
+                                    onChange={(e) => this.handleChange(e)}
+                                    disabled
+                                />
+                                {(this.props.uid && this.props.uid === this.props.user_uid) &&
+                                    <div>
+                                        <button id="edit-un-btn" onClick={this.editOn}><i className="fas fa-marker"></i></button>
+                                        <button id="cancel-un-btn" onClick={this.cancel}>Cancel</button>
+                                        <button id="save-un-btn">Save</button>
+                                    </div>
+                                }
+                            </div>
                         </div>
-                    </div>
-                    <div className="section">
-                        <h2>Created Decks</h2>
-                        <div className="deck-section">{createdDecks}</div>
-                    </div>
-                    <div className="section">
-                        <h2>Saved Decks</h2>
-                        <div className="deck-section">{savedDecks}</div>
+                        <div className="section">
+                            <h2>Created Decks</h2>
+                            <div className="deck-section">{createdDecks}</div>
+                        </div>
+                        <div className="section">
+                            <h2>Saved Decks</h2>
+                            <div className="deck-section">{savedDecks}</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -143,19 +151,24 @@ class HomePage extends React.Component {
     }
 }
 
-const populates = [
+/*const populates = [
     { child: 'owner', root: 'users' }
-]
+]*/
 
 const mapStateToProps = (state, props) => {
     const uid = state.firebase.auth.uid
     const user_uid = props.match.params.uid
-    const user = state.firebase.data[user_uid]
+    const users = state.firebase.data.users
+    let user
+    if (users) {
+        user = users[user_uid]
+    }
     return { 
-        homepage: populate(state.firebase, 'homepage', populates),
+        homepage: state.firebase.data.homepage,
         uid: uid,
         username: state.firebase.profile.username,
         savedDecks: state.firebase.data.saved,
+        users: users,
         user: user,
         user_uid: user_uid,
     }
@@ -163,12 +176,11 @@ const mapStateToProps = (state, props) => {
 
 export default compose(
     withRouter,
-    firebaseConnect(props => {
-        const uid = props.match.params.uid
+    firebaseConnect(() => {
         return [
-            { path: '/homepage', populates },
-            { path: `/users/${uid}`, storeAs: uid },
+            '/homepage',
             '/saved',
+            '/users',
         ]
     }),
     connect(mapStateToProps),

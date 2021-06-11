@@ -64,8 +64,19 @@ h3 {
 }
 
 .owner {
+    position: relative;
+    top: -50px;
+    left: 30px;
     color: var(--lighter);
+    background-color: transparent;
     margin: 0px 0;
+    font-weight: 600;
+    font-size: 1.6rem;
+    padding: 0;
+    transition: 0.3s ease;
+}
+.owner:hover {
+    color: var(--sub-lighter);
 }
 .you {
     color: var(--darker)

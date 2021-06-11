@@ -1,4 +1,4 @@
-#body {
+#cv-body {
     width: 100%;
     display: flex;
     justify-content: flex-start;
@@ -180,7 +180,7 @@
     }
 }
 @media(max-width: 650px) {
-    #body {
+    #cv-body {
         flex-direction: column;
     }
     #card-container {

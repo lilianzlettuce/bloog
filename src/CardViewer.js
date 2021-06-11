@@ -4,6 +4,7 @@ import './CardViewer.css'
 import TopBar from './TopBar'
 
 import { withRouter } from 'react-router-dom'
+import { HashLink as Link } from 'react-router-hash-link';
 import { firebaseConnect, isEmpty, isLoaded, populate } from 'react-redux-firebase'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
@@ -331,7 +332,7 @@ class CardViewer extends React.Component {
             </button>
           </div>
         </div>
-        <div id="body">
+        <div id="cv-body">
           <div id="card-container">
             <div id="card" onClick={this.flipCard}>
               <div id="text-display-front" >{this.state.cards[this.state.currentCard].front}</div>
