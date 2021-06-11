@@ -1,6 +1,6 @@
 .link-container {
     width: 20%;
-    margin: 20px;
+    margin: 0 20px;
     height: fit-content;
     transition: .6s ease;
 }
@@ -64,7 +64,7 @@ h3 {
 }
 
 .owner {
-    color: rgb(156, 156, 156);
+    color: var(--lighter);
     margin: 0px 0;
 }
 .you {
@@ -79,6 +79,9 @@ h3 {
     color: rgb(255, 93, 120);
     font-size: 1.8rem;
     z-index: 10;
+}
+.homepage-save:hover {
+    color: rgb(255, 93, 120);
 }
 
 .btn-header {
@@ -96,7 +99,7 @@ h3 {
 
 @media(max-width: 1500px) {
     .deck-section {
-        padding: 20px 50px;
+        padding: 10px 50px;
     }
     .link-container {
         width: 20%;
@@ -104,7 +107,7 @@ h3 {
 }
 @media(max-width: 1100px) {
     .deck-section {
-        padding: 20px 30px;
+        padding: 10px 30px;
     }
     .link-container {
         width: 25%;
@@ -112,7 +115,7 @@ h3 {
 }
 @media(max-width: 900px) {
     .deck-section {
-        padding: 20px 20px;
+        padding: 10px 20px;
     }
     .link-container {
         width: 25%;
@@ -120,7 +123,7 @@ h3 {
 }
 @media(max-width: 700px) {
     .deck-section {
-        padding: 20px 10px;
+        padding: 10px 10px;
     }
     .link-container {
         width: 37%;
@@ -131,7 +134,7 @@ h3 {
         margin: 0;
     }
     .deck-section {
-        padding: 20px 0px;
+        padding: 10px 0px;
     }
     .link-container {
         width: 70%;

@@ -23,28 +23,28 @@ class HomePage extends React.Component {
 
     render() {
 
-        if (!isLoaded(this.state.user) || (this.props.uid && !isLoaded(this.props.savedDecks))) {
+        if (!isLoaded(this.props.user, this.props.homepage) || (this.props.uid && !isLoaded(this.props.savedDecks))) {
             return <div>Loading...</div>
         }
     
-        if (isEmpty(this.state.cards)) {
+        if (isEmpty(this.props.user)) {
             return <div>Page not found!</div>
         }
     
-        const myDecks = Object.keys(this.props.homepage).map((key) => {
+        const createdDecks = Object.keys(this.props.homepage).map((key) => {
             let visibility = 'public'
             if (!this.props.homepage[key].public) {
                 visibility = 'private'
             }
     
-            if (this.props.homepage[key].owner.username === this.props.username) {
+            if (this.props.homepage[key].owner.username === this.props.user.username && (visibility === 'public' || this.props.user.username === this.props.username)) {
                 return (
-                    <Card key={key} visibility="public" 
+                    <Card key={key} visibility={visibility} 
                         deckId={key}
                         deckName={this.props.homepage[key].name} 
                         owner={this.props.homepage[key].owner.username}
                         user={this.props.username}
-                        set="1"
+                        set="4"
                     />
                 )
             }
@@ -53,20 +53,20 @@ class HomePage extends React.Component {
             )
         })
     
-        const savedDecks = Object.keys(this.props.homepage).map((key) => {
+        const savedDecks = this.props.savedDecks[this.props.user_uid].map((key) => {
             let visibility = 'public'
             if (!this.props.homepage[key].public) {
                 visibility = 'private'
             }
     
-            if (this.props.uid && this.props.saved && (this.props.homepage[key].public || this.props.homepage[key].owner.username === this.props.username) && this.props.saved[this.props.uid] && this.props.saved[this.props.uid].includes(key)) {
+            if ((this.props.homepage[key].public || this.props.user.username === this.props.username)) {
                 return (
                     <Card key={key} visibility={visibility} 
                         deckId={key}
                         deckName={this.props.homepage[key].name} 
                         owner={this.props.homepage[key].owner.username}
                         user={this.props.username}
-                        set="2"
+                        set="5"
                     />
                 )
             }
@@ -79,9 +79,12 @@ class HomePage extends React.Component {
             <div id="main">
                 <TopBar />
                 <div>
+                    <div className="section" id="pf-section">
+                        <div className="profile"><i className="far fa-user-circle pfp"></i> {`\xa0\xa0` + this.props.user.username}</div>
+                    </div>
                     <div className="section">
-                        <h2>My Decks</h2>
-                        <div className="deck-section">{myDecks}</div>
+                        <h2>Created Decks</h2>
+                        <div className="deck-section">{createdDecks}</div>
                     </div>
                     <div className="section">
                         <h2>Saved Decks</h2>
@@ -104,8 +107,10 @@ const mapStateToProps = (state, props) => {
     return { 
         homepage: populate(state.firebase, 'homepage', populates),
         uid: uid,
-        saved: state.firebase.data.saved,
+        username: state.firebase.profile.username,
+        savedDecks: state.firebase.data.saved,
         user: user,
+        user_uid: user_uid,
     }
 }
 

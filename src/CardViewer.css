@@ -15,7 +15,7 @@
     align-items: center;
 }
 
-.owner {
+.cv-owner {
     min-width: 30vw;
     font-size: 1.4rem;
     line-height: 20px;
@@ -168,6 +168,7 @@
     font-size: 2rem;
     position: relative;
 }
+
 
 @media(max-width: 750px) {
     #card {

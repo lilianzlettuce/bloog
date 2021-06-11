@@ -1,4 +1,15 @@
 #main {
-    margin-top: 70px;
+    margin-top: 60px;
     overflow-x: hidden;
+}
+
+#pf-section {
+    background-color: var(--lighter);
+}
+
+.profile {
+    margin: 10px 80px;
+    font-size: 4rem;
+    font-weight: 300;
+    color: white;
 }

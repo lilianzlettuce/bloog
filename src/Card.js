@@ -76,12 +76,10 @@ class Card extends React.Component {
     
         updates[`/saved/${uid}`] = saved
         this.props.firebase.update('/', updates)
-
-        this.props.history.push('/register')
     }
 
     render() {
-        if (!isLoaded(this.props.savedDecks, this.props.uid)) {
+        if (this.props.uid && !isLoaded(this.props.savedDecks, this.props.uid)) {
             return (
                 <div className="link-container">
                     <Link className="deck-container">

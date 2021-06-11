@@ -343,7 +343,7 @@ class CardViewer extends React.Component {
                 <button id="up-btn" className="control-btn" onClick={this.cardUp}><i className="fas fa-angle-up"></i></button>
                 <button id="down-btn" className="control-btn" onClick={this.cardDown}><i className="fas fa-angle-down"></i></button>
               </div>
-              <div className="owner">Created by{'\xa0'} <i className="fas fa-user-circle"></i> {this.props.deck.owner.username}</div>
+              <div className="cv-owner">Created by{'\xa0'} <i className="fas fa-user-circle"></i> {this.props.deck.owner.username}</div>
             </div>
           </div>
           <div id="progress-container">
