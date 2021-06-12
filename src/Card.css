@@ -148,7 +148,7 @@ h3 {
 }
 @media(max-width: 600px) {
     .deck-container {
-        height: 130px;
+        height: 170px;
         border-radius: 20px;
     }
     .link-container {
@@ -160,7 +160,7 @@ h3 {
 }
 @media (max-width: 520px) {
     .deck-container {
-        height: 150px;
+        height: 180px;
         border-radius: 20px;
     }
     .link-container {
@@ -177,7 +177,7 @@ h3 {
 }
 @media (max-width: 350px) {
     .deck-container {
-        height: 180px;
+        height: 210px;
     }
     .homepage-save {
         left: 75%;

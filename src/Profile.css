@@ -16,7 +16,7 @@
 
 #pf-section {
     height: 270px;
-    background-color: var(--dark);
+    background-color: var(--darker);
     position: relative;
     top: 0px;
     min-width: 600px;
@@ -108,10 +108,10 @@
     transform: scale(.5);
 }
 .grow {
-    animation: grow 1s ease 0s 1 forwards;
+    animation: grow .5s ease 0s 1 forwards;
 }
 @keyframes grow {
-    70% {
+    60% {
         transform: scale(1.2);
     }
     100% {
@@ -160,6 +160,14 @@
     border: 1px solid lightgray;
 }
 
+#pf-error {
+    font-size: 1.6rem;
+    color: red;
+    display: none;
+    position: relative;
+    top: -10px;
+}
+
 #pf-btn-container {
     width: 100%;
     display: flex;
@@ -178,13 +186,27 @@
     background-color: rgb(255, 125, 125);
 }
 
-#save-un-btn {
+.save-un-btn {
     background-color: var(--main);
     color: white;
     width: 80px;
     height: 33px;
     min-width: fit-content;
 }
-#save-un-btn:hover {
+.save-un-btn:hover {
     background-color: var(--main-light);
+    color: white;
+}
+
+.no-save-un-btn {
+    background-color: var(--lighter);
+    color: white;
+    width: 80px;
+    height: 33px;
+    min-width: fit-content;
+}
+.no-save-un-btn:hover {
+    background-color: var(--lighter);
+    color: white;
+    cursor: auto;
 }

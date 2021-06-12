@@ -16,6 +16,7 @@ class HomePage extends React.Component {
         this.state = {
             username: '',
             name: '',
+            error: '',
         }
     }
 
@@ -43,10 +44,22 @@ class HomePage extends React.Component {
                 name: this.props.user.displayName,  
             })
         }
+
+        let saveBtn = document.querySelector('#pf-save-btn')
+        if (saveBtn && (!this.state.username.trim() || !this.state.name.trim())) {
+            saveBtn.classList.remove('save-un-btn')
+            saveBtn.classList.add('no-save-un-btn') 
+            saveBtn.disabled = true 
+        } else if (saveBtn) {
+            saveBtn.classList.remove('no-save-un-btn')
+            saveBtn.classList.add('save-un-btn')  
+            saveBtn.disabled = false
+        }
     }
 
     handleChange = e => {
         this.setState({ [e.target.name]: e.target.value })
+        document.querySelector('#pf-error').style.display = 'none'
     }
 
     editOn = () => {
@@ -56,7 +69,7 @@ class HomePage extends React.Component {
         edit.classList.add('grow')
 
         document.querySelector('#cancel-un-btn').style.display = 'inline-block'
-        document.querySelector('#save-un-btn').style.display = 'inline-block'
+        document.querySelector('#pf-save-btn').style.display = 'inline-block'
     }
 
     cancel = () => {
@@ -65,6 +78,7 @@ class HomePage extends React.Component {
             name: this.props.user.displayName,
         })
 
+        document.querySelector('#pf-error').style.display = 'none'
         this.shrinkAnim('#edit-container')
     }
 
@@ -75,20 +89,56 @@ class HomePage extends React.Component {
         setTimeout(() => {
             item.style.display = 'none'
             document.querySelector('#cancel-un-btn').style.display = 'none'
-            document.querySelector('#save-un-btn').style.display = 'none'
+            document.querySelector('#pf-save-btn').style.display = 'none'
         }, 500);
     }
 
     saveProfile = () => {
+        const un = this.state.username.trim()
+
+        //check if username is taken
+        const uns = this.props.usernames.slice()
+        let index = uns.length
+        for (let i = 0; i < uns.length; i++) {
+            if (uns[i] === this.props.user.username) {
+                index = i
+            } else if (uns[i] === un && uns[i] !== this.props.user.username) {
+                this.setState({ error: 'Username unavailable.' })
+                document.querySelector('#pf-error').style.display = 'block'
+                return
+            }
+        }
+
         const user = this.props.firebase.auth().currentUser
         user.updateProfile({
             displayName: this.state.name,
             username: this.state.username,
-        }).then(() => {
-            this.shrinkAnim('#edit-container')
         }).catch((error) => {
-            alert(error)
-        }); 
+            this.setState({ error: error })
+            document.querySelector('#pf-error').style.display = 'block'
+            return
+        })
+        this.props.firebase.update(`/users/${this.props.uid}`, {
+            displayName: this.state.name,
+            username: this.state.username,
+            email: this.props.user.email,
+        }).catch((error) => {
+            this.setState({ error: error })
+            document.querySelector('#pf-error').style.display = 'block'
+            return
+        })
+
+        //update un array
+        let half1 = uns.slice(0, index)
+        let half2 = uns.slice(index + 1)
+        half2.push(un)
+        let newUns = half1.concat(half2)
+
+        console.log(half1)
+        console.log(half2)
+        this.props.firebase.database().ref('/usernames').set(newUns)
+        
+        this.shrinkAnim('#edit-container')
     }
 
     render() {
@@ -188,6 +238,7 @@ class HomePage extends React.Component {
                                     <div>
                                         <button id="edit-un-btn" onClick={this.editOn}><i className="fas fa-marker"></i> Edit Profile</button>
                                         <div id="edit-container">
+                                            <div id="pf-error">{this.state.error}</div>
                                             <div>
                                                 <span>Username: {'\xa0'}</span>
                                                 <input
@@ -223,7 +274,7 @@ class HomePage extends React.Component {
                                             </div>
                                             <div id="pf-btn-container">
                                                 <button id="cancel-un-btn" onClick={this.cancel}>Cancel</button>
-                                                <button id="save-un-btn" onClick={this.saveProfile}>Save</button>
+                                                <button id="pf-save-btn" className="save-un-btn" onClick={this.saveProfile}>Save</button>
                                             </div>
                                         </div>
                                     </div>
@@ -260,6 +311,7 @@ const mapStateToProps = (state, props) => {
     return { 
         homepage: state.firebase.data.homepage,
         uid: uid,
+        usernames: state.firebase.data.usernames,
         username: state.firebase.profile.username,
         savedDecks: state.firebase.data.saved,
         users: users,
@@ -275,6 +327,7 @@ export default compose(
             '/homepage',
             '/saved',
             '/users',
+            '/usernames',
         ]
     }),
     connect(mapStateToProps),
