@@ -42,7 +42,14 @@ class HomePage extends React.Component {
     }
 
     editOn = () => {
-        document.querySelector('#un-input').disabled = false
+        let unInput = document.querySelector('#un-input')
+        let unContainer = document.querySelector('#un-container')
+        let unIcon = document.querySelector('#un-icon')
+        unInput.disabled = false
+        unInput.style.border = '1px solid var(--lighterer)'
+        unContainer.style.fontSize = '2rem'
+        unIcon.textContent = 'Username: \xa0'
+
         document.querySelector('#edit-un-btn').style.display = 'none'
         document.querySelector('#cancel-un-btn').style.display = 'inline-block'
         document.querySelector('#save-un-btn').style.display = 'inline-block'
@@ -65,6 +72,9 @@ class HomePage extends React.Component {
         if (isEmpty(this.props.user)) {
             return <div>Page not found!</div>
         }
+
+        let decksCreated = 0
+        let decksSaved = 0
     
         const createdDecks = Object.keys(this.props.homepage).map((key) => {
             let visibility = 'public'
@@ -73,6 +83,7 @@ class HomePage extends React.Component {
             }
     
             if (this.props.users[this.props.homepage[key].owner].username === this.props.user.username && (visibility === 'public' || this.props.user.username === this.props.username)) {
+                decksCreated++
                 return (
                     <Card key={key} visibility={visibility} 
                         deckId={key}
@@ -96,6 +107,7 @@ class HomePage extends React.Component {
             }
     
             if ((this.props.homepage[key].public || this.props.user.username === this.props.username)) {
+                decksSaved++
                 return (
                     <Card key={key} visibility={visibility} 
                         deckId={key}
@@ -119,17 +131,24 @@ class HomePage extends React.Component {
                     <div>
                         <div className="section" id="pf-section">
                             <div className="profile">
-                                <i className="far fa-user-circle"></i> {`\xa0\xa0`}
-                                <input
-                                    id="un-input"
-                                    value={this.state.username}
-                                    name="username"
-                                    onChange={(e) => this.handleChange(e)}
-                                    disabled
-                                />
+                                <div className="stats-container">
+                                    <div id="un-container">
+                                        <span id="un-icon"><i className="far fa-user-circle"></i></span> {}
+                                        <input
+                                            id="un-input"
+                                            value={this.state.username}
+                                            name="username"
+                                            onChange={(e) => this.handleChange(e)}
+                                            disabled
+                                        />
+                                    </div>
+                                    <div>
+                                        <h4 className="stats"><span className="bold">{decksCreated}</span> decks created {`\xa0\xa0`} <span className="bold">{decksSaved}</span> decks saved</h4>
+                                    </div>
+                                </div>
                                 {(this.props.uid && this.props.uid === this.props.user_uid) &&
                                     <div>
-                                        <button id="edit-un-btn" onClick={this.editOn}><i className="fas fa-marker"></i></button>
+                                        <button id="edit-un-btn" onClick={this.editOn}><i className="fas fa-marker"></i> Edit Profile</button>
                                         <button id="cancel-un-btn" onClick={this.cancel}>Cancel</button>
                                         <button id="save-un-btn">Save</button>
                                     </div>

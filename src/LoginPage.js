@@ -47,7 +47,7 @@ class LoginPage extends React.Component {
             <div className="acct-container">
                 <Link className="back-btn" to="/">Back to home</Link>
                 <div className="acct-child1">
-                    <h2 className="acct-header">Log In</h2>
+                    <h2 className="acct-header">Welcome back!</h2>
                     <br/>
                     <div className="error-message" id="signin-error">{this.state.error}</div>
                     <br/>
@@ -70,7 +70,7 @@ class LoginPage extends React.Component {
                         />
                     </div>
                     <br/>
-                    <button className="acct-btn" onClick={this.login}>Log in</button>
+                    <button className="acct-btn" onClick={this.login}>Sign in</button>
                     <br/>
                     <br/>
                     <div  className="subtext">New to BLOOG? <Link className="link" to="/register">Create an account.</Link></div>

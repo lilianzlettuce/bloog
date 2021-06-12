@@ -93,7 +93,7 @@ class HomePage extends React.Component {
         })
     
         return (
-            <div id="main">
+            <div id="hp-main">
                 <TopBar />
                 {(this.props.username) &&
                     <div>

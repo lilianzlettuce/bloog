@@ -4,8 +4,8 @@ import './CardViewer.css'
 import TopBar from './TopBar'
 
 import { withRouter } from 'react-router-dom'
-import { HashLink as Link } from 'react-router-hash-link';
-import { firebaseConnect, isEmpty, isLoaded, populate } from 'react-redux-firebase'
+import { HashLink } from 'react-router-hash-link';
+import { firebaseConnect, isEmpty, isLoaded, /*populate*/ } from 'react-redux-firebase'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 
@@ -254,7 +254,6 @@ class CardViewer extends React.Component {
       pub = !this.state.pub
     }
 
-    //update properties database
     let deckId = this.props.deckId
       let updates = {}
       updates[`/flashcards/${deckId}`] = {
@@ -315,7 +314,7 @@ class CardViewer extends React.Component {
         <div className="heading">
           <div className="cardset-name">{this.props.name}</div>
           <div className="btn-container">
-            {(this.props.deck && this.props.deck.owner.username === this.props.username) &&
+            {(this.props.deck && this.props.users[this.props.owner].username === this.props.username) &&
               <button
                 className="check-btn"
                 id="public-btn"
@@ -344,7 +343,7 @@ class CardViewer extends React.Component {
                 <button id="up-btn" className="control-btn" onClick={this.cardUp}><i className="fas fa-angle-up"></i></button>
                 <button id="down-btn" className="control-btn" onClick={this.cardDown}><i className="fas fa-angle-down"></i></button>
               </div>
-              <div className="cv-owner">Created by{'\xa0'} <i className="fas fa-user-circle"></i> {this.props.deck.owner.username}</div>
+              <HashLink to={`/profile/${this.props.owner}`} className="cv-owner">Created by{'\xa0'} <i className="fas fa-user-circle"></i> {this.props.users[this.props.owner].username}</HashLink>
             </div>
           </div>
           <div id="progress-container">
@@ -361,9 +360,9 @@ class CardViewer extends React.Component {
   }
 }
 
-const populates = [
+/*const populates = [
   { child: 'owner', root: 'users' }
-]
+]*/
 
 const mapStateToProps = (state, props) => {
   const deckId = props.match.params.deckId
@@ -375,10 +374,12 @@ const mapStateToProps = (state, props) => {
     pub: deck && deck.public,
     owner: deck && deck.owner,
     deckId: deckId,
-    deck: populate(state.firebase, deckId , populates),
+    /*deck: populate(state.firebase, deckId , populates),*/
+    deck: deck,
     username: state.firebase.profile.username,
     uid: uid,
     savedDecks: state.firebase.data.saved,
+    users: state.firebase.data.users,
   }
 }
 
@@ -387,8 +388,9 @@ export default compose(
   firebaseConnect(props => {
     const deckId = props.match.params.deckId
     return [
-      { path: `/flashcards/${deckId}`, storeAs: deckId, populates},
-      '/saved'
+      { path: `/flashcards/${deckId}`, storeAs: deckId},
+      '/saved',
+      '/users',
     ]
   }),
   connect(mapStateToProps),

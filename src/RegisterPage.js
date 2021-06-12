@@ -13,6 +13,7 @@ class RegisterPage extends React.Component {
             email: '',
             password: '',
             username: '',
+            name: '',
             error: '',
         }
     }
@@ -54,6 +55,7 @@ class RegisterPage extends React.Component {
         const profile = {
             email: this.state.email,
             username: un,
+            displayName: this.state.name,
         }
 
         try {
@@ -80,7 +82,7 @@ class RegisterPage extends React.Component {
             <div className="acct-container">
                 <Link className="back-btn" to="/">Back to home</Link>
                 <div className="acct-child1">
-                    <h2 className="acct-header">Create your Account</h2>
+                    <h2 className="acct-header">Sign up</h2>
                     <br/>
                     <div className="error-message" id="signup-error">{this.state.error}</div>
                     <br/>
