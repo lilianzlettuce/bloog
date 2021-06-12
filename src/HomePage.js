@@ -51,12 +51,14 @@ class HomePage extends React.Component {
         let savedDecks 
         if (this.props.uid && this.props.saved && this.props.saved[this.props.uid]) {
             savedDecks = this.props.saved[this.props.uid].map((key) => {
+                let deck = this.props.homepage[key]
+
                 let visibility = 'public'
-                if (!this.props.homepage[key].public) {
+                if (deck && !deck.public) {
                     visibility = 'private'
                 }
         
-                if (this.props.users && (this.props.homepage[key].public || this.props.users[this.props.homepage[key].owner].username === this.props.username)) {
+                if (deck && this.props.users && (this.props.homepage[key].public || this.props.users[this.props.homepage[key].owner].username === this.props.username)) {
                     return (
                         <Card key={key} visibility={visibility} 
                             deckId={key}

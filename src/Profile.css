@@ -66,11 +66,10 @@
     border-bottom: none;
     font-weight: 500;
     font-size: 2rem;
-    color: var(--lighterer);
+    color: white;
 }
 
 .stats {
-    color: var(--lighterer);
     margin: 7px 0 0 0;
     padding: 0;
     font-size: 1.5rem;
@@ -81,6 +80,7 @@
 }
 .stats-link {
     color: white;
+    font-weight: 500;
 }
 .stats-link:hover {
     text-decoration: underline;
