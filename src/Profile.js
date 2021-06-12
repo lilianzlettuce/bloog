@@ -109,19 +109,9 @@ class HomePage extends React.Component {
             }
         }
 
-        const user = this.props.firebase.auth().currentUser
-        user.updateProfile({
+        this.props.firebase.updateProfile({
             displayName: this.state.name,
             username: this.state.username,
-        }).catch((error) => {
-            this.setState({ error: error })
-            document.querySelector('#pf-error').style.display = 'block'
-            return
-        })
-        this.props.firebase.update(`/users/${this.props.uid}`, {
-            displayName: this.state.name,
-            username: this.state.username,
-            email: this.props.user.email,
         }).catch((error) => {
             this.setState({ error: error })
             document.querySelector('#pf-error').style.display = 'block'
