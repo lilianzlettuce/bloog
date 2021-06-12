@@ -1,7 +1,8 @@
 .link-container {
     width: 20%;
-    margin: 0 20px;
     height: fit-content;
+    margin: 0 20px;
+    padding: 0;
     transition: .6s ease;
 }
 .link-container:hover {
@@ -15,6 +16,7 @@
     height: 200px;
     border-radius: 5%;
     padding: 15px 30px 20px 30px;
+    margin: 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -146,7 +148,7 @@ h3 {
 }
 @media(max-width: 600px) {
     .deck-container {
-        height: 150px;
+        height: 130px;
         border-radius: 20px;
     }
     .link-container {
@@ -156,20 +158,28 @@ h3 {
         left: 85%;
     }
 }
-@media (max-width: 520) {
+@media (max-width: 520px) {
     .deck-container {
-        height: 200px;
+        height: 150px;
         border-radius: 20px;
     }
     .link-container {
-        width: 80%;
+        width: 90%;
     }
     .homepage-save {
-        left: 80%;
+        left: 83%;
     }
 }
-@media (max-width: 450) {
+@media (max-width: 450px) {
     h2 {
-        margin: 0;
+        margin-left: 10px;
+    }
+}
+@media (max-width: 350px) {
+    .deck-container {
+        height: 180px;
+    }
+    .homepage-save {
+        left: 75%;
     }
 }
