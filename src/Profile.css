@@ -17,6 +17,7 @@
 #pf-section {
     width: 92%;
     height: 250px;
+    border-top: 0px solid var(--lighterer);
     border-bottom: 5px solid var(--lighterer);
     padding-bottom: 40px;
     margin-bottom: 20px;
@@ -43,10 +44,10 @@
 }
 
 #un-container {
-    font-size: 3.7rem;
+    font-size: 3.5rem;
 }
 
-#un-input {
+#un {
     font-size: inherit;
     font-weight: inherit;
     color: inherit;
@@ -55,8 +56,34 @@
     padding: 5px 10px;
 }
 
+#name {
+    padding: 0;
+    margin: 10px 0 0 0;
+    border-bottom: none;
+    font-weight: 500;
+    color: var(--dark);
+}
+
+#edit-container {
+    width: fit-content;
+    font-size: 1.5rem;
+    font-weight: 300;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+}
+.edit-input {
+    padding: 5px 10px !important;
+    border: 1px solid var(--lighterer);
+    border-radius: 5px;
+    font-size: 1.5rem;
+    color: black !important;
+}
+
 .stats {
-    margin-bottom: 0;
+    color: var(--light);
+    margin: 7px 0 0 0;
     padding: 0;
     font-size: 1.5rem;
     font-weight: 400;

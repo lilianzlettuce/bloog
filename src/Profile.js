@@ -14,12 +14,16 @@ class HomePage extends React.Component {
         super(props)
         this.state = {
             username: '',
+            name: '',
         }
     }
 
     componentDidMount() {
         if (this.props.user) {
-            this.setState({ username: this.props.user.username })
+            this.setState({ 
+                username: this.props.user.username,
+                name: this.props.user.displayName, 
+            })
         }
     }
 
@@ -33,7 +37,10 @@ class HomePage extends React.Component {
             })
         }
         if (this.props.user !== prevProps.user) {
-            this.setState({ username: this.props.user.username })
+            this.setState({ 
+                username: this.props.user.username,
+                name: this.props.user.displayName,  
+            })
         }
     }
 
@@ -47,7 +54,7 @@ class HomePage extends React.Component {
         let unIcon = document.querySelector('#un-icon')
         unInput.disabled = false
         unInput.style.border = '1px solid var(--lighterer)'
-        unContainer.style.fontSize = '2rem'
+        unContainer.style.fontSize = '1.7rem'
         unIcon.textContent = 'Username: \xa0'
 
         document.querySelector('#edit-un-btn').style.display = 'none'
@@ -132,18 +139,54 @@ class HomePage extends React.Component {
                         <div className="section" id="pf-section">
                             <div className="profile">
                                 <div className="stats-container">
-                                    <div id="un-container">
-                                        <span id="un-icon"><i className="far fa-user-circle"></i></span> {}
+                                    <div>
+                                        <div id="un-container">
+                                            <span id="un-icon"><i className="far fa-user-circle"></i></span> {}
+                                            <input
+                                                id="un"
+                                                className="pf-input"
+                                                value={this.state.username}
+                                                name="username"
+                                                onChange={(e) => this.handleChange(e)}
+                                                disabled
+                                            />
+                                        </div>
                                         <input
-                                            id="un-input"
-                                            value={this.state.username}
+                                            id="name"
+                                            className="pf-input"
+                                            value={this.state.name}
                                             name="username"
                                             onChange={(e) => this.handleChange(e)}
                                             disabled
                                         />
+                                        <div>
+                                            <h4 className="stats"><span className="bold">{decksCreated}</span> decks created {`\xa0\xa0`} <span className="bold">{decksSaved}</span> decks saved</h4>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <h4 className="stats"><span className="bold">{decksCreated}</span> decks created {`\xa0\xa0`} <span className="bold">{decksSaved}</span> decks saved</h4>
+                                    <div id="edit-container">
+                                        <div>
+                                            <span>Username: {'\xa0'}</span>
+                                            <input
+                                                id="un-input"
+                                                className="edit-input"
+                                                value={this.state.username}
+                                                name="username"
+                                                onChange={(e) => this.handleChange(e)}
+                                                disabled
+                                            />
+                                        </div>
+                                        <br/> <br/>
+                                        <div>
+                                            <span>Name: {'\xa0'}</span>
+                                            <input
+                                                id="name-input"
+                                                className="edit-input"
+                                                value={this.state.name}
+                                                name="username"
+                                                onChange={(e) => this.handleChange(e)}
+                                                disabled
+                                            />
+                                        </div>
                                     </div>
                                 </div>
                                 {(this.props.uid && this.props.uid === this.props.user_uid) &&

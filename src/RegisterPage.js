@@ -89,6 +89,14 @@ class RegisterPage extends React.Component {
                     <div className="input-container">
                         <input 
                             className="acct-input"
+                            name="name"
+                            placeholder="Name"
+                            onChange={this.handleChange}
+                            value={this.state.name}
+                        />
+                        <br/>
+                        <input 
+                            className="acct-input"
                             name="username"
                             placeholder="Username"
                             onChange={this.handleChange}

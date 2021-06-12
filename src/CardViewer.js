@@ -300,7 +300,7 @@ class CardViewer extends React.Component {
   }
 
   render() {
-    if (!isLoaded(this.state.cards) || (this.props.uid && !isLoaded(this.props.savedDecks))) {
+    if (!isLoaded(this.state.cards, this.props.users) || (this.props.uid && !isLoaded(this.props.savedDecks))) {
       return <div>Loading...</div>
     }
 
@@ -314,7 +314,7 @@ class CardViewer extends React.Component {
         <div className="heading">
           <div className="cardset-name">{this.props.name}</div>
           <div className="btn-container">
-            {(this.props.deck && this.props.users[this.props.owner].username === this.props.username) &&
+            {(this.props.deck && this.props.users && this.props.users[this.props.owner].username === this.props.username) &&
               <button
                 className="check-btn"
                 id="public-btn"
