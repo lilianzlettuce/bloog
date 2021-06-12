@@ -15,6 +15,8 @@
 }
 
 #pf-section {
+    height: 270px;
+    background-color: var(--dark);
     position: relative;
     top: 0px;
     min-width: 600px;
@@ -24,7 +26,6 @@
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    border-top: 80px solid var(--lighterer);
 }
 
 .profile {
@@ -34,19 +35,20 @@
     margin: 0px;
     padding: 50px 50px 40px 50px;
     font-weight: 400;
-    color: black;
+    color: white;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    border-bottom: 1px solid var(--light);
 }
 
 .stats-container {
     margin-left: 20px;
+    width: 80%;
 }
 
 #un-container {
     font-size: 3.5rem;
+    width: 100%;
 }
 
 #un {
@@ -58,35 +60,17 @@
 }
 
 #name {
+    width: 100%;
     padding: 0;
     margin: 10px 0 0 0;
     border-bottom: none;
     font-weight: 500;
     font-size: 2rem;
-    color: var(--darker);
-}
-
-#edit-container {
-    width: fit-content;
-    font-size: 1.5rem;
-    font-weight: 300;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: flex-start;
-    display: none;
-    margin-right: 50px;
-}
-.edit-input {
-    padding: 5px 10px !important;
-    border: 1px solid var(--lighterer);
-    border-radius: 5px;
-    font-size: 1.5rem;
-    color: black !important;
+    color: var(--lighterer);
 }
 
 .stats {
-    color: var(--dark);
+    color: var(--lighterer);
     margin: 7px 0 0 0;
     padding: 0;
     font-size: 1.5rem;
@@ -96,10 +80,75 @@
     font-weight: 800;
 }
 .stats-link {
-    color: var(--dark);
+    color: white;
 }
 .stats-link:hover {
     text-decoration: underline;
+}
+
+#edit-container {
+    position: fixed;
+    top: 20%;
+    left: calc(50vw - 205px);
+    padding: 60px 65px 40px 65px;
+    width: 410px;
+    font-size: 1.5rem;
+    font-weight: 300;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+    margin: auto;
+    background-color: white;
+    color: black;
+    box-shadow: 0px 0px 4px 1px rgba(128, 128, 128, 0.322);
+    border-radius: 10px;
+    display: none;
+    z-index: 50;
+    transform: scale(.5);
+}
+.grow {
+    animation: grow 1s ease 0s 1 forwards;
+}
+@keyframes grow {
+    70% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+.shrink {
+    animation: shrink .5s ease 0s 1 forwards;
+}
+@keyframes shrink {
+    0% {
+        transform: scale(1.1);
+    }
+    30% {
+        transform: scale(1.2);
+    }
+    50% {
+        opacity: 100%;
+    }
+    100% {
+        transform: scale(.01);
+        opacity: 0%;
+    }
+}
+
+.edit-input {
+    padding: 5px 10px !important;
+    border: 1px solid var(--lighterer);
+    border-radius: 5px;
+    font-size: 1.5rem;
+    color: black !important;
+    background-color: white;
+}
+
+#email-input:hover {
+    cursor: not-allowed;
 }
 
 #edit-un-btn {
@@ -111,13 +160,19 @@
     border: 1px solid lightgray;
 }
 
+#pf-btn-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
 #cancel-un-btn {
     background-color: rgb(255, 71, 71);
     color: white;
     width: 80px;
     height: 33px;
     min-width: fit-content;
-    display: none;
 }
 #cancel-un-btn:hover {
     background-color: rgb(255, 125, 125);
@@ -129,7 +184,6 @@
     width: 80px;
     height: 33px;
     min-width: fit-content;
-    display: none;
 }
 #save-un-btn:hover {
     background-color: var(--main-light);

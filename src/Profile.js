@@ -50,24 +50,45 @@ class HomePage extends React.Component {
     }
 
     editOn = () => {
-        document.querySelector('#display-container').style.display = 'none'
-        document.querySelector('#edit-container').style.display = 'flex'
+        let edit = document.querySelector('#edit-container')
+        edit.style.display = 'flex'
+        edit.classList.remove('shrink')
+        edit.classList.add('grow')
 
-        document.querySelector('#edit-un-btn').style.display = 'none'
         document.querySelector('#cancel-un-btn').style.display = 'inline-block'
         document.querySelector('#save-un-btn').style.display = 'inline-block'
     }
 
     cancel = () => {
-        this.setState({ username: this.props.user.username })
+        this.setState({ 
+            username: this.props.user.username,
+            name: this.props.user.displayName,
+        })
 
-        document.querySelector('#edit-container').style.display = 'none'
-        document.querySelector('#display-container').style.display = 'block'
+        this.shrinkAnim('#edit-container')
+    }
 
-        document.querySelector('#un-input').disabled = true
-        document.querySelector('#edit-un-btn').style.display = 'inline-block'
-        document.querySelector('#cancel-un-btn').style.display = 'none'
-        document.querySelector('#save-un-btn').style.display = 'none'
+    shrinkAnim = (id) => {
+        let item = document.querySelector(id)
+        item.classList.remove('grow')
+        item.classList.add('shrink')
+        setTimeout(() => {
+            item.style.display = 'none'
+            document.querySelector('#cancel-un-btn').style.display = 'none'
+            document.querySelector('#save-un-btn').style.display = 'none'
+        }, 500);
+    }
+
+    saveProfile = () => {
+        const user = this.props.firebase.auth().currentUser
+        user.updateProfile({
+            displayName: this.state.name,
+            username: this.state.username,
+        }).then(() => {
+            this.shrinkAnim('#edit-container')
+        }).catch((error) => {
+            alert(error)
+        }); 
     }
 
     render() {
@@ -144,18 +165,16 @@ class HomePage extends React.Component {
                                             <input
                                                 id="un"
                                                 className="pf-input"
-                                                value={this.state.username}
+                                                value={this.props.user.username}
                                                 name="username"
-                                                onChange={(e) => this.handleChange(e)}
                                                 disabled
                                             />
                                         </div>
                                         <input
                                             id="name"
                                             className="pf-input"
-                                            value={this.state.name}
+                                            value={this.props.user.displayName}
                                             name="username"
-                                            onChange={(e) => this.handleChange(e)}
                                             disabled
                                         />
                                         <div>
@@ -164,37 +183,49 @@ class HomePage extends React.Component {
                                                 <HashLink className="stats-link" smooth to={`/profile/${this.props.user_uid}#saved-decks`}><span className="bold">{decksSaved}</span> decks saved</HashLink></div>
                                         </div>
                                     </div>
-                                    <div id="edit-container">
-                                        <div>
-                                            <span>Username: {'\xa0'}</span>
-                                            <input
-                                                id="un-input"
-                                                className="edit-input"
-                                                value={this.state.username}
-                                                name="username"
-                                                onChange={(e) => this.handleChange(e)}
-                                                disabled
-                                            />
-                                        </div>
-                                        <br/> <br/>
-                                        <div>
-                                            <span>Name: {'\xa0'}</span>
-                                            <input
-                                                id="name-input"
-                                                className="edit-input"
-                                                value={this.state.name}
-                                                name="username"
-                                                onChange={(e) => this.handleChange(e)}
-                                                disabled
-                                            />
-                                        </div>
-                                    </div>
                                 </div>
                                 {(this.props.uid && this.props.uid === this.props.user_uid) &&
                                     <div>
                                         <button id="edit-un-btn" onClick={this.editOn}><i className="fas fa-marker"></i> Edit Profile</button>
-                                        <button id="cancel-un-btn" onClick={this.cancel}>Cancel</button>
-                                        <button id="save-un-btn">Save</button>
+                                        <div id="edit-container">
+                                            <div>
+                                                <span>Username: {'\xa0'}</span>
+                                                <input
+                                                    id="un-input"
+                                                    className="edit-input"
+                                                    value={this.state.username}
+                                                    name="username"
+                                                    onChange={(e) => this.handleChange(e)}
+                                                />
+                                            </div>
+                                            <br/> 
+                                            <div>
+                                                <span>Name: {'\xa0'}</span>
+                                                <input
+                                                    id="name-input"
+                                                    className="edit-input"
+                                                    value={this.state.name}
+                                                    name="name"
+                                                    onChange={(e) => this.handleChange(e)}
+                                                />
+                                            </div>
+                                            <br/> 
+                                            <div>
+                                                <span>Email: {'\xa0'}</span>
+                                                <input
+                                                    id="email-input"
+                                                    className="edit-input"
+                                                    value={this.props.user.email}
+                                                    name="email"
+                                                    onChange={(e) => this.handleChange(e)}
+                                                    disabled
+                                                />
+                                            </div>
+                                            <div id="pf-btn-container">
+                                                <button id="cancel-un-btn" onClick={this.cancel}>Cancel</button>
+                                                <button id="save-un-btn" onClick={this.saveProfile}>Save</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 }
                             </div>
