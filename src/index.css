@@ -158,13 +158,12 @@ button:hover {
   width: 100vw;
   max-width: 1400px;
   height: auto;
-  padding: 30px 30px 30px 30px;
+  padding: 40px;
   margin: 0 auto;
 }
 
 .deck-section {
-  width: 100vw;
-  max-width: 1400px;
+  width: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -175,44 +174,32 @@ button:hover {
 
 @media(max-width: 1500px) {
   .deck-section {
-      padding: 20px 50px;
-  }
-  .link-container {
-      width: 20%;
+    padding: 20px 50px;
   }
 }
-@media(max-width: 1100px) {
-  .deck-section {
-      padding: 20px 30px;
+@media(max-width: 1200px) {
+  .section {
+    padding: 40px 20px;
   }
-  .link-container {
-      width: 25%;
+  .deck-section {
+    padding: 20px 30px;
   }
 }
 @media(max-width: 900px) {
   .deck-section {
-      padding: 20px 20px;
-  }
-  .link-container {
-      width: 25%;
+    padding: 20px 10px;
   }
 }
-@media(max-width: 700px) {
+@media(max-width: 750px) {
   .deck-section {
-      padding: 20px 10px;
-  }
-  .link-container {
-      width: 37%;
+    padding: 20px 40px;
   }
 }
 @media(max-width: 450px) {
   h2 {
-      margin: 0;
+    margin: 0;
   }
   .deck-section {
-      padding: 20px 0px;
-  }
-  .link-container {
-      width: 70%;
+    padding: 20px 0px;
   }
 }

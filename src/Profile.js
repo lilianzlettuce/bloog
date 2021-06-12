@@ -8,6 +8,7 @@ import { firebaseConnect, isLoaded, isEmpty } from 'react-redux-firebase'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { withRouter } from 'react-router'
+import { HashLink } from 'react-router-hash-link'
 
 class HomePage extends React.Component {
     constructor(props) {
@@ -49,13 +50,8 @@ class HomePage extends React.Component {
     }
 
     editOn = () => {
-        let unInput = document.querySelector('#un-input')
-        let unContainer = document.querySelector('#un-container')
-        let unIcon = document.querySelector('#un-icon')
-        unInput.disabled = false
-        unInput.style.border = '1px solid var(--lighterer)'
-        unContainer.style.fontSize = '1.7rem'
-        unIcon.textContent = 'Username: \xa0'
+        document.querySelector('#display-container').style.display = 'none'
+        document.querySelector('#edit-container').style.display = 'flex'
 
         document.querySelector('#edit-un-btn').style.display = 'none'
         document.querySelector('#cancel-un-btn').style.display = 'inline-block'
@@ -64,6 +60,9 @@ class HomePage extends React.Component {
 
     cancel = () => {
         this.setState({ username: this.props.user.username })
+
+        document.querySelector('#edit-container').style.display = 'none'
+        document.querySelector('#display-container').style.display = 'block'
 
         document.querySelector('#un-input').disabled = true
         document.querySelector('#edit-un-btn').style.display = 'inline-block'
@@ -139,7 +138,7 @@ class HomePage extends React.Component {
                         <div className="section" id="pf-section">
                             <div className="profile">
                                 <div className="stats-container">
-                                    <div>
+                                    <div id="display-container">
                                         <div id="un-container">
                                             <span id="un-icon"><i className="far fa-user-circle"></i></span> {}
                                             <input
@@ -160,7 +159,9 @@ class HomePage extends React.Component {
                                             disabled
                                         />
                                         <div>
-                                            <h4 className="stats"><span className="bold">{decksCreated}</span> decks created {`\xa0\xa0`} <span className="bold">{decksSaved}</span> decks saved</h4>
+                                            <div className="stats">
+                                                <HashLink className="stats-link" smooth to={`/profile/${this.props.user_uid}#created-decks`}><span className="bold">{decksCreated}</span> decks created</HashLink> {`\xa0\xa0`}
+                                                <HashLink className="stats-link" smooth to={`/profile/${this.props.user_uid}#saved-decks`}><span className="bold">{decksSaved}</span> decks saved</HashLink></div>
                                         </div>
                                     </div>
                                     <div id="edit-container">
@@ -198,11 +199,11 @@ class HomePage extends React.Component {
                                 }
                             </div>
                         </div>
-                        <div className="section">
+                        <div className="section" id="created-decks">
                             <h2>Created Decks</h2>
                             <div className="deck-section">{createdDecks}</div>
                         </div>
-                        <div className="section">
+                        <div className="section" id="saved-decks">
                             <h2>Saved Decks</h2>
                             <div className="deck-section">{savedDecks}</div>
                         </div>
