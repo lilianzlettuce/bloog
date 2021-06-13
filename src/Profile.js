@@ -144,19 +144,21 @@ class HomePage extends React.Component {
         let decksSaved = 0
     
         const createdDecks = Object.keys(this.props.homepage).map((key) => {
+            let deck = this.props.homepage[key]
+
             let visibility = 'public'
-            if (!this.props.homepage[key].public) {
+            if (!deck.public) {
                 visibility = 'private'
             }
     
-            if (this.props.users[this.props.homepage[key].owner].username === this.props.user.username && (visibility === 'public' || this.props.user.username === this.props.username)) {
+            if (this.props.users[deck.owner].username === this.props.user.username && (visibility === 'public' || this.props.user.username === this.props.username)) {
                 decksCreated++
                 return (
                     <Card key={key} visibility={visibility} 
                         deckId={key}
-                        deckName={this.props.homepage[key].name} 
-                        owner={this.props.users[this.props.homepage[key].owner].username}
-                        owner_uid={this.props.homepage[key].owner}
+                        deckName={deck.name} 
+                        owner={this.props.users[deck.owner].username}
+                        owner_uid={deck.owner}
                         user={this.props.username}
                         set="4"
                     />
@@ -168,19 +170,21 @@ class HomePage extends React.Component {
         })
     
         const savedDecks = this.props.savedDecks[this.props.user_uid].map((key) => {
+            let deck = this.props.homepage[key]
+            
             let visibility = 'public'
-            if (!this.props.homepage[key].public) {
+            if (deck && !deck.public) {
                 visibility = 'private'
             }
     
-            if ((this.props.homepage[key].public || this.props.user.username === this.props.username)) {
+            if (deck && (deck.public || this.props.user.username === this.props.username)) {
                 decksSaved++
                 return (
                     <Card key={key} visibility={visibility} 
                         deckId={key}
-                        deckName={this.props.homepage[key].name} 
-                        owner={this.props.users[this.props.homepage[key].owner].username}
-                        owner_uid={this.props.homepage[key].owner}
+                        deckName={deck.name} 
+                        owner={this.props.users[deck.owner].username}
+                        owner_uid={deck.owner}
                         user={this.props.username}
                         set="5"
                     />

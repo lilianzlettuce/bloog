@@ -15,11 +15,12 @@
 }
 
 #pf-section {
+    width: 100vw;
+    max-width: none;
     height: 270px;
     background-color: var(--darker);
     position: relative;
     top: 0px;
-    min-width: 600px;
     margin-bottom: 20px;
     padding: 0;
     display: flex;

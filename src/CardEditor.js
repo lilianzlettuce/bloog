@@ -1,6 +1,7 @@
 import React from 'react'
 import TextareaAutosize from 'react-textarea-autosize'
 import './CardEditor.css'
+import { hideDrop } from './hideDrop'
 
 import TopBar from './TopBar'
 
@@ -146,59 +147,61 @@ class CardEditor extends React.Component {
     })
   
     return (
-      <div className="container">
-        <TopBar />
-        <div className="heading">
-          <TextareaAutosize
-            cacheMeasurements
-            name="name"
-            id="name-input"
-            className="cardset-name"
-            onChange={(e) => {
-              this.handleChange(e)
-            }}
-            placeholder="Cardset Title"
-            value={this.state.name}
-          />
-          <button
-            className="usable-btn"
-            id="create-btn"
-            onClick={this.createDeck}
-            disabled={!this.state.name.trim() || this.state.cards.length === 0}
-          >
-            Create Deck
-          </button>
-        </div>
-        <table id="editor-table">
-          <thead>
-            <tr>
-              <th></th>
-              <th id="front-col"></th>
-              <th id="back-col"></th>
-              <th id="delete-col"></th>
-            </tr>
-          </thead>
-          <tbody>{cards}</tbody>
-        </table>
-        <br />
-        <div id="input-container">
-          <TextareaAutosize
-            cacheMeasurements
-            className="input"
-            name="front"
-            onChange={this.handleChange}
-            placeholder="Front of card"
-            value={this.state.front}
-          />
-          <TextareaAutosize
-            cacheMeasurements
-            className="input"
-            name="back"
-            onChange={this.handleChange}
-            placeholder="Back of card"
-            value={this.state.back}
-          />
-          <button className="add-btn" onClick={this.addCard} ><i className="fas fa-plus"></i></button>
+      <div id="card-editor-container" onClick={(e) => hideDrop(e)}>
+        <div className="container">
+          <TopBar />
+          <div className="heading">
+            <TextareaAutosize
+              cacheMeasurements
+              name="name"
+              id="name-input"
+              className="cardset-name"
+              onChange={(e) => {
+                this.handleChange(e)
+              }}
+              placeholder="Cardset Title"
+              value={this.state.name}
+            />
+            <button
+              className="usable-btn"
+              id="create-btn"
+              onClick={this.createDeck}
+              disabled={!this.state.name.trim() || this.state.cards.length === 0}
+            >
+              Create Deck
+            </button>
+          </div>
+          <table id="editor-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th id="front-col"></th>
+                <th id="back-col"></th>
+                <th id="delete-col"></th>
+              </tr>
+            </thead>
+            <tbody>{cards}</tbody>
+          </table>
+          <br />
+          <div id="input-container">
+            <TextareaAutosize
+              cacheMeasurements
+              className="input"
+              name="front"
+              onChange={this.handleChange}
+              placeholder="Front of card"
+              value={this.state.front}
+            />
+            <TextareaAutosize
+              cacheMeasurements
+              className="input"
+              name="back"
+              onChange={this.handleChange}
+              placeholder="Back of card"
+              value={this.state.back}
+            />
+            <button className="add-btn" onClick={this.addCard} ><i className="fas fa-plus"></i></button>
+          </div>
         </div>
       </div>
     )

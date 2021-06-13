@@ -15,7 +15,7 @@ class HomePage extends React.Component {
                 .ref()
                 .child('saved')
                 .child(this.props.uid).set({
-                    0: '-MbtuKCgqg3nAIvSlptj',
+                    0: '',
                 })
         }
     }
@@ -25,13 +25,15 @@ class HomePage extends React.Component {
             return <div>Loading...</div>
         }
     
-        const myDecks = Object.keys(this.props.homepage).map((key) => {
+        let numMyDecks = 0
+        let myDecks = Object.keys(this.props.homepage).map((key) => {
             let visibility = 'public'
             if (!this.props.homepage[key].public) {
                 visibility = 'private'
             }
     
             if (this.props.users && this.props.users[this.props.homepage[key].owner].username === this.props.username) {
+                numMyDecks++
                 return (
                     <Card key={key} visibility={visibility} 
                         deckId={key}
@@ -48,6 +50,7 @@ class HomePage extends React.Component {
             )
         })
     
+        let numSavedDecks
         let savedDecks 
         if (this.props.uid && this.props.saved && this.props.saved[this.props.uid]) {
             savedDecks = this.props.saved[this.props.uid].map((key) => {
@@ -58,7 +61,8 @@ class HomePage extends React.Component {
                     visibility = 'private'
                 }
         
-                if (deck && this.props.users && (this.props.homepage[key].public || this.props.users[this.props.homepage[key].owner].username === this.props.username)) {
+                if (deck && this.props.users && (deck.public || this.props.users[deck.owner].username === this.props.username)) {
+                    numSavedDecks++
                     return (
                         <Card key={key} visibility={visibility} 
                             deckId={key}

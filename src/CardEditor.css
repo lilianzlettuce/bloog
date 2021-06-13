@@ -1,3 +1,12 @@
+#card-editor-container{
+    width: 100vw;
+    height: fit-content;
+    min-height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
 #name-input {
     padding: 10px 15px;
     color: var(--dark);

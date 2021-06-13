@@ -1,5 +1,6 @@
 import React from 'react'
 import './CardViewer.css'
+import { hideDrop } from './hideDrop'
 
 import TopBar from './TopBar'
 
@@ -309,49 +310,51 @@ class CardViewer extends React.Component {
     }
 
     return (
-      <div className="container">
-        <TopBar />
-        <div className="heading">
-          <div className="cardset-name">{this.props.name}</div>
-          <div className="btn-container">
-            {(this.props.deck && this.props.users && this.props.users[this.props.owner].username === this.props.username) &&
+      <div id="card-viewer-container" onClick={(e) => hideDrop(e)}>
+        <div className="container">
+          <TopBar />
+          <div className="heading">
+            <div className="cardset-name">{this.props.name}</div>
+            <div className="btn-container">
+              {(this.props.deck && this.props.users && this.props.users[this.props.owner].username === this.props.username) &&
+                <button
+                  className="check-btn"
+                  id="public-btn"
+                  onClick={() => this.updateDeck('pub')}
+                >
+                  Make Public
+                </button>
+              }
               <button
-                className="check-btn"
-                id="public-btn"
-                onClick={() => this.updateDeck('pub')}
+                id="save-btn"
+                onClick={this.saveDeck}
               >
-                Make Public
+                <i id= "save-icon" className="far fa-heart"></i>
               </button>
-            }
-            <button
-              id="save-btn"
-              onClick={this.saveDeck}
-            >
-              <i id= "save-icon" className="far fa-heart"></i>
-            </button>
-          </div>
-        </div>
-        <div id="cv-body">
-          <div id="card-container">
-            <div id="card" onClick={this.flipCard}>
-              <div id="text-display-front" >{this.state.cards[this.state.currentCard].front}</div>
-              <div id="text-display-back" >{this.state.cards[this.state.currentCard].back}</div>
             </div>
-            <div className="controls-container">
-              <button id="shuffle-btn" onClick={this.shuffle} ><i className="fas fa-random"></i></button>
-              <div id="controls">
-                <button id="up-btn" className="control-btn" onClick={this.cardUp}><i className="fas fa-angle-up"></i></button>
-                <button id="down-btn" className="control-btn" onClick={this.cardDown}><i className="fas fa-angle-down"></i></button>
+          </div>
+          <div id="cv-body">
+            <div id="card-container">
+              <div id="card" onClick={this.flipCard}>
+                <div id="text-display-front" >{this.state.cards[this.state.currentCard].front}</div>
+                <div id="text-display-back" >{this.state.cards[this.state.currentCard].back}</div>
               </div>
-              <HashLink to={`/profile/${this.props.owner}`} className="cv-owner">Created by{'\xa0'} <i className="fas fa-user-circle"></i> {this.props.users[this.props.owner].username}</HashLink>
+              <div className="controls-container">
+                <button id="shuffle-btn" onClick={this.shuffle} ><i className="fas fa-random"></i></button>
+                <div id="controls">
+                  <button id="up-btn" className="control-btn" onClick={this.cardUp}><i className="fas fa-angle-up"></i></button>
+                  <button id="down-btn" className="control-btn" onClick={this.cardDown}><i className="fas fa-angle-down"></i></button>
+                </div>
+                <HashLink to={`/profile/${this.props.owner}`} className="cv-owner">Created by{'\xa0'} <i className="fas fa-user-circle"></i> {this.props.users[this.props.owner].username}</HashLink>
+              </div>
             </div>
-          </div>
-          <div id="progress-container">
-            <div id="progress">{(this.state.currentCard + 1) + ' / ' + this.state.cards.length}</div>
-            <div id="pb-container">
-              <div id="pb1"></div>
-              <div id="pb3"></div>
-              <div id="pb2"></div>
+            <div id="progress-container">
+              <div id="progress">{(this.state.currentCard + 1) + ' / ' + this.state.cards.length}</div>
+              <div id="pb-container">
+                <div id="pb1"></div>
+                <div id="pb3"></div>
+                <div id="pb2"></div>
+              </div>
             </div>
           </div>
         </div>

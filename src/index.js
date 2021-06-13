@@ -61,4 +61,4 @@ ReactDOM.render(
     </ReactReduxFirebaseProvider>
   </Provider>,
   document.querySelector('#root')
-);
+)
