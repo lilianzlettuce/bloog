@@ -12,13 +12,19 @@ h4 {
     left: 0;
     width: 100vw;
     height: 60px;
-    padding: 18px 22px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     background-color: white;
     z-index: 9999;
     box-shadow: 0px 0px 4px 1px rgba(128, 128, 128, 0.322);
+}
+#topbar-container {
+    width: 100%;
+    max-width: 1400px;
+    height: 100%;
+    padding: 18px 22px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .top-link {
@@ -26,16 +32,20 @@ h4 {
     margin: 30px;
 }
 
+#left-link-container {
+    display: flex;
+}
+
 #cards-icon {
     transform: scale(.3);
     position: relative;
     top: 0px;
-    left: -40px;
+    left: -0px;
 }
-.cards-path {
-    stroke: var(--main-light);
-    stroke-width: 7;
-    fill: transparent;
+
+#right-link-container {
+    position: relative;
+    left: -90px;
 }
 
 #login-container {
@@ -118,9 +128,9 @@ h4 {
     color: var(--darker);
 }
 
-@media(max-width: 415px) {
-    .top-link {
-        left: -100px;
-        margin: 20px;
+@media(max-width: 1400px) {
+    #right-link-container {
+        position: relative;
+        left: -30px;
     }
 }

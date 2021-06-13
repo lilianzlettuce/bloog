@@ -2,6 +2,7 @@ import './Profile.css'
 
 import TopBar from './TopBar'
 import Card from './Card'
+import { hideDrop } from './hideDrop'
 
 import React from 'react'
 import { firebaseConnect, isLoaded, isEmpty } from 'react-redux-firebase'
@@ -196,92 +197,94 @@ class HomePage extends React.Component {
         })
     
         return (
-            <div id="body">
-                <div id="main">
-                    <TopBar />
-                    <div>
-                        <div className="section" id="pf-section">
-                            <div className="profile">
-                                <div className="stats-container">
-                                    <div id="display-container">
-                                        <div id="un-container">
-                                            <span id="un-icon"><i className="far fa-user-circle"></i></span> {}
-                                            <input
-                                                id="un"
-                                                className="pf-input"
-                                                value={this.props.user.username}
-                                                name="username"
-                                                disabled
-                                            />
-                                        </div>
-                                        <input
-                                            id="name"
-                                            className="pf-input"
-                                            value={this.props.user.displayName}
-                                            name="username"
-                                            disabled
-                                        />
-                                        <div>
-                                            <div className="stats">
-                                                <HashLink className="stats-link" smooth to={`/profile/${this.props.user_uid}#created-decks`}><span className="bold">{decksCreated}</span> decks created</HashLink> {`\xa0\xa0`}
-                                                <HashLink className="stats-link" smooth to={`/profile/${this.props.user_uid}#saved-decks`}><span className="bold">{decksSaved}</span> decks saved</HashLink></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                {(this.props.uid && this.props.uid === this.props.user_uid) &&
-                                    <div>
-                                        <button id="edit-un-btn" onClick={this.editOn}><i className="fas fa-marker"></i> Edit Profile</button>
-                                        <div id="edit-container">
-                                            <div id="pf-error">{this.state.error}</div>
-                                            <div>
-                                                <span>Username: {'\xa0'}</span>
+            <div className="body-container" onClick={(e) => hideDrop(e)}>
+                <div id="body">
+                    <div id="main">
+                        <TopBar />
+                        <div>
+                            <div className="section" id="pf-section">
+                                <div className="profile">
+                                    <div className="stats-container">
+                                        <div id="display-container">
+                                            <div id="un-container">
+                                                <span id="un-icon"><i className="far fa-user-circle"></i></span> {}
                                                 <input
-                                                    id="un-input"
-                                                    className="edit-input"
-                                                    value={this.state.username}
+                                                    id="un"
+                                                    className="pf-input"
+                                                    value={this.props.user.username}
                                                     name="username"
-                                                    onChange={(e) => this.handleChange(e)}
-                                                />
-                                            </div>
-                                            <br/> 
-                                            <div>
-                                                <span>Name: {'\xa0'}</span>
-                                                <input
-                                                    id="name-input"
-                                                    className="edit-input"
-                                                    value={this.state.name}
-                                                    name="name"
-                                                    onChange={(e) => this.handleChange(e)}
-                                                />
-                                            </div>
-                                            <br/> 
-                                            <div>
-                                                <span>Email: {'\xa0'}</span>
-                                                <input
-                                                    id="email-input"
-                                                    className="edit-input"
-                                                    value={this.props.user.email}
-                                                    name="email"
-                                                    onChange={(e) => this.handleChange(e)}
                                                     disabled
                                                 />
                                             </div>
-                                            <div id="pf-btn-container">
-                                                <button id="cancel-un-btn" onClick={this.cancel}>Cancel</button>
-                                                <button id="pf-save-btn" className="save-un-btn" onClick={this.saveProfile}>Save</button>
+                                            <input
+                                                id="name"
+                                                className="pf-input"
+                                                value={this.props.user.displayName}
+                                                name="username"
+                                                disabled
+                                            />
+                                            <div>
+                                                <div className="stats">
+                                                    <HashLink className="stats-link" smooth to={`/profile/${this.props.user_uid}#created-decks`}><span className="bold">{decksCreated}</span> decks created</HashLink> {`\xa0\xa0`}
+                                                    <HashLink className="stats-link" smooth to={`/profile/${this.props.user_uid}#saved-decks`}><span className="bold">{decksSaved}</span> decks saved</HashLink></div>
                                             </div>
                                         </div>
                                     </div>
-                                }
+                                    {(this.props.uid && this.props.uid === this.props.user_uid) &&
+                                        <div>
+                                            <button id="edit-un-btn" onClick={this.editOn}><i className="fas fa-marker"></i> Edit Profile</button>
+                                            <div id="edit-container">
+                                                <div id="pf-error">{this.state.error}</div>
+                                                <div>
+                                                    <span>Username: {'\xa0'}</span>
+                                                    <input
+                                                        id="un-input"
+                                                        className="edit-input"
+                                                        value={this.state.username}
+                                                        name="username"
+                                                        onChange={(e) => this.handleChange(e)}
+                                                    />
+                                                </div>
+                                                <br/> 
+                                                <div>
+                                                    <span>Name: {'\xa0'}</span>
+                                                    <input
+                                                        id="name-input"
+                                                        className="edit-input"
+                                                        value={this.state.name}
+                                                        name="name"
+                                                        onChange={(e) => this.handleChange(e)}
+                                                    />
+                                                </div>
+                                                <br/> 
+                                                <div>
+                                                    <span>Email: {'\xa0'}</span>
+                                                    <input
+                                                        id="email-input"
+                                                        className="edit-input"
+                                                        value={this.props.user.email}
+                                                        name="email"
+                                                        onChange={(e) => this.handleChange(e)}
+                                                        disabled
+                                                    />
+                                                </div>
+                                                <div id="pf-btn-container">
+                                                    <button id="cancel-un-btn" onClick={this.cancel}>Cancel</button>
+                                                    <button id="pf-save-btn" className="save-un-btn" onClick={this.saveProfile}>Save</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
                             </div>
-                        </div>
-                        <div className="section" id="created-decks">
-                            <h2>Created Decks</h2>
-                            <div className="deck-section">{createdDecks}</div>
-                        </div>
-                        <div className="section" id="saved-decks">
-                            <h2>Saved Decks</h2>
-                            <div className="deck-section">{savedDecks}</div>
+                            <div className="section" id="created-decks">
+                                <h2>Created Decks</h2>
+                                <div className="deck-section">{createdDecks}</div>
+                            </div>
+                            <div className="section" id="saved-decks">
+                                <h2>Saved Decks</h2>
+                                <div className="deck-section">{savedDecks}</div>
+                            </div>
                         </div>
                     </div>
                 </div>

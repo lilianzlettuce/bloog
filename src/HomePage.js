@@ -1,4 +1,5 @@
 import './HomePage.css'
+import { hideDrop } from './hideDrop'
 
 import TopBar from './TopBar'
 import Card from './Card'
@@ -99,23 +100,25 @@ class HomePage extends React.Component {
         })
     
         return (
-            <div id="hp-main">
-                <TopBar />
-                {(this.props.username) &&
-                    <div>
-                        <div className="section">
-                            <h2>My Decks</h2>
-                            <div className="deck-section">{myDecks}</div>
+            <div className="body-container" onClick={(e) => hideDrop(e)}>
+                <div id="hp-main">
+                    <TopBar />
+                    {(this.props.username) &&
+                        <div>
+                            <div className="section">
+                                <h2>My Decks</h2>
+                                <div className="deck-section">{myDecks}</div>
+                            </div>
+                            <div className="section">
+                                <h2>Saved Decks</h2>
+                                <div className="deck-section">{savedDecks}</div>
+                            </div>
                         </div>
-                        <div className="section">
-                            <h2>Saved Decks</h2>
-                            <div className="deck-section">{savedDecks}</div>
-                        </div>
+                    }
+                    <div className="section">
+                        <h2>Public Decks</h2>
+                        <div className="deck-section">{publicDecks}</div>
                     </div>
-                }
-                <div className="section">
-                    <h2>Public Decks</h2>
-                    <div className="deck-section">{publicDecks}</div>
                 </div>
             </div>
         )

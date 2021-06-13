@@ -32,6 +32,15 @@ body {
   box-sizing: border-box;
 }
 
+.body-container {
+  width: 100vw;
+  height: fit-content;
+  min-height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 h2 {
   color: var(--darker);
   font-weight: 500;

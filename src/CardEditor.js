@@ -147,7 +147,7 @@ class CardEditor extends React.Component {
     })
   
     return (
-      <div id="card-editor-container" onClick={(e) => hideDrop(e)}>
+      <div className="body-container" onClick={(e) => hideDrop(e)}>
         <div className="container">
           <TopBar />
           <div className="heading">

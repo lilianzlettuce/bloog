@@ -310,7 +310,7 @@ class CardViewer extends React.Component {
     }
 
     return (
-      <div id="card-viewer-container" onClick={(e) => hideDrop(e)}>
+      <div className="body-container" onClick={(e) => hideDrop(e)}>
         <div className="container">
           <TopBar />
           <div className="heading">

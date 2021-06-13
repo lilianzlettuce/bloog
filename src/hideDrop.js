@@ -12,6 +12,9 @@ export function isDescendant(parent, child) {
 export function hideDrop(e) {
     let clicked = e.target
     if (!isDescendant(document.querySelector('#dropdown'), clicked) && !clicked.id.includes('user-icon') && clicked.id !== 'dropdown') {
-        document.querySelector('#dropdown').style.display = 'none'
+        let d = document.querySelector('#dropdown')
+        if (d) {
+            d.style.display = 'none'
+        }
     }
 }
