@@ -77,6 +77,18 @@ h4 {
     margin: 0;
 }
 
+.bounce {
+    animation: bounce .4s ease 0s 1 forwards;
+}
+@keyframes bounce {
+    50% {
+        top: 70px;
+    }
+    100% {
+        top: 60px;
+    }
+}
+
 #dropdown {
     width: 250px;
     height: fit-content;
@@ -122,6 +134,8 @@ h4 {
     padding: 10px 20px;
     text-align: left;
     border-radius: 0px;
+    color: var(--dark);
+    transform: .5 ease;
 }
 .drop-btn:hover {
     background-color: rgb(241, 242, 255);

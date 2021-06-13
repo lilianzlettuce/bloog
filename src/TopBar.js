@@ -13,7 +13,9 @@ const TopBar = (props) => {
     }
 
     function dropDown() {
-        document.querySelector('#dropdown').style.display = 'flex'
+        let d = document.querySelector('#dropdown')
+        d.style.display = 'flex'
+        d.classList.add('bounce')
     }
 
     return (
