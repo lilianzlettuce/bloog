@@ -15,15 +15,7 @@ class HomePage extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            deckMode: 'my',
-        }
-    }
-
-    componentDidMount() {
-        if (this.props.uid) {
-            this.setState({ deckMode: 'my' })
-        } else {
-            this.setState({ deckMode: 'public' })
+            deckMode: 'public',
         }
     }
 
@@ -92,7 +84,7 @@ class HomePage extends React.Component {
             )
         })
     
-        let numSavedDecks
+        let numSavedDecks = 0
         let savedDecks 
         if (this.props.uid && this.props.saved && this.props.saved[this.props.uid]) {
             savedDecks = this.props.saved[this.props.uid].map((key) => {
@@ -141,12 +133,47 @@ class HomePage extends React.Component {
         })
 
         const loginMessage = (deckType) => {
-            return (
-                <div className="no-decks-found">
-                    <h1 className="nd-text1">No decks found! </h1>
-                    <h1 className="nd-text1"><Link to="/login" className="nd-text2">Log in</Link> to {deckType} cards.</h1>
-                </div>
-            )
+            if (this.props.uid) {
+                let m = `All decks you ${deckType} will show up here.`
+                if (deckType === 'save') {
+                    m = `Star decks to ${deckType} them here.`
+                }
+                return (
+                    <div className="no-decks-found">
+                        <h1 className="nd-text1">No decks found!</h1>
+                        <h1 className="nd-text1">{m}</h1>
+                    </div>
+                )
+            } else {
+                return (
+                    <div className="no-decks-found">
+                        <h1 className="nd-text1">No decks found!</h1>
+                        <h1 className="nd-text1"><Link to="/login" className="nd-text2">Log in</Link> to {deckType} card decks.</h1>
+                    </div>
+                )
+            }
+        }
+
+        const returnNotPublic = (mode) => {
+            let word = 'create'
+            let num = numMyDecks
+            let decks = myDecks
+            if (mode === 'saved') {
+                word = 'save'
+                num = numSavedDecks
+                decks = savedDecks
+            }
+            if (this.props.uid) {
+                if (num === 0) return loginMessage(word)
+                else return decks
+            } else {
+                return loginMessage(word)
+            }
+            /**{(this.props.uid && this.state.deckMode === 'my') && myDecks}
+            {(this.props.uid && this.state.deckMode === 'my') && loginMessage('create')}
+            {(!this.props.uid && this.state.deckMode === 'my') && loginMessage('create')}
+            {(this.props.uid && this.state.deckMode === 'saved') && savedDecks}
+            {(!this.props.uid && this.state.deckMode === 'saved') && loginMessage('save')}**/
         }
     
         return (
@@ -201,10 +228,7 @@ class HomePage extends React.Component {
                         </div>
                         <div className="deck-section">
                             {this.state.deckMode === 'public' && publicDecks}
-                            {(this.props.uid && this.state.deckMode === 'my') && myDecks}
-                            {(!this.props.uid && this.state.deckMode === 'my') && loginMessage('create')}
-                            {(this.props.uid && this.state.deckMode === 'saved') && savedDecks}
-                            {(!this.props.uid && this.state.deckMode === 'saved') && loginMessage('save')}
+                            {this.state.deckMode !== 'public' && returnNotPublic(this.state.deckMode)}
                         </div>
                     </div>
                 </div>
