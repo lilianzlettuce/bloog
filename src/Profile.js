@@ -11,6 +11,7 @@ import { compose } from 'redux'
 import { withRouter } from 'react-router'
 import { HashLink } from 'react-router-hash-link'
 import PageNotFound from './PageNotFound'
+import PageLoading from './PageLoading'
 
 class HomePage extends React.Component {
     constructor(props) {
@@ -134,8 +135,8 @@ class HomePage extends React.Component {
     }
 
     render() {
-        if (!isLoaded(this.props.user, this.props.homepage, this.props.users) || (this.props.uid && !isLoaded(this.props.savedDecks))) {
-            return <div>Loading...</div>
+        if (!isLoaded(this.props.homepage, this.props.users) || (this.props.uid && !isLoaded(this.props.savedDecks))) {
+            return <PageLoading />
         }
     
         if (isEmpty(this.props.user)) {

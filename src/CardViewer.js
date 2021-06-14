@@ -10,6 +10,7 @@ import { firebaseConnect, isEmpty, isLoaded, /*populate*/ } from 'react-redux-fi
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import PageNotFound from './PageNotFound'
+import PageLoading from './PageLoading'
 
 class CardViewer extends React.Component {
   constructor(props) {
@@ -303,7 +304,7 @@ class CardViewer extends React.Component {
 
   render() {
     if (!isLoaded(this.state.cards, this.props.users) || (this.props.uid && !isLoaded(this.props.savedDecks))) {
-      return <div>Loading...</div>
+      return <PageLoading />
     }
 
     if (isEmpty(this.state.cards)) {
