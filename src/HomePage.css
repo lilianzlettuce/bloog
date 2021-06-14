@@ -33,7 +33,7 @@ h2 {
 .select-on {
     border: none;
     color: white;
-    background-color: var(--main-light);
+    background-color: var(--dark);
 }
 
 .select-off {

@@ -10,10 +10,11 @@ import { Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { isLoaded } from 'react-redux-firebase'
 import PageNotFound from './PageNotFound'
+import PageLoading from './PageLoading'
 
 const App = props => {
   if (!isLoaded(props.auth, props.profile)) {
-    return <div>Authentication loading...</div>
+    return <PageLoading />
   }
 
   return (

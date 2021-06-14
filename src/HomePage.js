@@ -5,19 +5,30 @@ import TopBar from './TopBar'
 import Card from './Card'
 
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { firebaseConnect, isLoaded } from 'react-redux-firebase'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
+import PageLoading from './PageLoading'
 
 class HomePage extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            deckMode: 'public',
+            deckMode: 'my',
+        }
+    }
+
+    componentDidMount() {
+        if (this.props.uid) {
+            this.setState({ deckMode: 'my' })
+        } else {
+            this.setState({ deckMode: 'public' })
         }
     }
 
     componentDidUpdate() {
+        //adds new saved decks array for new users
         if (this.props.uid && this.props.saved && !Object.keys(this.props.saved).includes(this.props.uid)) {
             this.props.firebase.database()
                 .ref()
@@ -26,18 +37,25 @@ class HomePage extends React.Component {
                     0: '',
                 })
         }
+        this.updateStyle()
     }
 
+    //changes which card group is displayed
     handleSelect = (e) => {
-        document.querySelector(`#${e.target.htmlFor}-decks-btn`).checked = true
+        let btn = document.querySelector(`#${e.target.htmlFor}-decks-btn`)
+        if (btn) btn.checked = true
         this.setState({ deckMode: e.target.htmlFor })
+    }
+
+    //changes selector btn styles
+    updateStyle = () => {
         let arr = ['public', 'my', 'saved']
         for (let i = 0; i < arr.length; i++) {
             let label = document.querySelector(`#${arr[i]}-label`)
-            if (arr[i] === e.target.htmlFor) {
+            if (label && arr[i] === this.state.deckMode) {
                 label.classList.add('select-on')
                 label.classList.remove('select-off')
-            } else {
+            } else if (label) {
                 label.classList.add('select-off')
                 label.classList.remove('select-on')
             }
@@ -46,7 +64,7 @@ class HomePage extends React.Component {
 
     render() {
         if (!isLoaded(this.props.homepage, this.props.users)) {
-            return <div>Loading...</div>
+            return <PageLoading />
         }
     
         let numMyDecks = 0
@@ -121,6 +139,15 @@ class HomePage extends React.Component {
                 <div key={key}></div>
             )
         })
+
+        const loginMessage = (deckType) => {
+            return (
+                <div className="no-decks-found">
+                    <h1 className="nd-text1">No decks found! </h1>
+                    <h1 className="nd-text1"><Link to="/login" className="nd-text2">Log in</Link> to {deckType} cards.</h1>
+                </div>
+            )
+        }
     
         return (
             <div className="body-container" onClick={(e) => hideDrop(e)}>
@@ -133,7 +160,7 @@ class HomePage extends React.Component {
                                 className="select-btn select-on"
                                 onClick={(e) => this.handleSelect(e)} 
                                 htmlFor="public">
-                                    Public Decks
+                                    Browse
                                     <input 
                                         id="public-decks-btn" 
                                         className="radio-btn" 
@@ -162,7 +189,7 @@ class HomePage extends React.Component {
                                 className="select-btn select-off"
                                 onClick={(e) => this.handleSelect(e)} 
                                 htmlFor="saved">
-                                    Saved Decks
+                                    Starred {'\xa0'}<i className="fas fa-star"></i>
                                     <input 
                                         id="saved-decks-btn" 
                                         className="radio-btn" 
@@ -174,8 +201,10 @@ class HomePage extends React.Component {
                         </div>
                         <div className="deck-section">
                             {this.state.deckMode === 'public' && publicDecks}
-                            {this.state.deckMode === 'my' && myDecks}
-                            {this.state.deckMode === 'saved' && savedDecks}
+                            {(this.props.uid && this.state.deckMode === 'my') && myDecks}
+                            {(!this.props.uid && this.state.deckMode === 'my') && loginMessage('create')}
+                            {(this.props.uid && this.state.deckMode === 'saved') && savedDecks}
+                            {(!this.props.uid && this.state.deckMode === 'saved') && loginMessage('save')}
                         </div>
                     </div>
                 </div>

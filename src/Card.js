@@ -111,7 +111,7 @@ class Card extends React.Component {
                     className="homepage-save"
                     onClick={this.saveDeck}
                 >
-                    <i id={"save-icon" + this.props.deckId + this.props.set} className="far fa-heart"></i>
+                    <i id={"save-icon" + this.props.deckId + this.props.set} className="far fa-star"></i>
                 </button>
                 <HashLink className="deck-container" to={`/viewer/${this.props.deckId}`}>
                     <div>

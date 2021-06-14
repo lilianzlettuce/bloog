@@ -9,6 +9,10 @@
     --bborder: 10px;
 }
 
+.cardset-name {
+    color: var(--light);
+}
+
 .btn-container {
     display: flex;
     justify-content: space-between;
