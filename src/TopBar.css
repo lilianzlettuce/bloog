@@ -78,10 +78,10 @@ h4 {
 }
 
 .bounce {
-    animation: bounce .4s ease 0s 1 forwards;
+    animation: bounce .3s ease 0s 1 forwards;
 }
 @keyframes bounce {
-    50% {
+    70% {
         top: 70px;
     }
     100% {
@@ -136,6 +136,7 @@ h4 {
     border-radius: 0px;
     color: var(--dark);
     transform: .5 ease;
+    font-weight: 500;
 }
 .drop-btn:hover {
     background-color: rgb(241, 242, 255);

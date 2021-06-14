@@ -47,33 +47,31 @@ class LoginPage extends React.Component {
             <div className="acct-container">
                 <Link className="back-btn" to="/">Back to home</Link>
                 <div className="acct-child1">
-                    <h2 className="acct-header">Welcome back!</h2>
-                    <br/>
-                    <div className="error-message" id="signin-error">{this.state.error}</div>
-                    <br/>
-                    <div className="input-container">
-                        <input 
-                            className="acct-input"
-                            name="email"
-                            placeholder="Email"
-                            onChange={this.handleChange}
-                            value={this.state.email}
-                        />
+                    <div className="outline-box">
+                        <h2 className="acct-header">Welcome back!</h2>
+                        <div className="error-message" id="signin-error">{this.state.error}</div>
+                        <div className="input-container">
+                            <input 
+                                className="acct-input"
+                                name="email"
+                                placeholder="Email"
+                                onChange={this.handleChange}
+                                value={this.state.email}
+                            />
+                            <br/>
+                            <input 
+                                className="acct-input"
+                                name="password"
+                                type="password"
+                                placeholder="Password"
+                                onChange={this.handleChange}
+                                value={this.state.password}
+                            />
+                        </div>
                         <br/>
-                        <input 
-                            className="acct-input"
-                            name="password"
-                            type="password"
-                            placeholder="Password"
-                            onChange={this.handleChange}
-                            value={this.state.password}
-                        />
+                        <button className="acct-btn" onClick={this.login}>Sign in</button>
+                        <div  className="subtext">New to BLOOG? <Link className="link" to="/register">Create an account.</Link></div>
                     </div>
-                    <br/>
-                    <button className="acct-btn" onClick={this.login}>Sign in</button>
-                    <br/>
-                    <br/>
-                    <div  className="subtext">New to BLOOG? <Link className="link" to="/register">Create an account.</Link></div>
                 </div>
                 <div className="acct-child2">
                     <div className="cards-container">

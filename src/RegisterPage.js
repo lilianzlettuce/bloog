@@ -82,49 +82,47 @@ class RegisterPage extends React.Component {
             <div className="acct-container">
                 <Link className="back-btn" to="/">Back to home</Link>
                 <div className="acct-child1">
-                    <h2 className="acct-header">Sign up</h2>
-                    <br/>
-                    <div className="error-message" id="signup-error">{this.state.error}</div>
-                    <br/>
-                    <div className="input-container">
-                        <input 
-                            className="acct-input"
-                            name="name"
-                            placeholder="Name"
-                            onChange={this.handleChange}
-                            value={this.state.name}
-                        />
+                    <div className="outline-box">
+                        <h2 className="acct-header">Sign up</h2>
+                        <div className="error-message" id="signup-error">{this.state.error}</div>
+                        <div className="input-container">
+                            <input 
+                                className="acct-input"
+                                name="name"
+                                placeholder="Name"
+                                onChange={this.handleChange}
+                                value={this.state.name}
+                            />
+                            <br/>
+                            <input 
+                                className="acct-input"
+                                name="username"
+                                placeholder="Username"
+                                onChange={this.handleChange}
+                                value={this.state.username}
+                            />
+                            <br/>
+                            <input 
+                                className="acct-input"
+                                name="email"
+                                placeholder="Email"
+                                onChange={this.handleChange}
+                                value={this.state.email}
+                            />
+                            <br/>
+                            <input 
+                                className="acct-input"
+                                name="password"
+                                type="password"
+                                placeholder="Password"
+                                onChange={this.handleChange}
+                                value={this.state.password}
+                            />
+                        </div>
                         <br/>
-                        <input 
-                            className="acct-input"
-                            name="username"
-                            placeholder="Username"
-                            onChange={this.handleChange}
-                            value={this.state.username}
-                        />
-                        <br/>
-                        <input 
-                            className="acct-input"
-                            name="email"
-                            placeholder="Email"
-                            onChange={this.handleChange}
-                            value={this.state.email}
-                        />
-                        <br/>
-                        <input 
-                            className="acct-input"
-                            name="password"
-                            type="password"
-                            placeholder="Password"
-                            onChange={this.handleChange}
-                            value={this.state.password}
-                        />
+                        <button className="acct-btn" onClick={this.register}>Create account</button>
+                        <div className="subtext">Already have an account? <Link className="link" to="/login">Sign in.</Link></div>
                     </div>
-                    <br/>
-                    <button className="acct-btn" onClick={this.register}>Create account</button>
-                    <br/>
-                    <br/>
-                    <div className="subtext">Already have an account? <Link className="link" to="/login">Sign in.</Link></div>
                 </div>
                 <div className="acct-child2">
                     <div className="cards-container">
