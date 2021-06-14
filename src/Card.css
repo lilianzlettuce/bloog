@@ -47,7 +47,7 @@ h3 {
     font-size: 1.2rem;
     color: white;
     font-weight: 800;
-    background-color: var(--main-light);
+    background-color: rgb(121, 228, 255);
     padding: 4px 6px;
     border-radius: 5px;
     position: relative;
@@ -93,6 +93,9 @@ h3 {
     color: var(--sub-light);
     font-size: 1.8rem;
     z-index: 10;
+}
+.homepage-save:hover {
+    color: var(--sub-light);
 }
 
 .btn-header {

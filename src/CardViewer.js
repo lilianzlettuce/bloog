@@ -331,7 +331,7 @@ class CardViewer extends React.Component {
                 id="save-btn"
                 onClick={this.saveDeck}
               >
-                <i id= "save-icon" className="far fa-heart"></i>
+                <i id= "save-icon" className="far fa-star"></i>
               </button>
             </div>
           </div>

@@ -45,17 +45,17 @@
 .uncheck-btn {
     min-width: fit-content;
     border-radius: 5px;
-    background-color: var(--sub-light);
+    background-color: rgb(117, 204, 255);
     color: white;
     padding: 5px 8px;
 }
 .uncheck-btn:hover {
-    background-color: var(--sub-lighter);
+    background-color: rgb(121, 228, 255);
     color: white;
 }
 
 #save-btn {
-    color: rgb(255, 93, 120);
+    color: var(--sub-light);
     font-size: 2.6rem;
 }
 

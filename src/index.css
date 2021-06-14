@@ -208,7 +208,7 @@ button:hover {
 .no-decks-found {
   width: 100%;
   height: fit-content;
-  padding: 80px;
+  padding: 120px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -216,9 +216,9 @@ button:hover {
   text-align: center;
 }
 .nd-text1 {
-  font-weight: 500;
-  margin: 0px;
-  font-size: 3rem;
+  font-weight: 400;
+  margin: 3px;
+  font-size: 2.5rem;
 }
 .nd-text2 {
   color: var(--light);

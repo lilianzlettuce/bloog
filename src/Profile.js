@@ -127,8 +127,6 @@ class HomePage extends React.Component {
         half2.push(un)
         let newUns = half1.concat(half2)
 
-        console.log(half1)
-        console.log(half2)
         this.props.firebase.database().ref('/usernames').set(newUns)
         
         this.shrinkAnim('#edit-container')
