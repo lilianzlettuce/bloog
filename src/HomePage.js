@@ -37,9 +37,10 @@ class HomePage extends React.Component {
             if (arr[i] === e.target.htmlFor) {
                 label.classList.add('select-on')
                 label.classList.remove('select-off')
+            } else {
+                label.classList.add('select-off')
+                label.classList.remove('select-on')
             }
-            label.classList.add('select-off')
-            label.classList.remove('select-on')
         }
     }
 

@@ -23,7 +23,7 @@ h2 {
 .select-btn {
     margin-right: 20px;
     padding: 9px 14px;
-    transition: .5s ease;
+    transition: .3s ease;
     font-size: 1.5rem;
     font-weight: 600;
     outline: none;
@@ -34,10 +34,6 @@ h2 {
     border: none;
     color: white;
     background-color: var(--main-light);
-}
-.select-on:hover {
-    cursor: pointer;
-    background-color: var(--light);
 }
 
 .select-off {
