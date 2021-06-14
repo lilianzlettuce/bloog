@@ -10,6 +10,13 @@ import { connect } from 'react-redux'
 import { compose } from 'redux'
 
 class HomePage extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            deckMode: 'public',
+        }
+    }
+
     componentDidUpdate() {
         if (this.props.uid && this.props.saved && !Object.keys(this.props.saved).includes(this.props.uid)) {
             this.props.firebase.database()
@@ -18,6 +25,21 @@ class HomePage extends React.Component {
                 .child(this.props.uid).set({
                     0: '',
                 })
+        }
+    }
+
+    handleSelect = (e) => {
+        document.querySelector(`#${e.target.htmlFor}-decks-btn`).checked = true
+        this.setState({ deckMode: e.target.htmlFor })
+        let arr = ['public', 'my', 'saved']
+        for (let i = 0; i < arr.length; i++) {
+            let label = document.querySelector(`#${arr[i]}-label`)
+            if (arr[i] === e.target.htmlFor) {
+                label.classList.add('select-on')
+                label.classList.remove('select-off')
+            }
+            label.classList.add('select-off')
+            label.classList.remove('select-on')
         }
     }
 
@@ -103,21 +125,57 @@ class HomePage extends React.Component {
             <div className="body-container" onClick={(e) => hideDrop(e)}>
                 <div id="hp-main">
                     <TopBar />
-                    {(this.props.username) &&
-                        <div>
-                            <div className="section">
-                                <h2>My Decks</h2>
-                                <div className="deck-section">{myDecks}</div>
-                            </div>
-                            <div className="section">
-                                <h2>Saved Decks</h2>
-                                <div className="deck-section">{savedDecks}</div>
-                            </div>
-                        </div>
-                    }
                     <div className="section">
-                        <h2>Public Decks</h2>
-                        <div className="deck-section">{publicDecks}</div>
+                        <div id="deck-types">
+                            <label 
+                                id="public-label"
+                                className="select-btn select-on"
+                                onClick={(e) => this.handleSelect(e)} 
+                                htmlFor="public">
+                                    Public Decks
+                                    <input 
+                                        id="public-decks-btn" 
+                                        className="radio-btn" 
+                                        defaultChecked 
+                                        type="radio" 
+                                        name="deck-type" 
+                                        value="public" 
+                                    />
+                            </label>
+                            <label 
+                                id="my-label"
+                                className="select-btn select-off"
+                                onClick={(e) => this.handleSelect(e)} 
+                                htmlFor="my">
+                                    My Decks
+                                    <input 
+                                        id="my-decks-btn" 
+                                        className="radio-btn" 
+                                        type="radio" 
+                                        name="deck-type" 
+                                        value="my" 
+                                    />
+                            </label>
+                            <label 
+                                id="saved-label"
+                                className="select-btn select-off"
+                                onClick={(e) => this.handleSelect(e)} 
+                                htmlFor="saved">
+                                    Saved Decks
+                                    <input 
+                                        id="saved-decks-btn" 
+                                        className="radio-btn" 
+                                        type="radio" 
+                                        name="deck-type" 
+                                        value="saved" 
+                                    />
+                            </label>
+                        </div>
+                        <div className="deck-section">
+                            {this.state.deckMode === 'public' && publicDecks}
+                            {this.state.deckMode === 'my' && myDecks}
+                            {this.state.deckMode === 'saved' && savedDecks}
+                        </div>
                     </div>
                 </div>
             </div>

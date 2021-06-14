@@ -56,6 +56,30 @@ h2 {
   font-size: 2.5rem;
 }
 
+select {
+  outline: none;
+  border: 1px solid var(--dark);
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-family: inherit;
+  font-size: 2.3rem;
+  font-weight: 300;
+  color: var(--darker);
+  background-color: transparent;
+}
+option {
+  outline: none;
+  border: 1px solid var(--dark);
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-family: inherit;
+  font-size: 2.3rem;
+  font-weight: 300;
+  margin: 0 0 0 40px;
+  color: var(--darker);
+  background-color: transparent;
+}
+
 textarea{
   outline: none;
   border: none;
