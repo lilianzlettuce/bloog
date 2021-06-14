@@ -10,6 +10,7 @@ import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { withRouter } from 'react-router'
 import { HashLink } from 'react-router-hash-link'
+import PageNotFound from './PageNotFound'
 
 class HomePage extends React.Component {
     constructor(props) {
@@ -138,7 +139,7 @@ class HomePage extends React.Component {
         }
     
         if (isEmpty(this.props.user)) {
-            return <div>Page not found!</div>
+            return <PageNotFound />
         }
 
         let decksCreated = 0

@@ -9,6 +9,7 @@ import Profile from './Profile'
 import { Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { isLoaded } from 'react-redux-firebase'
+import PageNotFound from './PageNotFound'
 
 const App = props => {
   if (!isLoaded(props.auth, props.profile)) {
@@ -36,7 +37,7 @@ const App = props => {
             <Profile />
         </Route>
         <Route>
-          <div>Page not found!</div>
+          <PageNotFound />
         </Route>
     </Switch>
   )

@@ -9,6 +9,7 @@ import { HashLink } from 'react-router-hash-link';
 import { firebaseConnect, isEmpty, isLoaded, /*populate*/ } from 'react-redux-firebase'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
+import PageNotFound from './PageNotFound'
 
 class CardViewer extends React.Component {
   constructor(props) {
@@ -306,7 +307,7 @@ class CardViewer extends React.Component {
     }
 
     if (isEmpty(this.state.cards)) {
-      return <div>Page not found!</div>
+      return <PageNotFound />
     }
 
     return (
