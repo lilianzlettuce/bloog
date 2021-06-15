@@ -36,6 +36,7 @@
     background-color: var(--main-light);
     color: white;
     padding: 5px 8px;
+    margin: 10px 20px;
 }
 .check-btn:hover {
     background-color: var(--light);
@@ -45,18 +46,28 @@
 .uncheck-btn {
     min-width: fit-content;
     border-radius: 5px;
-    background-color: rgb(117, 204, 255);
+    background-color: rgb(122, 212, 144);
     color: white;
     padding: 5px 8px;
+    margin: 10px 20px;
 }
 .uncheck-btn:hover {
-    background-color: rgb(121, 228, 255);
+    background-color: rgb(148, 230, 168);
     color: white;
 }
 
 #save-btn {
     color: var(--sub-light);
     font-size: 2.6rem;
+    margin: 10px;
+    padding: 0;
+}
+
+#delete-deck-btn {
+    color: red;
+    font-size: 2.4rem;
+    margin: 10px;
+    padding: 0;
 }
 
 #card-container {

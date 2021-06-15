@@ -141,8 +141,8 @@ class HomePage extends React.Component {
             return <PageNotFound />
         }
 
-        let decksCreated = 0
-        let decksSaved = 0
+        let numDecksCreated = 0
+        let numDecksSaved = 0
     
         const createdDecks = Object.keys(this.props.homepage).map((key) => {
             let deck = this.props.homepage[key]
@@ -153,7 +153,7 @@ class HomePage extends React.Component {
             }
     
             if (this.props.users[deck.owner].username === this.props.user.username && (visibility === 'public' || this.props.user.username === this.props.username)) {
-                decksCreated++
+                numDecksCreated++
                 return (
                     <Card key={key} visibility={visibility} 
                         deckId={key}
@@ -179,7 +179,7 @@ class HomePage extends React.Component {
             }
     
             if (deck && (deck.public || this.props.user.username === this.props.username)) {
-                decksSaved++
+                numDecksSaved++
                 return (
                     <Card key={key} visibility={visibility} 
                         deckId={key}
@@ -195,6 +195,14 @@ class HomePage extends React.Component {
                 <div key={key}></div>
             )
         })
+
+        const noDecksMessage = (deckType) => {
+            return (
+                <div className="no-decks-found">
+                    <h1 className="nd-text1">This user has yet to {deckType} any decks.</h1>
+                </div>
+            )
+        }
     
         return (
             <div className="body-container" onClick={(e) => hideDrop(e)}>
@@ -225,8 +233,8 @@ class HomePage extends React.Component {
                                             />
                                             <div>
                                                 <div className="stats">
-                                                    <HashLink className="stats-link" smooth to={`/profile/${this.props.user_uid}#created-decks`}><span className="bold">{decksCreated}</span> decks created</HashLink> {`\xa0\xa0`}
-                                                    <HashLink className="stats-link" smooth to={`/profile/${this.props.user_uid}#saved-decks`}><span className="bold">{decksSaved}</span> decks saved</HashLink></div>
+                                                    <HashLink className="stats-link" smooth to={`/profile/${this.props.user_uid}#created-decks`}><span className="bold">{numDecksCreated}</span> decks created</HashLink> {`\xa0\xa0`}
+                                                    <HashLink className="stats-link" smooth to={`/profile/${this.props.user_uid}#saved-decks`}><span className="bold">{numDecksSaved}</span> decks saved</HashLink></div>
                                             </div>
                                         </div>
                                     </div>
@@ -279,11 +287,11 @@ class HomePage extends React.Component {
                             </div>
                             <div className="section" id="created-decks">
                                 <h2>Created Decks</h2>
-                                <div className="deck-section">{createdDecks}</div>
+                                {numDecksCreated? <div className="deck-section">{createdDecks}</div> : noDecksMessage('create')}
                             </div>
                             <div className="section" id="saved-decks">
                                 <h2>Saved Decks</h2>
-                                <div className="deck-section">{savedDecks}</div>
+                                {numDecksSaved? <div className="deck-section">{savedDecks}</div> : noDecksMessage('save')}
                             </div>
                         </div>
                     </div>

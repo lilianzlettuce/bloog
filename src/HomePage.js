@@ -132,7 +132,7 @@ class HomePage extends React.Component {
             )
         })
 
-        const loginMessage = (deckType) => {
+        const noDecksMessage = (deckType) => {
             if (this.props.uid) {
                 let m = `All decks you ${deckType} will show up here.`
                 if (deckType === 'save') {
@@ -147,7 +147,6 @@ class HomePage extends React.Component {
             } else {
                 return (
                     <div className="no-decks-found">
-                        <h1 className="nd-text1">No decks found!</h1>
                         <h1 className="nd-text1"><Link to="/login" className="nd-text2">Log in</Link> to {deckType} card decks.</h1>
                     </div>
                 )
@@ -164,16 +163,11 @@ class HomePage extends React.Component {
                 decks = savedDecks
             }
             if (this.props.uid) {
-                if (num === 0) return loginMessage(word)
+                if (num === 0) return noDecksMessage(word)
                 else return decks
             } else {
-                return loginMessage(word)
+                return noDecksMessage(word)
             }
-            /**{(this.props.uid && this.state.deckMode === 'my') && myDecks}
-            {(this.props.uid && this.state.deckMode === 'my') && loginMessage('create')}
-            {(!this.props.uid && this.state.deckMode === 'my') && loginMessage('create')}
-            {(this.props.uid && this.state.deckMode === 'saved') && savedDecks}
-            {(!this.props.uid && this.state.deckMode === 'saved') && loginMessage('save')}**/
         }
     
         return (
