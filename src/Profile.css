@@ -108,36 +108,6 @@
     z-index: 50;
     transform: scale(.5);
 }
-.grow {
-    animation: grow .5s ease 0s 1 forwards;
-}
-@keyframes grow {
-    60% {
-        transform: scale(1.2);
-    }
-    100% {
-        transform: scale(1.1);
-    }
-}
-
-.shrink {
-    animation: shrink .5s ease 0s 1 forwards;
-}
-@keyframes shrink {
-    0% {
-        transform: scale(1.1);
-    }
-    30% {
-        transform: scale(1.2);
-    }
-    50% {
-        opacity: 100%;
-    }
-    100% {
-        transform: scale(.01);
-        opacity: 0%;
-    }
-}
 
 .edit-input {
     padding: 5px 10px !important;

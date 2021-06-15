@@ -63,11 +63,31 @@
     padding: 0;
 }
 
-#delete-deck-btn {
+#trash-btn {
     color: red;
     font-size: 2.4rem;
     margin: 10px;
     padding: 0;
+}
+
+#delete-deck-container {
+    padding: 50px 60px;
+}
+#delete-text {
+    font-size: 1.8rem;
+    font-weight: 400;
+}
+#cancel-delete-btn {
+    background-color: lightgray;
+    color: white;
+    padding: 8px 12px;
+    margin-left: 0;
+}
+#delete-deck-btn {
+    background-color: rgb(228, 0, 0);
+    color: white;
+    padding: 8px 12px;
+    margin-left: 0;
 }
 
 #card-container {

@@ -303,15 +303,19 @@ class CardViewer extends React.Component {
   }
 
   showPopup = () => {
-    let edit = document.querySelector('#edit-container')
+    let edit = document.querySelector('#delete-deck-container')
     edit.style.display = 'flex'
     edit.classList.remove('shrink')
     edit.classList.add('grow')
   }
 
   hidePopup = () => {
-    document.querySelector('#pf-error').style.display = 'none'
-    this.shrinkAnim('#edit-container')
+    let item = document.querySelector('#delete-deck-container')
+    item.classList.remove('grow')
+    item.classList.add('shrink')
+    setTimeout(() => {
+      item.style.display = 'none'
+    }, 500);
   }
 
   render() {
@@ -346,12 +350,21 @@ class CardViewer extends React.Component {
                 <i id= "save-icon" className="far fa-star"></i>
               </button>
               {(this.props.deck && this.props.users && this.props.users[this.props.owner].username === this.props.username) &&
-                <button
-                  id="delete-deck-btn"
-                  onClick={this.showPopup}
-                >
-                  <i id= "save-icon" className="far fa-trash-alt"></i>
-                </button>
+                <div>
+                  <button
+                    id="trash-btn"
+                    onClick={this.showPopup}
+                  >
+                    <i id= "save-icon" className="far fa-trash-alt"></i>
+                  </button>
+                  <div id="delete-deck-container" className="popup-container">
+                    <div id="delete-text">Are you sure you want to delete this deck?</div>
+                    <div id="pf-btn-container">
+                      <button id="cancel-delete-btn" onClick={this.hidePopup}>Cancel</button>
+                      <button id="delete-deck-btn" onClick={this.saveProfile}>Delete</button>
+                    </div>
+                  </div>
+                </div>
               }
             </div>
           </div>

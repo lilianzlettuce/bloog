@@ -241,7 +241,7 @@ class HomePage extends React.Component {
                                     {(this.props.uid && this.props.uid === this.props.user_uid) &&
                                         <div>
                                             <button id="edit-un-btn" onClick={this.editOn}><i className="fas fa-marker"></i> Edit Profile</button>
-                                            <div id="edit-container">
+                                            <div id="edit-container" className="popup-container">
                                                 <div id="pf-error">{this.state.error}</div>
                                                 <div>
                                                     <span>Username: {'\xa0'}</span>
