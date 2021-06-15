@@ -36,7 +36,8 @@ class HomePage extends React.Component {
     handleSelect = (e) => {
         let btn = document.querySelector(`#${e.target.htmlFor}-decks-btn`)
         if (btn) btn.checked = true
-        this.setState({ deckMode: e.target.htmlFor })
+        if (e.target.htmlFor) this.setState({ deckMode: e.target.htmlFor })
+        else this.setState({ deckMode: 'saved' })
     }
 
     //changes selector btn styles
