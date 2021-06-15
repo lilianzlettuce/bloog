@@ -101,7 +101,7 @@ class CardEditor extends React.Component {
       public: this.state.public,
     }
     this.props.firebase.update('/', updates, () => {
-      //redirect route after firebase has updated
+      //change route after firebase has updated
       this.props.history.push(`/viewer/${deckId}`)
     })
   }

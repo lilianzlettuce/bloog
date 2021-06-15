@@ -302,6 +302,14 @@ class CardViewer extends React.Component {
     this.props.firebase.update('/', updates)
   }
 
+  deleteDeck = () => {
+    let db = this.props.firebase.database()
+    db.ref('flashcards/' + this.props.deckId).remove()
+    db.ref('homepage/' + this.props.deckId).remove()
+    this.hidePopup()
+    this.props.history.push('/')
+  }
+
   showPopup = () => {
     let edit = document.querySelector('#delete-deck-container')
     edit.style.display = 'flex'
@@ -376,7 +384,7 @@ class CardViewer extends React.Component {
                     <div id="delete-text">Are you sure you want to delete this deck?</div>
                     <div id="pf-btn-container">
                       <button id="cancel-delete-btn" onClick={this.hidePopup}>Cancel</button>
-                      <button id="delete-deck-btn" onClick={this.saveProfile}>Delete</button>
+                      <button id="delete-deck-btn" onClick={this.deleteDeck}>Delete</button>
                     </div>
                   </div>
                 </div>
@@ -433,6 +441,8 @@ const mapStateToProps = (state, props) => {
     uid: uid,
     savedDecks: state.firebase.data.saved,
     users: state.firebase.data.users,
+    allDecks: state.firebase.data.flashcards,
+    homepage: state.firebase.data.homepage,
   }
 }
 
@@ -442,6 +452,8 @@ export default compose(
     const deckId = props.match.params.deckId
     return [
       { path: `/flashcards/${deckId}`, storeAs: deckId},
+      '/flashcards',
+      '/homepage',
       '/saved',
       '/users',
     ]
