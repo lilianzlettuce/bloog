@@ -307,6 +307,12 @@ class CardViewer extends React.Component {
     edit.style.display = 'flex'
     edit.classList.remove('shrink')
     edit.classList.add('grow')
+
+    let shade = document.querySelector('#viewer-shade')
+    document.body.style.overflowY = 'hidden'
+    shade.style.display = 'block'
+    shade.classList.remove('fadeOut')
+    shade.classList.add('fadeIn')
   }
 
   hidePopup = () => {
@@ -315,6 +321,14 @@ class CardViewer extends React.Component {
     item.classList.add('shrink')
     setTimeout(() => {
       item.style.display = 'none'
+    }, 500);
+
+    let shade = document.querySelector('#viewer-shade')
+    document.body.style.overflowY = 'visible'
+    shade.classList.remove('fadeIn')
+    shade.classList.add('fadeOut')
+    setTimeout(() => {
+      shade.style.display = 'none'
     }, 500);
   }
 
@@ -357,6 +371,7 @@ class CardViewer extends React.Component {
                   >
                     <i id= "save-icon" className="far fa-trash-alt"></i>
                   </button>
+                  <div className="shade" id="viewer-shade"></div>
                   <div id="delete-deck-container" className="popup-container">
                     <div id="delete-text">Are you sure you want to delete this deck?</div>
                     <div id="pf-btn-container">

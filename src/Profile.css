@@ -87,6 +87,10 @@
     text-decoration: underline;
 }
 
+#pf-shade {
+    z-index: 600;
+}
+
 #edit-container {
     position: fixed;
     top: 20%;
@@ -107,6 +111,7 @@
     display: none;
     z-index: 50;
     transform: scale(.5);
+    z-index: 650;
 }
 
 .edit-input {

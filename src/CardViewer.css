@@ -71,7 +71,10 @@
 }
 
 #delete-deck-container {
-    padding: 50px 60px;
+    padding: 40px 40px;
+    width: 330px;
+    text-align: center;
+    left: calc(50vw - 165px);
 }
 #delete-text {
     font-size: 1.8rem;
@@ -84,7 +87,7 @@
     margin-left: 0;
 }
 #delete-deck-btn {
-    background-color: rgb(228, 0, 0);
+    background-color: rgb(255, 0, 0);
     color: white;
     padding: 8px 12px;
     margin-left: 0;

@@ -73,6 +73,12 @@ class HomePage extends React.Component {
 
         document.querySelector('#cancel-un-btn').style.display = 'inline-block'
         document.querySelector('#pf-save-btn').style.display = 'inline-block'
+
+        let shade = document.querySelector('#pf-shade')
+        document.body.style.overflowY = 'hidden'
+        shade.style.display = 'block'
+        shade.classList.remove('fadeOut')
+        shade.classList.add('fadeIn')
     }
 
     cancel = () => {
@@ -83,6 +89,14 @@ class HomePage extends React.Component {
 
         document.querySelector('#pf-error').style.display = 'none'
         this.shrinkAnim('#edit-container')
+
+        let shade = document.querySelector('#pf-shade')
+        document.body.style.overflowY = 'visible'
+        shade.classList.remove('fadeIn')
+        shade.classList.add('fadeOut')
+        setTimeout(() => {
+        shade.style.display = 'none'
+        }, 500);
     }
 
     shrinkAnim = (id) => {
@@ -241,6 +255,7 @@ class HomePage extends React.Component {
                                     {(this.props.uid && this.props.uid === this.props.user_uid) &&
                                         <div>
                                             <button id="edit-un-btn" onClick={this.editOn}><i className="fas fa-marker"></i> Edit Profile</button>
+                                            <div className="shade" id="pf-shade"></div>
                                             <div id="edit-container" className="popup-container">
                                                 <div id="pf-error">{this.state.error}</div>
                                                 <div>
