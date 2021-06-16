@@ -284,8 +284,8 @@ button:hover {
   width: 100vw;
   height: 200vh;
   background-color: rgba(0, 0, 0, 0.349);
-  opacity: 0%;
-  display: none;
+  opacity: 100%;
+  display: block;
   z-index: 600;
   overflow: hidden;
 }
