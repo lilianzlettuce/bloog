@@ -246,19 +246,6 @@ button:hover {
   transform: scale(.5);
 }
 
-.shade {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 200vh;
-  background-color: rgba(0, 0, 0, 0.253);
-  opacity: 0%;
-  display: none;
-  z-index: 600;
-  overflow: hidden;
-}
-
 .grow {
   animation: grow .5s ease 0s 1 forwards;
 }
@@ -290,11 +277,27 @@ button:hover {
   }
 }
 
+.shade {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 200vh;
+  background-color: rgba(0, 0, 0, 0.349);
+  opacity: 0%;
+  display: none;
+  z-index: 600;
+  overflow: hidden;
+}
+
 .fadeIn {
   animation: fadeIn .5s ease 0s 1 forwards;
 }
 @keyframes fadeIn {
-  to {
+  0% {
+    opacity: 0%;
+  }
+  100% {
     opacity: 100%;
   }
 }
